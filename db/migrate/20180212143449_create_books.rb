@@ -7,7 +7,7 @@ class CreateBooks < ActiveRecord::Migration[5.1]
       t.text :description
       t.date :year, null: false
       t.string :dimension, null: false
-      t.string :material, null: false
+      t.string :material
 
       t.timestamps
     end
