@@ -14,10 +14,14 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'therubyracer', platforms: :ruby
 
-gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'draper', '~> 3.0', '>= 3.0.1'
+
+gem 'coffee-rails', '~> 4.2'
+gem 'haml-rails'
+gem 'bootstrap-sass', '~> 3.3.7'
+gem 'font-awesome-sass', '~> 4.4.0'
 # gem 'redis', '~> 3.0'
 # gem 'bcrypt', '~> 3.1.7'
 
