@@ -7,7 +7,6 @@ RSpec.describe Book, :type => :model do
       @title = Faker::Book.title
       @book = Book.create(
           title: @title,
-          quantity: Faker::Number.digit,
           year: Date.today,
           material: Faker::Commerce.material,
           height: Faker::Number.between(0.00, 10.00),
@@ -33,11 +32,6 @@ RSpec.describe Book, :type => :model do
         new_book = Book.new(title: @title)
         new_book.valid?
         expect(new_book.errors[:title]).to include('has already been taken')
-      end
-      it 'without a quantity' do
-        book = Book.new(quantity: nil)
-        book.valid?
-        expect(book.errors[:quantity]).to include("can't be blank")
       end
       it 'without a year' do
         book = Book.new(year: nil)
