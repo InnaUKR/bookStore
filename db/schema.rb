@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180215143503) do
+ActiveRecord::Schema.define(version: 20180220091959) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,9 +35,8 @@ ActiveRecord::Schema.define(version: 20180215143503) do
   create_table "books", force: :cascade do |t|
     t.string "title", null: false
     t.decimal "price", precision: 8, scale: 2
-    t.integer "quantity", null: false
     t.text "description"
-    t.date "year", null: false
+    t.date "date_of_publication", null: false
     t.string "material", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -46,6 +45,23 @@ ActiveRecord::Schema.define(version: 20180215143503) do
     t.decimal "depth", precision: 5, scale: 2
   end
 
+  create_table "carts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "line_items", force: :cascade do |t|
+    t.bigint "book_id"
+    t.bigint "cart_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "quantity", default: 1
+    t.index ["book_id"], name: "index_line_items_on_book_id"
+    t.index ["cart_id"], name: "index_line_items_on_cart_id"
+  end
+
   add_foreign_key "authors_books", "authors"
   add_foreign_key "authors_books", "books"
+  add_foreign_key "line_items", "books"
+  add_foreign_key "line_items", "carts"
 end
