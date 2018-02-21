@@ -5,16 +5,16 @@
   %td
     %p.title= item.book.title
   %td
-    %span.font-16.in-gold-500= item.book.price
+    %span.font-16.in-gold-500= show_price(item.book.price)
   %td
     .input-group
-      %a.input-link{href: "#"}
+      %a.input-link
         %i.fa.fa-minus.line-heaght-40
       %input.form-control.quantity-input{type: "text", value: "#{item.quantity}"}
       %a.input-link{href: "#"}
         %i.fa.fa-plus.line-heaght-40
   %td
-    %span.font-16.in-gold-500= item.quantity * item.book.price
+    %span.font-16.in-gold-500= show_price(item.total_price)
   %td
-    %button.close.general-cart-close{type: "button", 'aria-label': "Close"}
-      %span{'aria-hidden': "true"} &times;
+    = link_to line_item_path(item), data: {confirm: "You sure?", method: :delete}, class: 'close general-cart-close' do
+      %span{'aria-hidden': 'true'} &times;

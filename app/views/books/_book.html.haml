@@ -4,12 +4,12 @@
       %img.img-shadow.general-thumbnail-img{src: "http://jonathantweedy.com/resources/thumbs/SmashingBook5ResponsiveWebDesign.jpg", alt: "design-book"}
       .thumb-hover
         .general-thumb-link-wrap
-          %a.thumb-hover-link{href: "#"}
+          %a.thumb-hover-link{href: book_path(book)}
             %i.fa.fa-eye.thumb-icon{'aria-hidden': "true"}
-          %a.thumb-hover-link{href: "#"}
+          =link_to line_items_path(book_id: book), method: :post, class: 'thumb-hover-link' do
             %i.fa.fa-shopping-cart.thumb-icon
   .general-thumb-info
     %p.title= book.title
-    %p.font-16.in-gold-500= book.price_eur
+    %p.font-16.in-gold-500= show_price(book.price)
     %span.divider-sm
-    %p.lead.small @book.authors_to_string
+    %p.lead.small= book.authors_to_string

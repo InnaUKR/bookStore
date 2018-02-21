@@ -3,13 +3,13 @@
     %span{'aria-hidden': "true"} &times;
   .general-img-wrap-table
     %img.cart-img-shadow{src: "http://jonathantweedy.com/resources/thumbs/SmashingBook5ResponsiveWebDesign.jpg", alt: "design-book"}
-  %p.title Android Programming for Beginners2ADSA
+  %p.title= item.book.title
   %table.table
     %tr
       %td
         %span.in-grey-600 Price
       %td
-        %span.font-16.in-gold-500 €28.50
+        %span.font-16.in-gold-500= show_price(item.book.price)
     %tr
       %td.vertical-middle
         %span.in-grey-600 Quantity
@@ -17,11 +17,11 @@
         .input-group
           %a.input-link{href: "#"}
             %i.fa.fa-minus.line-heaght-40
-          %input.form-control.quantity-input{type: "text"}
+          %input.form-control.quantity-input{type: "text", value: "#{item.quantity}"}
           %a.input-link{href: "#"}
             %i.fa.fa-plus.line-heaght-40
     %tr
       %td
         %span.in-grey-600 SubTotal
       %td
-        %span.font-16.in-gold-500 €32.90
+        %span.font-16.in-gold-500= show_price(item.total_price)
