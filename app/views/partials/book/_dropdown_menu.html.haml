@@ -5,8 +5,7 @@
       %i.fa.fa-angle-down.dropdown-icon.pull-right
     %ul.dropdown-menu
       %li
-        %a{href: "#"}
-          = t('books.dropdown_menu.newest_first')
+        =link_to t('books.dropdown_menu.newest_first'), recent_categories_path(@category)
       %li
         %a{href: "#"}
           = t('books.dropdown_menu.popular_first')

@@ -1,17 +1,13 @@
 %ul.list-inline.pt-10.mb-25.mr-240
   %li.mr-35
-    %a.filter-link{href: "#"}
-      = t('books.catalog.all')
-      %span.badge.general-badge 135
-  %li.mr-35
-    %a.filter-link{href: "#"}
-      = t('books.catalog.mobile')
-      %span.badge.general-badge 135
-  %li.mr-35
-    %a.filter-link{href: "#"}
-      = t('books.catalog.photo')
-      %span.badge.general-badge 135
-  %li.mr-35
-    %a.filter-link{href: "#"}
-      = t('books.catalog.web_design')
-      %span.badge.general-badge 135
+    = link_to categories_path, class: 'filter-link' do
+      %span.filter-link All
+      %span.badge.general-badge
+        = Book.all.count
+  -@categories.each do |category|
+    %li.mr-35
+      = link_to category_path(category), class: 'filter-link' do
+        %span.filter-link
+          =category.name
+        %span.badge.general-badge
+          =category.books_count

@@ -3,31 +3,7 @@ class BooksController < ApplicationController
 
   def index
     @books = Book.all.decorate
-  end
-
-  def recent
-    @books = Book.resent.decorate
-    render action: :index
-  end
-
-  def price_low_to_hight
-    @books = Book.price_low_to_hight.decorate
-    render action: :index
-  end
-
-  def price_hight_to_low
-    @books = Book.price_hight_to_low.decorate
-    render action: :index
-  end
-
-  def title_a_z
-    @books = Book.title_a_z.decorate
-    render action: :index
-  end
-
-  def title_z_a
-    @books = Book.title_z_a.decorate
-    render action: :index
+    @categories = Category.all
   end
 
   def show; end
@@ -79,6 +55,8 @@ class BooksController < ApplicationController
   end
 
   def book_params
-    params.require(:book).permit(:title, :price, :quantity, :description, :date_of_publication, :height, :width, :depth, :material)
+    params.require(:book).permit(:title, :price, :description,
+                                 :date_of_publication, :height, :width, :depth,
+                                 :material, :category_id)
   end
 end

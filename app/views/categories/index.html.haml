@@ -1,0 +1,13 @@
+.hidden-xs
+  %main.container
+    %h1.general-title-margin
+      = t('.title')
+    .hidden-xs.clearfix
+      = render partial: 'partials/book/dropdown_menu'
+      = render partial: 'partials/book/categories'
+    .mb-120
+      - @books.in_groups_of(4, false).each  do |books|
+        .row
+          = render partial:'book', collection: books
+      .text-center
+        %button.btn.btn-primary View Moreelete, data: {confirm: 'Are you shore?'}

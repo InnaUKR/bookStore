@@ -1,3 +1,8 @@
+Category.create(name: 'All')
+Category.create(name: 'Mobile development')
+Category.create(name: 'Photo')
+Category.create(name: 'Web design')
+
 
 Book.create(title: 'Real-Life Responsive Web Design',
             price: 32.90,
