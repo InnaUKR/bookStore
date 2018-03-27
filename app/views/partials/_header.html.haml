@@ -7,7 +7,7 @@
         %span.icon-bar
         %span.icon-bar
       %a.navbar-brand
-        = I18n.t('header.bookstore')
+        = t('header.bookstore')
       %a.shop-link.pull-right.visible-xs{href: "#"}
         %span.shop-icon
           %span.shop-quantity 3
@@ -21,41 +21,41 @@
         %ul.nav.navbar-nav
           %li
             %a{href: "#"}
-              = I18n.t('header.home')
+              = t('header.home')
           %li
             %a{type: "button", 'data-toggle': "collapse", href: "#menu", 'aria-expanded': "false", 'aria-controls': "menu"} Shop
             %ul#menu.collapse.list-unstyled.pl-30.mb-10{'aria-expanded': "false"}
               %li
                 %a.collapse-link{href: "#"}
-                  = I18n.t('header.mobile')
+                  = t('header.mobile')
               %li
                 %a.collapse-link{href: "#"}
-                  = I18n.t('header.photo')
+                  = t('header.photo')
               %li
                 %a.collapse-link{href: "#"}
-                  = I18n.t('header.web_design')
+                  = t('header.web_design')
           %li
             %a{href: "#"} My account
       .hidden-xs
         %ul.nav.navbar-nav
           %li
             %a{href: "#"}
-              = I18n.t('header.home')
+              = t('header.home')
           %li.dropdown
             %a.dropdown-toggle{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"} Shop
             %ul.dropdown-menu
               %li
                 %a{href: "#"}
-                  = I18n.t('header.mobile')
+                  = t('header.mobile')
               %li
                 %a{href: "#"}
-                  = I18n.t('header.photo')
+                  = t('header.photo')
               %li
                 %a{href: "#"}
-                  = I18n.t('header.web_design')
+                  = t('header.web_design')
               %li.divider{role: "separator"}
               %li
                 %a{href: "#"}
-                  = I18n.t('header.log_out')
+                  = t('header.log_out')
           %li
             = link_to 'My account', 'cart_path'
