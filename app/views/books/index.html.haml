@@ -1,6 +1,7 @@
 .hidden-xs
   %main.container
-    %h1.general-title-margin Сatalog
+    %h1.general-title-margin
+      = I18n.t('books.index.title')
     .hidden-xs.clearfix
       = render partial: 'partials/book/dropdown_menu'
       = render partial: 'partials/book/categories'

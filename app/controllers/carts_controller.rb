@@ -40,6 +40,9 @@ class CartsController < ApplicationController
 
   def set_cart
     @cart = Cart.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    @cart = Cart.create
+    session[:card_id] = @cart.id
   end
 
   def cart_params

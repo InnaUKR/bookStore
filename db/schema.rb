@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 20180220091959) do
     t.decimal "price", precision: 8, scale: 2
     t.text "description"
     t.date "date_of_publication", null: false
-    t.string "material", null: false
+    t.string "material"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.decimal "height", precision: 5, scale: 2

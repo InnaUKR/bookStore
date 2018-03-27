@@ -30,4 +30,31 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  header:
+    bookstore: 'Bookstore'
+    home: 'Home'
+    my_account: 'My account'
+    log_out: 'Log out'
+    mobile: 'Mobile development'
+    photo: 'Photo'
+    web_design: 'Web design'
+  footer:
+    home: 'Home'
+    shop: 'Shop'
+    orders: 'Orders'
+    settings: 'Settings'
+  books:
+    index:
+      title: 'Сatalog'
+    catalog:
+      all: 'All'
+      mobile: 'Mobile development'
+      photo: 'Photo'
+      web_design: 'Web design'
+    dropdown_menu:
+      newest_first: 'Newest first'
+      popular_first: 'Popular first'
+      price:
+        low_to_hight: 'Price: Low to hight'
+        hight_to_low: 'Price: Hight to low'
+

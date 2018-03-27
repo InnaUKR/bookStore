@@ -1,7 +1,6 @@
 
 Book.create(title: 'Real-Life Responsive Web Design',
             price: 32.90,
-            quantity: 3,
             description:
                 %(Responsive design is a default these days, but we are all still figuring out just the right process
                   and techniques to better craft responsive websites. That’s why Smashing Magazine created a new book —
@@ -18,8 +17,24 @@ Book.create(title: 'Real-Life Responsive Web Design',
                   Please note that the corresponding Part 2 is also available with even more responsive web design tips
                   and tricks — among others on web fonts, responsive images, email design, performance, debugging and
                   optimizing for offline.),
-            year: Date.new(2016),
+            date_of_publication: Date.new(2016),
             height: 6.4,
             width: 0.9,
             depth: 5.0,
+            material: 'Hardcove, glossy paper')
+
+Book.create(title: 'RESPONSIVE WEB DESIGN',
+            price: 18.00,
+            description:
+                %(Since its groundbreaking release in 2011, Responsive Web Design remains a fundamental resource for
+                  anyone working on the web.
+
+                  Learn how to think beyond the desktop, and craft designs that respond to your users’ needs.
+                  In the second edition, Ethan Marcotte expands on the design principles behind fluid grids, flexible
+                  images, and media queries. Through new examples and updated facts and figures, you’ll learn how to
+                  deliver a quality experience, no matter how large or small the display.),
+            date_of_publication: Date.new(2018),
+            height: 4.4,
+            width: 0.5,
+            depth: 6.0,
             material: 'Hardcove, glossy paper')
