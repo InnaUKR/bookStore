@@ -8,6 +8,6 @@
     .mb-120
       - @books.in_groups_of(4, false).each  do |books|
         .row
-          = render partial:'book', collection: books
+          = render partial:'books/book', collection: books
       .text-center
-        %button.btn.btn-primary View Moreelete, data: {confirm: 'Are you shore?'}
+        %button.btn.btn-primary View More

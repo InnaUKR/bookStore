@@ -1,47 +1,18 @@
 class CategoriesController < ApplicationController
-    before_action :set_category, only: %i[show edit update destroy recent]
+  before_action :set_category, only: %i[index]
+  before_action :set_filter, only: %i[index]
+  def index
+    @categories = Category.all
+    @books = @category.nil? ? Book.filter(@filter).decorate : Book.filter_category(@category, @filter).decorate
+  end
 
-    def index
-      @categories = Category.all
-      @books = Book.all.decorate
-    end
+  def show; end
 
-    def show
-      @categories = Category.all
-      @books = Book.where(category_id: @category).decorate
-    end
+  def new
+    @category = Category.new
+  end
 
-    def recent
-      @books = Book.resent(@category.id).decorate
-      @categories = Category.all
-      render action: :index
-    end
-
-    def price_low_to_hight
-      @books = Book.price_low_to_hight.decorate
-      render action: :index
-    end
-
-    def price_hight_to_low
-      @books = Book.price_hight_to_low.decorate
-      render action: :index
-    end
-
-    def title_a_z
-      @books = Book.title_a_z.decorate
-      render action: :index
-    end
-
-    def title_z_a
-      @books = Book.title_z_a.decorate
-      render action: :index
-    end
-
-    def new
-      @category = Category.new
-    end
-
-    def edit; end
+  def edit; end
 
     def create
       @category = Category.new(category_params)
@@ -80,8 +51,12 @@ class CategoriesController < ApplicationController
     private
 
     def set_category
-      @category = Category.find(params[:id])
+      @category = params[:category]
     end
+
+  def set_filter
+    @filter = Book::FILTERS.key?(params[:filter]&.to_sym) ? params[:filter] : Book::DEFAULT_FILTER
+  end
 
     def category_params
       params.require(:category).permit(:name)

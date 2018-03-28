@@ -24,6 +24,8 @@
                 %img{src: "https://www.smashingmagazine.com/wp-content/uploads/2015/09/smashing-book-5-2-large.jpg"}
         .col-sm-6
           %h1.mt-res-0= @book.title
+          -if @book.category.present?
+            =link_to @book.category.name, @book.category
           %p.lead.small= @book.authors_to_string
           .row
             .col-xs-12.col-md-4

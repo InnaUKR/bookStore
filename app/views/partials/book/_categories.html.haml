@@ -6,7 +6,7 @@
         = Book.all.count
   -@categories.each do |category|
     %li.mr-35
-      = link_to category_path(category), class: 'filter-link' do
+      = link_to categories_path(category: category), class: 'filter-link' do
         %span.filter-link
           =category.name
         %span.badge.general-badge
