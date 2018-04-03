@@ -25,7 +25,7 @@ gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.3'
 gem 'simple_form'
 
 gem 'rails-i18n', '~> 5.1'
-
+gem 'devise'
 # gem 'redis', '~> 3.0'
 # gem 'bcrypt', '~> 3.1.7'
 
