@@ -1,6 +1,4 @@
 class LineItemsController < ApplicationController
-  include CurrentCart
-  before_action :set_cart, only: [:create]
   before_action :set_line_item, only: %i[show, edit, update, destroy]
 
   def new
@@ -9,7 +7,7 @@ class LineItemsController < ApplicationController
 
   def create
     book = Book.find(params[:book_id])
-    @line_item = @cart.add_book(book)
+    @line_item = current_cart.add_book(book)
 
     respond_to do |format|
       if @line_item.save

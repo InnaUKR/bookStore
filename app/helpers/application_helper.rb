@@ -6,4 +6,8 @@ module ApplicationHelper
   def categories
     Category.all
   end
+
+  def books_in_curt
+    current_cart.line_items.sum(&:quantity)
+  end
 end

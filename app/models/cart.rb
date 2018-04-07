@@ -1,5 +1,6 @@
 class Cart < ApplicationRecord
   has_many :line_items, dependent: :destroy
+  belongs_to :user
 
   def add_book(book)
     current_item = line_items.find_by(book_id: book.id)
