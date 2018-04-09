@@ -28,7 +28,7 @@ gem 'rails-i18n', '~> 5.1'
 gem 'devise'
 # gem 'redis', '~> 3.0'
 # gem 'bcrypt', '~> 3.1.7'
-
+gem 'omniauth-facebook'
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do

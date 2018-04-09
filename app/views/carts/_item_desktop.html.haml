@@ -1,7 +1,8 @@
 %tr
   %td
     .general-img-wrap-table
-      %img.cart-img-shadow.pull-left{src: "http://jonathantweedy.com/resources/thumbs/SmashingBook5ResponsiveWebDesign.jpg", alt: "design-book"}
+      = link_to book_path(item.book) do
+        %img.cart-img-shadow.pull-left{src: "http://jonathantweedy.com/resources/thumbs/SmashingBook5ResponsiveWebDesign.jpg", alt: "design-book"}
   %td
     %p.title= item.book.title
   %td
