@@ -17,5 +17,6 @@ module Bookstore
 
     config.i18n.enforce_available_locales = true
     config.i18n.default_locale = :en
+    config.force_ssl = true
   end
 end
