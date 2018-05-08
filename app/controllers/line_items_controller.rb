@@ -1,13 +1,14 @@
 class LineItemsController < ApplicationController
-  before_action :set_line_item, only: %i[show, edit, update, destroy]
+  before_action :set_line_item, only: %I[show edit update destroy up_quantity down_quantity]
 
   def new
     @line_item = LineItem.new
   end
 
   def create
-    book = Book.find(params[:book_id])
-    @line_item = current_cart.add_book(book)
+    book = Book.find(params[:book_id] || params[:line_items][:book_id])
+    quantity = params[:quantity] || 1
+    @line_item = current_cart.add_book(book, quantity)
 
     respond_to do |format|
       if @line_item.save
@@ -40,10 +41,20 @@ class LineItemsController < ApplicationController
     end
   end
 
+  def up_quantity
+    @line_item.increment!(:quantity)
+    redirect_to @line_item.cart
+  end
+
+  def down_quantity
+    @line_item.decrement!(:quantity)
+    redirect_to @line_item.cart
+  end
+
   private
 
   def set_line_item
-    @line_item = LineItem.find(params[:id])
+    @line_item = LineItem.find(params[:id] || params[:line_item_id])
   end
 
   def line_item_params

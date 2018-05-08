@@ -6,7 +6,10 @@ Rails.application.routes.draw do
         omniauth_callbacks: 'auth/callbacks'
       }
   resources :orders
-  resources :line_items, only: %i[show destroy create]
+  resources :line_items, only: %i[show destroy create] do
+    put :up_quantity
+    put :down_quantity
+  end
   resources :carts, only: :show
   resources :books, only: :show
   resources :categories, only: :index

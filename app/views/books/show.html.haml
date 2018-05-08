@@ -20,15 +20,12 @@
       .row
         .col-xs-12.col-md-4
           %p.h1.in-gold-500.mt-10= show_price(@book.price)
-        .col-xs-5.col-md-3
-          .input-group.general-position
-            %a.input-link{href: "#"}
-              %i.fa.fa-minus.line-height-40
-            %input.form-control.quantity-input{type: "text"}
-            %a.input-link{href: "#"}
-              %i.fa.fa-plus.line-height-40
-        .col-xs-7.col-md-5
-          %button.btn.btn-default.pull-right.general-position Add to Cart
+        = simple_form_for :line_items, url: line_items_path, method: :post do |f|
+          .col-xs-5.col-md-3
+          = f.hidden_field :book_id, value: @book.id
+          .col-xs-7.col-md-5
+            = f.button :submit, value: 'Add to Cart', class: 'btn btn-default pull-right general-position'
+
       .general-info-wrap.divider-lg
         %p Description
         %p.lead.small.line-height-2= @book.description

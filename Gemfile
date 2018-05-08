@@ -34,13 +34,12 @@ gem 'omniauth-facebook'
 gem 'rails_admin', '~> 1.3'
 
 group :development, :test do
+  gem 'rspec-rails'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'selenium-webdriver'
-  gem 'thin'
 end
 
 group :test do
-  gem 'rspec-rails'
   gem 'capybara', '~> 2.13'
   gem 'shoulda-matchers', '~> 3.0', require: false
   gem 'database_cleaner', '~> 1.5'

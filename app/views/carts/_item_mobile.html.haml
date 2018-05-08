@@ -15,7 +15,7 @@
         %span.in-grey-600 Quantity
       %td
         .input-group
-          %a.input-link{href: "#"}
+          = link_to line_item_up_quantity_path(item), method: :put, class: 'input-link' do
             %i.fa.fa-minus.line-heaght-40
           %input.form-control.quantity-input{type: "text", value: "#{item.quantity}"}
           %a.input-link{href: "#"}

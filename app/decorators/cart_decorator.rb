@@ -6,8 +6,7 @@ class CartDecorator < Draper::Decorator
   end
 
   def price_with_coupon(coupon_price)
-    price = total_price.to_f - coupon_price
-    sprintf('%.2f', price)
+    total_price.to_f - coupon_price
   end
 
 end
