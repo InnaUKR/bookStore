@@ -17,6 +17,9 @@ module Bookstore
 
     config.i18n.enforce_available_locales = true
     config.i18n.default_locale = :en
-    #config.force_ssl = true
+    #config.force_ssl = true.
+    config.generators do |g|
+      g.fixture_replacement :factory_bot, dir: 'spec/factories'
+    end
   end
 end
