@@ -6,7 +6,9 @@ class BooksController < ApplicationController
     @categories = Category.all
   end
 
-  def show; end
+  def show
+    @review = @book.reviews.build
+  end
 
   def new
     @book = Book.new

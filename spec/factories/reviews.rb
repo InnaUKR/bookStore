@@ -4,4 +4,8 @@ FactoryBot.define do
     book ""
     mark 1
   end
+
+  factory :invalid_review, class: 'Review' do
+    body nil
+  end
 end

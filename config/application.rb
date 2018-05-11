@@ -19,6 +19,12 @@ module Bookstore
     config.i18n.default_locale = :en
     #config.force_ssl = true.
     config.generators do |g|
+      g.test_framework :rspec,
+                       fixtures: true,
+                       view_spec: false,
+                       helpers_specs: false,
+                       routing_specs: false,
+                       controller_spec: true
       g.fixture_replacement :factory_bot, dir: 'spec/factories'
     end
   end
