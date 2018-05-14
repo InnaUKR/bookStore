@@ -18,6 +18,8 @@ class Book < ApplicationRecord
   validates :price, numericality: { greater_than_or_equal_to: 0.01 }
   validates :height, :width, :depth, numericality: { greater_than: 0 }
 
+  accepts_nested_attributes_for :images
+
   scope :filter_category, ->(category, filter) { where(category_id: category).order(FILTERS[filter.to_sym]) }
   scope :filter, ->(filter) { order(FILTERS[filter.to_sym]) }
 

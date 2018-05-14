@@ -15,6 +15,7 @@ RSpec.describe Book, :type => :model do
   it { is_expected.to validate_numericality_of(:width).is_greater_than(0) }
   it { is_expected.to validate_numericality_of(:depth).is_greater_than(0) }
 
+  it { is_expected.to accept_nested_attributes_for :images }
 end
 
 
