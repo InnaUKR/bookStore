@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180511133418) do
+ActiveRecord::Schema.define(version: 20180514085524) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 20180511133418) do
     t.decimal "width", precision: 5, scale: 2
     t.decimal "depth", precision: 5, scale: 2
     t.integer "category_id"
+    t.string "image"
     t.index ["category_id"], name: "index_books_on_category_id"
   end
 
