@@ -6,6 +6,7 @@ RSpec.describe Book, :type => :model do
   it { is_expected.to have_many(:line_items) }
   it { is_expected.to belong_to(:category).counter_cache }
   it { is_expected.to have_many(:reviews) }
+  it { is_expected.to have_many(:images) }
 
   it { is_expected.to validate_presence_of(:title) }
   it { is_expected.to validate_presence_of(:date_of_publication) }
