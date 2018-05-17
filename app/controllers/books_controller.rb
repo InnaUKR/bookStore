@@ -12,31 +12,38 @@ class BooksController < ApplicationController
 
   def new
     @book = Book.new
+    @book.images.build
   end
 
   def edit; end
 
   def create
-    @book = Book.new(book_params)
+    begin
+      @book = Book.new(book_params)
 
-    respond_to do |format|
-      if @book.save
-        format.html { redirect_to @book, notice: 'Book was successfully created.' }
-        format.json { render :show, status: :created, location: @book }
-      else
-        format.html { render :new }
-        format.json { render json: @book.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        if @book.save
+          format.html { redirect_to @book, notice: 'Book was successfully created.' }
+        else
+          format.html { render :new }
+        end
       end
+    rescue ActiveRecord::NestedAttributes::TooManyRecords
+      flash[:error] = 'Too many images'
     end
   end
 
   def update
-    respond_to do |format|
-      if @book.update(book_params)
-        format.html { redirect_to @book, notice: 'Book was successfully updated.' }
-      else
-        format.html { render :edit }
+    begin
+      respond_to do |format|
+        if @book.update(book_params)
+          format.html { redirect_to @book, notice: 'Book was successfully updated.' }
+        else
+          format.html { render :edit }
+        end
       end
+    rescue ActiveRecord::NestedAttributes::TooManyRecords
+      flash[:error] = 'Too many images'
     end
   end
 
@@ -57,6 +64,7 @@ class BooksController < ApplicationController
   def book_params
     params.require(:book).permit(:title, :price, :description,
                                  :date_of_publication, :height, :width, :depth,
-                                 :material, :category_id, :image)
+                                 :material, :category_id,
+                                 attachments_attributes: [:image])
   end
 end
