@@ -10,7 +10,7 @@ class Book < ApplicationRecord
   has_many :line_items
   belongs_to :category, counter_cache: true
   has_many :reviews
-  has_many :images
+  has_many :images, as: :imageable
 
   before_destroy :ensure_not_referenced_by_any_line_item
   validates :title, :date_of_publication, presence: true

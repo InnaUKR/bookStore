@@ -12,7 +12,7 @@ class BooksController < ApplicationController
 
   def new
     @book = Book.new
-    @book.images.build
+    @images = @book.build_images
   end
 
   def edit; end
@@ -65,6 +65,6 @@ class BooksController < ApplicationController
     params.require(:book).permit(:title, :price, :description,
                                  :date_of_publication, :height, :width, :depth,
                                  :material, :category_id,
-                                 attachments_attributes: [:image])
+                                 images_attributes: [:image])
   end
 end

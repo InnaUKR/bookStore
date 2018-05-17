@@ -5,6 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [:facebook]
   has_one :cart
+  has_one :image, as: :imageable
+  accepts_nested_attributes_for :image
 
   def self.new_with_session(params, session)
     super.tap do |user|
