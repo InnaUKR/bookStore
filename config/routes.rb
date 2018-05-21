@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     put :down_quantity
   end
   resources :carts, only: :show
-  resources :books, only: :show do
+  resources :books do
     resources :reviews
   end
   resources :categories, only: :index

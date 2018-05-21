@@ -9,7 +9,7 @@ class Book < ApplicationRecord
   has_and_belongs_to_many :authors
   has_many :line_items
   belongs_to :category, counter_cache: true
-  has_many :reviews
+  has_many :reviews, dependent: :destroy
   has_many :images, as: :imageable
 
   before_destroy :ensure_not_referenced_by_any_line_item

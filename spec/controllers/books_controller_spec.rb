@@ -3,8 +3,7 @@ require 'rails_helper'
 RSpec.describe BooksController, type: :controller do
 
   describe 'GET #show' do
-    let(:category) { create(:category) }
-    let(:book) { create(:book, category_id: category.id) }
+    let(:book) { create(:book) }
     before { get :show, params: { id: book.to_param } }
 
     it 'assigns the requested book to @book' do

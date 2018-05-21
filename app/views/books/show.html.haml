@@ -6,10 +6,11 @@
     .col-sm-6
       .product-gallery
         .mb-20
-          =image_tag @book.images.first.image_url, class: 'img-responsive', alt: "book-image"
-        .images.clearfix
-          -@book.images.drop(1).each do |image|
-            =image_tag image.image_url, class: 'img-link', alt: "book-image"
+          -if @book.images != []
+            =image_tag @book.images.first.image_url, class: 'img-responsive', alt: "book-image"
+            .images.clearfix
+              -@book.images.drop(1).each do |image|
+                =image_tag image.image_url, class: 'img-link', alt: "book-image"
     .col-sm-6
       %h1.mt-res-0= @book.title
       %p.lead.small= @book.authors_to_string
@@ -39,35 +40,35 @@
           %p.pull-left Materials
           %p.lead.small.pull-right= @book.material
   .mb-80
-    -@book.reviews.each do |review|
+    -@reviews.each do |review|
+      %p= review.user.name
       %p= review.body
       %p= review.mark
 
     = form_for [@book, @review] do |f|
-      =f.label :body, 'Your review'
+      =f.label :body, 'Title'
       =f.text_area :body
       =f.label :mark, 'Mark'
       =f.text_area :mark
       =f.submit 'Post'
 
-    %h3.in-gold-500.mb-25 Reviews (3)
-
-    .general-message-wrap.divider-lg
-      .clearfix
-        %img.img-circle.logo-size.inlide-block.pull-left{src: "https://www.smashingmagazine.com/wp-content/uploads/2015/09/smashing-book-5-2-large.jpg"}
-        .ml-70
-          %div
-            .general-message-date.hidden-xs 11/11/16
-            .max-240
-              .general-message-verified Verified Reviewer
-              .general-message-name Rita J. Lewis
-          .mb-15
-            %i.fa.fa-star.rate-star
-            %i.fa.fa-star.rate-star
-            %i.fa.fa-star.rate-star
-            %i.fa.fa-star.rate-star
-            %i.fa.fa-star.rate-star
-          %p Thank you BookStore, I was very pleased to receive my order for the Moleskine diary so soon after placing the order.
+    -@reviews.each do |review|
+      .general-message-wrap.divider-lg
+        .clearfix
+          %img.img-circle.logo-size.inlide-block.pull-left{src: "https://www.smashingmagazine.com/wp-content/uploads/2015/09/smashing-book-5-2-large.jpg"}
+          .ml-70
+            %div
+              .general-message-date.hidden-xs 11/11/16
+              .max-240
+                .general-message-verified Verified Reviewer
+                .general-message-name= review.user.name
+            .mb-15
+              %i.fa.fa-star.rate-star
+              %i.fa.fa-star.rate-star
+              %i.fa.fa-star.rate-star
+              %i.fa.fa-star.rate-star
+              %i.fa.fa-star.rate-star
+            %p= review.body
     .general-message-wrap.divider-lg
       .clearfix
         %span.img-circle.logo-size.inlide-block.pull-left.logo-empty M

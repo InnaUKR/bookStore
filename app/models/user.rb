@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [:facebook]
   has_one :cart
+  has_many :reviews
   has_one :image, as: :imageable
   accepts_nested_attributes_for :image
 

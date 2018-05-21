@@ -8,6 +8,7 @@ class BooksController < ApplicationController
 
   def show
     @review = @book.reviews.build
+    @reviews = Review.approved_reviews(@book)
   end
 
   def new
@@ -62,7 +63,8 @@ class BooksController < ApplicationController
   end
 
   def book_params
-    params.require(:book).permit(:title, :price, :description,
+    params.require(:book).p
+    ermit(:title, :price, :description,
                                  :date_of_publication, :height, :width, :depth,
                                  :material, :category_id,
                                  images_attributes: [:image])
