@@ -1,4 +1,4 @@
-require 'rails_helper'
+require_relative 'acceptance_helper'
 
 feature 'Write a Review', %q{
   Given The user is logged in
@@ -19,8 +19,8 @@ feature 'Write a Review', %q{
     sign_in(user)
     visit book_path(book)
 
+    fill_in 'Score', with: 5
     fill_in 'review_body', with: 'My review'
-    fill_in 'Mark', with: '5'
 
     click_on 'Post'
     expect(current_path).to eq book_path(book)

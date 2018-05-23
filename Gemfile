@@ -39,6 +39,8 @@ gem 'fog-google'
 gem 'google-api-client', '> 0.8.5', '< 0.9'
 gem 'mime-types'
 
+gem 'cancancan', '~> 2.0'
+
 group :development, :test do
   gem 'rspec-rails'
   gem 'factory_bot_rails'

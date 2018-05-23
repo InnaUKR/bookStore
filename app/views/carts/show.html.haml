@@ -1,11 +1,11 @@
 %main.container.general-main-wrap
   %h1.general-title-margin Cart
   .visible-xs
-    = render partial:'item_mobile', collection: @line_items, as: :item
+    = render partial:'carts/item_mobile', collection: @line_items, as: :item
   .hidden-xs
     %table.table.table-hover
       = render 'partials/cart/table_header_for_desktop'
-      = render partial:'item_desktop', collection: @line_items, as: :item
+      = render partial:'carts/item_desktop', collection: @line_items, as: :item
   .general-order-wrap
     .row
       .col-sm-4

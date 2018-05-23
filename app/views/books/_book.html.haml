@@ -1,7 +1,7 @@
 .col-xs-6.col-sm-3
   .general-thumb-wrap
     .thumbnail.general-thumbnail
-      -if book.images != []
+      -if book.images!=[]
         =image_tag book.images.first.image_url, class: 'img-shadow general-thumbnail-img', alt: "book-image"
       .thumb-hover
         .general-thumb-link-wrap

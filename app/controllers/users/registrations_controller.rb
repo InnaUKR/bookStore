@@ -12,8 +12,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     @user = guest_user
     @user.update(user_params)
+    @user.guest = false
     if @user.save
-      @user.guest = false
       sign_up('user', @user)
       redirect_to root_path
     else

@@ -7,16 +7,14 @@ class LineItemsController < ApplicationController
 
   def create
     book = Book.find(params[:book_id] || params[:line_items][:book_id])
-    quantity = params[:quantity] || 1
+    quantity = params[:line_items][:quantity].to_i || 1
     @line_item = current_cart.add_book(book, quantity)
 
     respond_to do |format|
       if @line_item.save
         format.html { redirect_to @line_item.cart, notice: 'Book was successfully added to cart.' }
-        format.json { render :show, status: :created, location: @line_item }
       else
         format.html { render :new }
-        format.json { render json: @line_item.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -47,8 +45,14 @@ class LineItemsController < ApplicationController
   end
 
   def down_quantity
-    @line_item.decrement!(:quantity)
-    redirect_to @line_item.cart
+    if @line_item.quantity > 1
+      @line_item.decrement!(:quantity)
+      redirect_to @line_item.cart
+    else
+      @cart = current_cart.decorate
+      @line_items = LineItemDecorator.decorate_collection(@cart.line_items)
+      render 'carts/show'
+    end
   end
 
   private
@@ -60,5 +64,6 @@ class LineItemsController < ApplicationController
   def line_item_params
     params.require(:line_item).permit(:book_id, :quantity)
   end
+
 
 end

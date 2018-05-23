@@ -3,25 +3,28 @@
     %i.fa.fa-long-arrow-left.mr-15
     Back to results
   .row
-    .col-sm-6
-      .product-gallery
-        .mb-20
-          -if @book.images != []
-            =image_tag @book.images.first.image_url, class: 'img-responsive', alt: "book-image"
-            .images.clearfix
-              -@book.images.drop(1).each do |image|
-                =image_tag image.image_url, class: 'img-link', alt: "book-image"
+    =render 'books/book_images'
     .col-sm-6
       %h1.mt-res-0= @book.title
       %p.lead.small= @book.authors_to_string
       .row
         .col-xs-12.col-md-4
           %p.h1.in-gold-500.mt-10= show_price(@book.price)
-        = simple_form_for :line_items, url: line_items_path, method: :post do |f|
-          .col-xs-5.col-md-3
-          = f.hidden_field :book_id, value: @book.id
-          .col-xs-7.col-md-5
-            = f.button :submit, value: 'Add to Cart', class: 'btn btn-default pull-right general-position'
+        .col-xs-5.col-md-3
+          .input-group.general-position
+            = link_to book_change_quantity_path(book_id: @book, quantity: @item.quantity - 1),
+                method: :put, class: "input-link" do
+              %i.fa.fa-minus.line-height-40
+            %input.form-control.quantity-input{ type: 'text',
+                value: "#{@item.quantity}" }
+            = link_to book_change_quantity_path(book_id: @book, quantity: @item.quantity + 1),
+                method: :put, class: "input-link" do
+              %i.fa.fa-plus.line-height-40
+        .col-xs-7.col-md-5
+          = link_to 'Add to Cart',
+            line_items_path(line_items: {quantity: @item.quantity,
+            price: @book.price, book_id: @book.id}), method: :post,
+            class: "btn btn-default pull-right general-position"
 
       .general-info-wrap.divider-lg
         %p Description
@@ -40,48 +43,5 @@
           %p.pull-left Materials
           %p.lead.small.pull-right= @book.material
   .mb-80
-    -@reviews.each do |review|
-      %p= review.user.name
-      %p= review.body
-      %p= review.mark
-
-    = form_for [@book, @review] do |f|
-      =f.label :body, 'Title'
-      =f.text_area :body
-      =f.label :mark, 'Mark'
-      =f.text_area :mark
-      =f.submit 'Post'
-
-    -@reviews.each do |review|
-      .general-message-wrap.divider-lg
-        .clearfix
-          %img.img-circle.logo-size.inlide-block.pull-left{src: "https://www.smashingmagazine.com/wp-content/uploads/2015/09/smashing-book-5-2-large.jpg"}
-          .ml-70
-            %div
-              .general-message-date.hidden-xs 11/11/16
-              .max-240
-                .general-message-verified Verified Reviewer
-                .general-message-name= review.user.name
-            .mb-15
-              %i.fa.fa-star.rate-star
-              %i.fa.fa-star.rate-star
-              %i.fa.fa-star.rate-star
-              %i.fa.fa-star.rate-star
-              %i.fa.fa-star.rate-star
-            %p= review.body
-    .general-message-wrap.divider-lg
-      .clearfix
-        %span.img-circle.logo-size.inlide-block.pull-left.logo-empty M
-        .ml-70
-          %div
-            .general-message-date.hidden-xs 11/11/16
-            .max-240
-              .general-message-verified.pull-right Verified Reviewer
-              .general-message-name May J. Novoa
-          .mb-15
-            %i.fa.fa-star.rate-star
-            %i.fa.fa-star.rate-star
-            %i.fa.fa-star.rate-star
-            %i.fa.fa-star.rate-star
-            %i.fa.fa-star.rate-star.rate-empty
-          %p If ‘Get a better job’ had landed on my desk a year ago, I might have been dismissive of it. Instead I was prepared to be open-minded. There have been many occasions where I turned to career books with practical activities to look for some inspiration when developing education activities for learners or assessment.
+    =render 'reviews/index'
+    =render 'reviews/new'

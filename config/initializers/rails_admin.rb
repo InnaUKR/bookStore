@@ -49,5 +49,13 @@ RailsAdmin.config do |config|
       field :image, :carrierwave
     end
   end
-
+  config.model Review do
+    edit do
+      field :body do
+        read_only true
+        help false
+      end
+      field :approve
+    end
+  end
 end

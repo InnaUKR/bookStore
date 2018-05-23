@@ -1,4 +1,4 @@
-require 'rails_helper'
+require_relative 'acceptance_helper'
 
 feature 'Create cart for logged in or a guest user', %q{
   Given The user is logged in or a guest

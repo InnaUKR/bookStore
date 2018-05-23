@@ -8,7 +8,8 @@ class BooksController < ApplicationController
 
   def show
     @review = @book.reviews.build
-    @reviews = Review.approved_reviews(@book)
+    @reviews = Review.approved_reviews(@book).decorate
+    @item = @book.line_items.build
   end
 
   def new
@@ -31,6 +32,19 @@ class BooksController < ApplicationController
       end
     rescue ActiveRecord::NestedAttributes::TooManyRecords
       flash[:error] = 'Too many images'
+    end
+  end
+
+  def change_quantity
+    @book = Book.find(params[:book_id]).decorate
+    quantity = params[:quantity].to_i
+    if quantity > 1
+      @review = @book.reviews.build
+      @reviews = Review.approved_reviews(@book).decorate
+      @item = @book.line_items.build(quantity: quantity)
+      render 'books/show'
+    else
+      redirect_to @book, alert: 'The value of quantity must be greater than 0.'
     end
   end
 
