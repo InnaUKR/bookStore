@@ -16,6 +16,7 @@ module Bookstore
     # -- all .rb files in that directory are automatically loaded.
 
     config.i18n.enforce_available_locales = true
+    config.i18n.available_locales = [:en, :ru]
     config.i18n.default_locale = :en
     #config.force_ssl = true.
     config.generators do |g|

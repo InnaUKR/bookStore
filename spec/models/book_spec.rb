@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Book, :type => :model do
+RSpec.describe Book, type: :model do
   it { is_expected.to have_and_belong_to_many(:authors) }
   it { is_expected.to have_many(:line_items) }
   it { is_expected.to belong_to(:category).counter_cache }

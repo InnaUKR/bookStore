@@ -15,6 +15,7 @@ class OrdersController < ApplicationController
   # GET /orders/new
   def new
     @order = Order.new
+    redirect_to checkout_path(:delivery)
   end
 
   # GET /orders/1/edit
@@ -24,17 +25,8 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
-    @order = Order.new(order_params)
-
-    respond_to do |format|
-      if @order.save
-        format.html { redirect_to @order, notice: 'Order was successfully created.' }
-        format.json { render :show, status: :created, location: @order }
-      else
-        format.html { render :new }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
-      end
-    end
+    @order = Order.build
+    redirect_to chekout_path(@order) # pet_step_path(@pet, Pet.steps.first)
   end
 
   # PATCH/PUT /orders/1
@@ -69,6 +61,6 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:billing_address, :shipping_address, :delivery, :card)
+      params.require(:orders).permit(:billing_address, :shipping_address, :delivery, :card)
     end
 end

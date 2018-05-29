@@ -40,6 +40,10 @@ gem 'google-api-client', '> 0.8.5', '< 0.9'
 gem 'mime-types'
 
 gem 'cancancan', '~> 2.0'
+gem 'aasm'
+gem 'wicked'
+gem "rectify"
+
 
 group :development, :test do
   gem 'rspec-rails'

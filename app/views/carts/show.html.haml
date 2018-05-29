@@ -35,4 +35,4 @@
               %td
                 %strong.font-18= show_price(@cart.price_with_coupon(coupon_price=0))
           %button.btn.btn-default.mb-20.visible-xs-inline-block Checkout
-  =button_to 'Checkout', new_order_path,method: :get, class:'btn btn-default mb-20 hidden-xs center-block'
+  =button_to 'Checkout', new_order_path, method: :get, class:'btn btn-default mb-20 hidden-xs center-block'

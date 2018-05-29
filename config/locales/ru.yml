@@ -1,2 +1,6 @@
 ru:
-  hello: "Привет"
+  header:
+    bookstore: 'Книжный магазин'
+    home: 'Дом'
+    my_account: 'Мой аккаунт'
+    log_out: 'Выйти'

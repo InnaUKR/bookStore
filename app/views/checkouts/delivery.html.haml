@@ -1,0 +1,100 @@
+%main.container.general-main-wrap
+  %h1.general-title-margin Checkout
+  %ul.steps.list-inline
+    %li.step.active
+      %span.step-number 1
+      %span.step-text.hidden-xs Address
+    %li.step-divider
+    %li.step
+      %span.step-number 2
+      %span.step-text.hidden-xs Delivery
+    %li.step-divider
+    %li.step
+      %span.step-number 3
+      %span.step-text.hidden-xs Payment
+    %li.step-divider
+    %li.step
+      %span.step-number 4
+      %span.step-text.hidden-xs Confirm
+    %li.step-divider
+    %li.step
+      %span.step-number 5
+      %span.step-text.hidden-xs Complete
+  %h3.general-subtitle Credit Card
+  .visible-xs
+    = form_tag(wizard_path, method: :put) do
+      -@deliveries.each do |delivery|
+        .general-cart-item.divider-lg-bottom.mb-30
+          %table.table
+            %tr
+              %td.col-half
+                %span.in-grey-600 Method
+                %td.col-half
+                  .form-group.radio.mt-0.mb-0
+                    %label.radio-label
+                      = radio_button_tag(:delivery_id, delivery.id, @order.delivery_id == delivery.id, class: 'radio-input', hidden: "false", require: 'true' )
+                      %span.radio-icon
+                      %span.radio-text= delivery.method_name
+              %tr
+                %td
+                  %span.in-grey-600 Days
+                %td
+                  %span.font-16.fw-300= delivery.days
+              %tr
+                %td
+                  %span.in-grey-600 Price
+                %td
+                  %span.font-16.in-gold-500= delivery.price
+    = submit_tag('Save and Continue', class: 'btn btn-default mb-20')
+
+
+
+
+  .hidden-xs.mb-res-50
+    %table.table.table-hover
+      %thead
+        %tr
+          %th.col-method
+            %span.in-grey-600.ml-40 Method
+          %th
+            %span.in-grey-600 Days
+          %th
+            %span.in-grey-600 Price
+      %tbody
+        -@deliveries.each do |delivery|
+          %tr
+            %td
+              .form-group.radio.mt-0.mb-0
+                %label.radio-label
+                  = radio_button_tag(:delivery_id, delivery.id, @order.delivery_id == delivery.id, class: 'radio-input', hidden: "false", require: 'true' )
+                  %span.radio-icon
+                  %span.radio-text= delivery.method_name
+            %td
+              %span= delivery.days
+            %td
+              %span.font-16.in-gold-500= delivery.price
+
+
+
+  .general-text-align
+    %p.in-gold-500.font-18 Order Summary
+    %table.general-summary-table
+      %tr
+        %td
+          %p.font-16 Subtotal:
+        %td
+          %p.font-16 €117.69
+      %tr
+        %td
+          %p.font-16 Coupon:
+        %td
+          %p.font-16 €0.00
+      %tr
+        %td
+          %strong.font-18 Order Total:
+        %td
+          %strong.font-18 €117.69
+  .text-center
+    %button.btn.btn-default.mb-20 Save and Continue
+    =link_to 'next', next_wizard_path
+    =link_to 'previous', previous_wizard_path
