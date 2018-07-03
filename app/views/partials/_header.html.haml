@@ -7,7 +7,7 @@
         %span.icon-bar
         %span.icon-bar
       %a.navbar-brand
-        = t('header.bookstore')
+        = t('.bookstore')
       =link_to cart_path(current_cart.id), class:'shop-link pull-right visible-xs' do
         %span.shop-icon
           %span.shop-quantity= books_in_curt
@@ -21,7 +21,7 @@
         %ul.nav.navbar-nav
           %li
             %a{href: "#"}
-              = t('header.home')
+              = t('.home')
           %li
             %a{type: "button", 'data-toggle': "collapse", href: "#menu", 'aria-expanded': "false", 'aria-controls': "menu"} Shop
             %ul#menu.collapse.list-unstyled.pl-30.mb-10{'aria-expanded': "false"}
@@ -42,12 +42,12 @@
 
 
           %li
-            %a{href: "#"} My account
+            %a{href: "#"}= t('.my_account')
       .hidden-xs
         %ul.nav.navbar-nav
           %li
             %a{href: "#"}
-              = t('header.home')
+              = t('.home')
           %li.dropdown
             %a.dropdown-toggle{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"} Shop
             %ul.dropdown-menu
@@ -66,6 +66,4 @@
                   %li.divider{role: "separator"}
                   %li= link_to(t('navigation.log_out'), destroy_user_session_path, method: :delete)
           %li
-            = link_to 'My account', 'cart_path'
-      = current_user.cart.line_items.sum{ |line_item| line_item.quantity}.inspect
-      = current_user.inspect
+            = link_to t('.my_account'), 'cart_path'

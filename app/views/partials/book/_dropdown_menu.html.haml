@@ -1,9 +1,9 @@
 .dropdowns.pull-right
   .dropdown.width-240
     %a.dropdown-toggle.lead.small{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
-      = t("books.dropdown_menu.#{@filter.to_s}")
+      = t(".#{@filter.to_s}")
       %i.fa.fa-angle-down.dropdown-icon.pull-right
     %ul.dropdown-menu
       - Book::FILTERS.each_key do |filter|
         %li
-          = link_to t("books.dropdown_menu.#{filter.to_s}"), categories_path( filter: filter, category: @category)
+          = link_to t(".#{filter.to_s}"), categories_path( filter: filter, category: @category)

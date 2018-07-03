@@ -1,0 +1,258 @@
+%main.container
+  %h1.general-title-margin Сatalog
+  .hidden-xs.clearfix
+    .dropdowns.pull-right
+      .dropdown.width-240
+        %a.dropdown-toggle.lead.small{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
+          Newest first
+          %i.fa.fa-angle-down.dropdown-icon.pull-right
+        %ul.dropdown-menu
+          %li
+            %a{href: "#"} Newest first
+          %li
+            %a{href: "#"} Popular first
+          %li
+            %a{href: "#"} Price: Low to hight
+          %li
+            %a{href: "#"} Price: Low to hight
+    %ul.list-inline.pt-10.mb-25.mr-240
+      %li.mr-35
+        %a.filter-link{href: "#"}
+          All
+          %span.badge.general-badge 35
+      %li.mr-35
+        %a.filter-link{href: "#"}
+          Mobile Development
+          %span.badge.general-badge 16
+      %li.mr-35
+        %a.filter-link{href: "#"}
+          Photo
+          %span.badge.general-badge 7
+      %li.mr-35
+        %a.filter-link{href: "#"}
+          Web Design
+          %span.badge.general-badge 12
+  .dropdowns.mb-25.visible-xs
+    %p.lead.small.mb-10 Filter by category
+    .dropdown
+      %a.dropdown-toggle.lead.small{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
+        Newest first
+        %i.fa.fa-angle-down.dropdown-icon.pull-right
+      %ul.dropdown-menu
+        %li
+          %a{href: "#"} Newest first
+        %li
+          %a{href: "#"} Popular first
+        %li
+          %a{href: "#"} Price: Low to hight
+        %li
+          %a{href: "#"} Price: Low to hight
+    %p.lead.small.mb-10 Sort by
+    .dropdown
+      %a.dropdown-toggle.lead.small{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
+        Newest first
+        %i.fa.fa-angle-down.dropdown-icon.pull-right
+      %ul.dropdown-menu
+        %li
+          %a{href: "#"} Newest first
+        %li
+          %a{href: "#"} Popular first
+        %li
+          %a{href: "#"} Price: Low to hight
+        %li
+          %a{href: "#"} Price: Low to hight
+  .mb-120
+    .row
+      .col-xs-6.col-sm-3
+        .general-thumb-wrap
+          .thumbnail.general-thumbnail
+            %img.img-shadow.general-thumbnail-img{src: "https://storage.googleapis.com/bookstore-image/uploads/71XeqmFvLwL.jpg", alt: "design-book"}
+            .thumb-hover
+              .general-thumb-link-wrap
+                %a.thumb-hover-link{href: "#"}
+                  %i.fa.fa-eye.thumb-icon{'aria-hidden': "true"}
+                %a.thumb-hover-link{href: "#"}
+                  %i.fa.fa-shopping-cart.thumb-icon
+        .general-thumb-info
+          %p.title Book1
+          %p.font-16.in-gold-500 €59.00
+          %span.divider-sm
+          %p.lead.small John Horton
+      .col-xs-6.col-sm-3
+        .general-thumb-wrap
+          .thumbnail.general-thumbnail
+            %img.img-shadow.general-thumbnail-img{src: "https://d31wxntiwn0x96.cloudfront.net/rzgade/productimages/1276.jpg?width=400&height=400&etag=%22a2ebd1488b087bf0e6db43ee8bae0634%22", alt: "design-book"}
+            .thumb-hover
+              .general-thumb-link-wrap
+                %a.thumb-hover-link{href: "#"}
+                  %i.fa.fa-eye.thumb-icon{'aria-hidden': "true"}
+                %a.thumb-hover-link{href: "#"}
+                  %i.fa.fa-shopping-cart.thumb-icon
+        .general-thumb-info
+          %p.title Elvis Behind The Image
+          %p.font-16.in-gold-500 €45.00
+          %span.divider-sm
+          %p.lead.small Bass Jobsen
+      .col-xs-6.col-sm-3
+        .general-thumb-wrap
+          .thumbnail.general-thumbnail
+            %img.img-shadow.general-thumbnail-img{src: "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQ352GRUKdIFLP3va0Tj7QREidI4lwUABrtUJbQehqIL02O_blo", alt: "design-book"}
+            .thumb-hover
+              .general-thumb-link-wrap
+                %a.thumb-hover-link{href: "#"}
+                  %i.fa.fa-eye.thumb-icon{'aria-hidden': "true"}
+                %a.thumb-hover-link{href: "#"}
+                  %i.fa.fa-shopping-cart.thumb-icon
+        .general-thumb-info
+          %p.title The optimist image boob
+          %p.font-16.in-gold-500 €28.50
+          %span.divider-sm
+          %p.lead.small David Cochran
+      .col-xs-6.col-sm-3
+        .general-thumb-wrap
+          .thumbnail.general-thumbnail
+            %img.img-shadow.general-thumbnail-img{src: "https://00e9e64bac952a04450e58804a81420f3e850000d38727a35c-apidata.googleusercontent.com/download/storage/v1/b/bookstore-image/o/uploads%2F9781785289811.png?qk=AD5uMEvFN3FA4t0xXUZG9xA90fWOl6zk-5mtJT9cvNOTVz82tEQ-HqJbdC3vNZWEvrqr26ufKKuF9SX5lLIn1Dhtgqaq-KpSglMeLvKRJJYRnxSOhKb822Z6jKUL1ipcPGtSorOQzQGYSsJOEQqXqpe2AJUNHRDsHd6p7H9TclLa-5rG5ROqcIw7m9cWj1cBVtHKmGgGLdo6VxJPxZlG8IFhsj58lTxsM21xnKaL_bu3aHbdOL-bwYqt6AoyMmkp1Td6H4eul5_4NfLNUuphzwsJwWifDm43SNos4-KFixXSXUXUPgWkR7gVXaRNSZNm_fJKMhTSRpjdKEfyLoZW-9bhmid66JtDdxnT-N35qxBLQo46SuUmAjgZRz-bNAzMQIjzHGZS-jAhOHbsko1hV84mMEww2n6x5rD5WGDrhilGGOHGlVjg1PpbVYVFkhNqgYlcGtG-3F7-pKrdKudIBx4sosk2Qcu_OQRG6H0boGLYlRjiu2xlMq2jKXLyBLDaScRqPKY--tURi5Z1i-BsZEwJnRTo5QXpu-aP4KhjbRQ_hovgwnQsQg_ItcL5qP1qUD1GbfrVcNX9wFst-It8uqvqeiLWqpaXmjES7nQzAOGLQGCbYbaENtB_2s4qEokvCzPR_X_oX7hViG9ygcMszepNL4wA1Ztbiz9vpTuSIgUnil1EN-DaN99591_HWKQoPHHC7hw5XNeboCryIvKjMtGPuc40camihqhXXK8xEz2zxMJ7piU3M4IMpruD26EFdVXbr_53Vi04", alt: "design-book"}
+            .thumb-hover
+              .general-thumb-link-wrap
+                %a.thumb-hover-link{href: "#"}
+                  %i.fa.fa-eye.thumb-icon{'aria-hidden': "true"}
+                %a.thumb-hover-link{href: "#"}
+                  %i.fa.fa-shopping-cart.thumb-icon
+        .general-thumb-info
+          %p.title Learning Material Design
+          %p.font-16.in-gold-500 €26.50
+          %span.divider-sm
+          %p.lead.small Vitaly Friedman, Daniel Mall
+    .row.mb-25
+      .col-xs-6.col-sm-3
+        .general-thumb-wrap
+          .thumbnail.general-thumbnail
+            %img.img-shadow.general-thumbnail-img{src: "http://whatpixel.com/images/2017/01/09-practical-oop-ruby.jpg", alt: "design-book"}
+            .thumb-hover
+              .general-thumb-link-wrap
+                %a.thumb-hover-link{href: "#"}
+                  %i.fa.fa-eye.thumb-icon{'aria-hidden': "true"}
+                %a.thumb-hover-link{href: "#"}
+                  %i.fa.fa-shopping-cart.thumb-icon
+        .general-thumb-info
+          %p.title Practical Object-Oriented Design in Ruby
+          %p.font-16.in-gold-500 €82.50
+          %span.divider-sm
+          %p.lead.small Sandi Metz
+      .col-xs-6.col-sm-3
+        .general-thumb-wrap
+          .thumbnail.general-thumbnail
+            %img.img-shadow.general-thumbnail-img{src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAAC3CAMAAADuBGqBAAABTVBMVEX///92FjH19fW1Hi8AAACsHix9Ijq9ISylHC7r4uTdHibYISZ6Hy77+/v8///KICntICfDHizTIS3DHybu7u7kICS4uLiGhobCwsLl5eXd3d2xsbGbm5vW1tbQ0NBeXl5NTU2jo6PpAACRkZFVVVV6enpra2uvAAC7AAApKSkyMjLcAAD37e0cHBxxACbIAACcAAA9PT2iAB8QEBB+AADIoajgm5q5mJnUur3ipqejtL9vAB7Vw8ewAB+PAAC4y9HPjZL22dmSWWTndXZxAADCr7GkeH/fjIiPABGLAB1jAAB8ABfzzMzQWl7OQELix8TquLjDenjiT02VJTWtY2bTeXrlWFvdOjqqa3KzO0WzS1GPOzucRlC+W2HOZWSQMkGZT12+b3p8k6aLo61Uf5bnZ2nsiIqEISe8io6GNkmDQk+uNDKPSUyCACnGSkjgmJ8jAAAStklEQVR4nO1c61/aSreejrQaaNJdCYEEEkAEUaIgGiAIQnALukWJFwStd19ttNb//+NZEwSjRSuX3fP+zvFpRRLCPLPua8Ig+tQjlhQa9w3ZmGuPgz50MAf48Fv8Q6FBUF56GOeR+FOpVL79PfUSOxAxbjNbJC4Bc7l8+zrv3Jk8EHGH+ZF4DohLq+Wbh6OXBDbowYgRXVqyEM+VjFLpBnB2OwfG/rDUvLnpTrw6IC9CssncIS6XMuWyUS6ny+k0zGK1vHpb6iZ2bmBiJDeXrBIvpW/LRhomYAB5WSnnbj514b0dzKlbYO+WPqAHqT7dfLj5dJNWlPIn+G3iEwmw1k/H5HOlQU1sgrpbQksWcZYM0LfRLBGFN+GnlDa1X0obRrMl/lx5GLzAfIas+pxLg2Onb9Pl2/QNmLp8RrhLmQ8GGOFmWL71wIyaVg8q39yUIJEAJ0knpVv4AdyWbm5LrQkOmLesWP3HKjL5P/eJhNLcIyxBvTQ0XkRZjfw7zN0Oj5i9/fx2bKSHR4yoXoCHSPyOd7zjHe94xzve8Y53vOP/HGief+VFVhjK+pxAcltWJ7SH5uYj7YOgO8xht9stIm84LJFTQmR6sLtdFrhtvvZTlpZsEh3yd6YxHeCRNBtGCEe8LUk9tmERi77wJBEZS5J3MsR7MQoCMS15BDjJ2eDRH6ARG2GR4JFoJNlYyfOKLd6OoJe3eUDYcNAzIwgRP0+IsdvH+TmEeJsX4cCsBPZAQbfH7QZitzcY8AyBeJJH826EQvMIhcNInBUIcXCSxdw0j+jwNOI4WxD5OHZawuK0R7SBuNy0MDCvOM9xYbCbexKsHUGCSYz9k6FQyEcobKyPD/tpPw7OuuEcEIONsW1wkSOcKHqmOSROSyBPm3iy7W/8TCiIPTYpjHwB0/klQkwPTszPk0f3DAr6PF4Ykm+p2kdOs4QpAlbm50G/og3iiWVNYmlBHJBX8C8IxLFsvsmwl/PwOGgLCv5ZkQ+4PR43CRyPDTjcC/AsPMlJblGaDXo808EBeZHo5YgcHmDxTy7YZrwc55E4OMd6vVwrYEneEIiA2OPlBMSKojcoDSl7eYPB0KRHgAgO/zo1/8Lbo5bme5uROD/v8bsDk1Koi894bW8nZt29pTU64ka8xzs5QzRqnTN5bgYuelkS2vKbi/QmMQZigDDrhXCOBILzkL3DtogYCAdCED88HQq45znWbwtFAgHeNxtxB2bdHv/MJIuCgfC85J0OcJOBGZ4LzIS9fRDjaXcwgJDPz83wiI+wsxziFzjBxntnMBIWBGkBRoVkEpnnwQDggDYJsizkGBxaABeE2Xr9fUlMT0cigVDIHeYXfIjzehYgVYUhk7PzIXg14OYhh5IEEgIX5GZI/hIj83C9n/cGyAUhknr6IRZnfZFWgHoDOIK88+b0gcmsm4GwSSwSYtokZm1iwHwjCg5GHJ7GYVKKWcwuBL2QniTScQDTJHk54BMIscdKLPlIRcV0v8RsIEB6CyCSbBzkMSgZNhghAMP4JHAuCaqyx4YFSFh4NoQicHVwgQVVc+xCCNF+OkQym81NSgrfSzIltoyEzRjmIwHSCQkcOfBO+iUhHIrAWT8ILcwE/QEOuiC3Twy7Q3w4FOaxOxDBQTjCYGwvVBLf0FqyB/A875mWnp6TvBbxMMuyvGfYtIj2BiYjtkinXIKxwzTpEDoITc/MTM8PpSnCHpoXcLsSBfy+sDs4y3WIAzTttxCDqWh6QIF5HtSGecHH+4J0yMuaYpiRg2eCSPKR3kQEv8eEOBjyeUiGjoisOKi8nkk+zPH+YJj1A3GAi3BtYp8NczMsH/KzfGQeEYndIZY3e7/wZCQ8HR7wA4RJ3ucWJDaCoYsPBZHHTCDzbr8tgpEHpBSh2eNaxJNhgWeJ0/mAnV/4ta72BG/YE/AKfIc42JKYt5HcKYaCIUjR3haxFLDNuDvO7bYNRszbhBDwBNiIl3f7wIwtYkgQHuSdAWNOt4kx+AI342cR7SZihwYkpgUaQ7LiBBz0cB7Wy5E8FjYlEiKwsvJCS+idRtCM0hGSRiHFsdNuYoKBm7HnYH3T8xysZObnw7PhkHcm4vXbgnBOhCVdKEKE9fhDoUBo+AkEAowEDaiW5VkzTZnAGI5brszywtAWkv8NwHKtpuuKsqpkctqf+LyPxpSmnx/++DE29tHE2PrY2O7uwZmRYYdu0A40vXicmJqayieTH8cekNw9Ojza3V1bXl7eNTLUv0Auq/UfUybyIwdjI4lE3iRXKFmmtFxOMY6WFxdPm5khq12uOKNTzs1tvUZh2oSmHCbHksXHS2icM07X1zaMHtcPr4FKRaP3xczzbQHFZFJ5dipnnC0vNzMDbgNqQx2NnuhdxqIOrBI/QM41FxfPlCFoXNucqnffAqGNJdVu57Fyur5oDOhotB49qb3wmpJIvrApg84Z64vN3ABi05Wo/tLb6WTy4OV3UsouaJzpk1c+WbHStpso2RT0PJF4SRct1Pa+b6T72qgin6SshpIFcxZ0zeTT8/mi9WLc2i7xxAmp9NFiOtezseX7zJNRWkpniqYQtY/5ww6JppzvHX3b3d399u3bXtNQHsWUc0d/l3rc+iWfaNbDmmrOPHNu2o3K5w9avHLtOJFYGzs2ikomk1GUYvPo28baXq0zK9n49rMXH5frVl5aVwkhnWrRUwf5H6YclHGQSJLcaTU3q2WM3dNHHbOZ8s+3J9PUE96ibk7muDU+dZj/QZ4xxYOHepE0njkwlWku3qU7dyYo5fOd8aaEplt5ZTOWmUy99VZqymnquZbPt8tUcq/LGJnm99PVjpKp8p3l6CVUraqrmYR0qtjirY7kjykibt6syC3i464jUpnyTbPjaziTLpVXXw0wSrdoTjd5cb3aOlS/RotgL2Y7/9FCfP7CSDRVa34uKe1pybn0TWn1xbyCq5Z3piqPUsNL21MjxN7ycX7ESvy8Tj2Vw7g7U3JtE1Ppu9Iq1VXp2qMb0BVCw+gtb0bU8dSxaf3t/MjIx0fmxKvE5I2rhpFWKKZzlE6vis+5qY4ZGKYVVJUHk2vOqGqGhT410iY2mZdfz54mZCqnNI126cCUmCmXlSex83hAVchl1IO4cir6oPDa6MjIiFXkgyfJ5hVAn2IoIqRWbI7JWpPjY7tKVQkPq5nXMLX7LbWlKlzPj1iYP4JT99J0YCqXI3n9ecffaVTZlspbRYlaiXcqpB4dfUa83XMBpH+5Y4C7dMi4Vr9XO6fpqa8jI1bm3zj1m8Bo/C/EWK+nLAGG1Ojo6KiVeSz54Fs0pZFCYSKTyfVSGlIag6xrEhprlYqaqpxs3m8VW/qU778+I04eI4bSi+eHB+Bna8m1Fja+f/921FQypCX+Ha92rbUmTrGsDNBquqqrV6643fElvvlgR/XL6OhT5uTxYSKR+HG4tw21kXQD5jcDqJquGM29u28bfy/uHp01y+W0sroK/1tQzJ+WjbSVTgTTJrGMkb7pcsRd4+P2zQfHle+dz4gTU4nDolLT5C6CMTCBXC6XyaymAQZkkRZWV6F653KiSViNXT/P4OxVPObYUvVxx307YNTo16+jbep8fjR5YNTk3yuzK0zPZnTX9U7jaTxqWzH7SpWhG/GtdtAxUWebOJ8fOy7W+mtiKSq3Cm6YTkNwTmio4nqSgbRGbEenEVOP33fOq4QYmGExdaJrfbAyVCZdhsZsNSeaUlYndKTZ960jyY6YmTLV2FaHFyzsdH51OkdP9B5vGdIYMla6eXd3ls7xpmlo6Ik+owmVoa8mrOGK9+1mWdZi+48GUL84ndHRutrTugz8K5Nunh2Vyulc24tgEmf//HNbRlc0KHvFmvlSDlNOZmvf0q5uOuJbKa2HxABL5+bd559nacgnj0VAKd8t/bNUJtPAiJnYt8pB7bT0e71pUb8a33xbl0xDGGWMo++QRM6MmjUZYkq5+f5z43Ops7ZSG5ZgYphKVSPQry1aYFJvKH+QOTJK82hxef3IUJ6tqomC//4baMuW2+z7lkEh66zsuOwOR6OxeZ16TCu/KUK0phT3jg/WEolDQ9Eo+enlTMY4+7mx8XPj77JVbfTz5EGz+lXDFbO7XLGG/qgr3KVNpGWi2PMkJM6PPw7PdQo/nyENK/YNIP28e3pqvCEIZUjUILc9/qgO+Qkxg0Gx6vbxCHAmDvcMpdbJNNZhMsbp4sbP3bOj07O3LiDlWtzlcDjiX/T2ic4UIBWk6icHI/loNDF1XMxolrUipTQ7z3Plu/W19Y3T8tn301/upLwCvEmYHfEHZrlKg2Zran00CpiaGrnfNIqURT4sZ/bGEsutbgpTxsbaxvruzZ7R/F7KdBn+NaH37Sbzw/IQivNW1ITzvl7UYV1IdQZkqJpxPAbruOQ5TW5JKHuLa+trp2XD2IN1W2+0gCoRedxeaclwEo/GgXUTdCubboLbrR6l7B2OJc3V4w8NYWVvd319ffkos9r8ttjs65ZnwxR5yxxfPtnarOjWkN8umksVI5/It282JpTc+XJyfX13T6Eyu4vf3rZS/BX7psitUqHVqaexoo9Smrr9ccq6lho7TEIHdKTUcsbu4pHS91d2dkz3apglRKs8fa2a/3H8AxqCJ0uasWRi2aBYZW99cXeQG312omr7qCmxXnkisD71dfRZlw1mPjiv0dr28vLY3kDffavGCLP93nSPFevtPEbPOx/7rxZ14uN5hpIz54nEmPGGJdUrYFZchDiWMg+ilsEY1Tn6tPNLJg7AonLxIJlYKw76bSwVeO0Ou8NUceW+Exa0NmJt/AgOz2uQ66DZHTvuep+zJ1QdhNjlMjOX1k5gjKxXoBt5Qpw/xgxVPEwmkudDuGP+wBszJaC2dhhZU4t1WFg4HU5nh9kkPqC08x/5ROK8hxblJciVGOG171SBsJaK2xtxAvsXEybxo8zbB1P55GGxtw+cugYbre9P2E3eSqq+74Dm3jH+gG7EI/mp42631F+FfeVpQmIYuVppuP5ymQKPg41dZt50WImtzGRZcdxHez8xMeFaqehVAl1NXe/E4AzQulrMLViIrcyE1+m87y98VgiRBX+ZeEpslXh83OFoERNmZ3RTfettkGegZf3KDlQTsYnYX494ztyKaMCXrfrJ+APzly/96NgChnyCB9BWJp4wm2HsisViccfO/tXKdUrXzAZSNYmjW5WhfWFUvnqgnSAKiE3EXfadlWsVPECTOz0ro9e/fvkS31Kpfj966EJ8bQq7v79yXSF0sEKHJdqT8bHaIBq/rw7vQz1cXQHnsq+8+PkLIkXZEXfERyt9OlQ3MOoVKHhHfSXrgY4bcXu8oWpD1LFqB2GvX8u1stoAk49v6i9f0isYrRL7jYppLeWKuWI7lX6FZYXHPVCCYH6gxFRBxzuvqo+pnowDbUPtO3zoS0FgCwWhUChglBU9WRbpjQnH6/EIOgZpHVfVQWqecHGRZS8KwkWBR9mLLDy6XlUxmCHViP0V2x/Qj9ksf5ktXBZEqSDgLAvP0au1m9GuxyGPNFR5UD/mecyyPIsxi2me5vlXa7cMZojFHCtDDNo3gKHUHcgnO6nBgpYXhUdLspJQ+N2+e+q6AbRX1UF1nBUKkljgJR4XRJoHp77MIrEADt7tYgZX94G1cT2EzQZZLFxkJfFC+I9UYFFBYLNZqXApFS66XAsFmgjb2720F0BfioUs/LvkLyGCIIIFcngpidlfLsUpouMV7ZfbKP0Rk+1QZK8mcWewONkHRQ7wsxCmtWtofnbUP/znAhj9+i+oFP1UWpp/+CISppGIIF7J1xCsF7Q+7YcI/nVwproPjZfa3z4OXGCzbIHneUjHl8h8KoBDY3BfyNC4wAu8QHIWnWUleEYL7c2bsCIiBarar2HZLPpPtiAVIA3zWUSSY1a6AM5s4UIUL0x/gjjClyLk6gty3UOtoiqNif1BUoUIQZK9FLM8YWMu6GwWEjLwZtmswF9e8jATvoCELIbXIZhgQibtimtivzpQ9ICvmjv5ENm/x7C0+Q/TcAqaNuLELGnezN/kKcvCQfVqYqcypH1JveDKdTXEhrEHpLp9avSO/34URKi5GEGOIJkZHhgADf8LNJ9lGUjbIktDGRC6lsUBAIkje3l5mRUhkAXyAEcF8pgVJBHOwxE8ZD3SkIkhZUPa5KG5goyJeVaAQ8E8YjGcF+AMeZ28gv61naSvj0uj+mB3//pHfbP+v/PHeiiKGuai8+2QyU4PGWEZk4YSy39M/HuVqW9u6vpJDVRe3byv/6kMqkapqFo5KTr1LZmun6h/zNeKX6moDsRfgRipWyPFPyVxVGenolGTmJKpWnH0Txl564Ry6sW6upVxOuuV0a/bf0piWaM0zIKwLEV2if8bu9Lf8Y7/L+j/T7oOhv8BzkA5zXKH7YUAAAAASUVORK5CYII=", alt: "design-book"}
+            .thumb-hover
+              .general-thumb-link-wrap
+                %a.thumb-hover-link{href: "#"}
+                  %i.fa.fa-eye.thumb-icon{'aria-hidden': "true"}
+                %a.thumb-hover-link{href: "#"}
+                  %i.fa.fa-shopping-cart.thumb-icon
+        .general-thumb-info
+          %p.title Agile Web Development with Rails 5
+          %p.font-16.in-gold-500 €78.00
+          %span.divider-sm
+          %p.lead.small Sam Ruby, Dave Thomas
+      .col-xs-6.col-sm-3
+        .general-thumb-wrap
+          .thumbnail.general-thumbnail
+            %img.img-shadow.general-thumbnail-img{src: "https://00e9e64bac05f3f90ab9292a295dd502d8b7a9a66579dcb128-apidata.googleusercontent.com/download/storage/v1/b/bookstore-image/o/uploads%2FV05929_MockupCover.jpg?qk=AD5uMEtKAOwFRbbH5qJvYtPKLBieNPV0vNJzauyEyCsmGd0qOcTG2JRpEPDbG9_DL8VrYKGOoEHT2z1wYA0TeVYz7uT_SPKdoy_k9jKGjM090NQf6s4LqoweukJZzrZJ43D1fBDhBysxjW5_zvC6m_L5-c4qvFCOqN-brSRtaiVOaUBIRzBxK9eXaT5vMD-sMXfytQQv3YYygzBTMiUoppdebUiii3QJaTlvDIkfr4ZK_g0gaELRJ5AHXuGZiWJCchwafdJ7Mu4CNH6iZaWv7s-8S6BXwbs4YJvnJ-C68mVONcSLvxxeyjQ53K-Cx0CiAiwdu3amamjGU7mkuh91vvn5k6cWGRKyBABohK3M_-lc57M14SW4OHeZOMohCK4q0tRcQxN8IKp3OVhHUY0k6BLRw5ZDh2OoZhndTCyBepITRnUpDOETBdmSPe0dbKQIdIMfa9FHRAJ1cvp7so3AcFULPIBz_wevIv3WG15b9Q03AKfRj2-3GQU0OMKWZfS6B1TU_TQitToEUPlZLc4FjppZ5yQMnagkKpTvFCF1c_P4fo4jg3i1tPQXtpdAXtqyqIDsOKswYShSNXRpYCD-RJ9illFGDP8lIreMSlDYisNd0H33ELuiXyThlqRCoSLhl_p1Aqk4TYqAEfTkKJS-Khg5nje2B0npgOMCUoIzGt5nfS6MK5fnOW34qMBJH-pMrfMsm4KEQAQNF9ngQ07YM5aTxUipI43oqh5ISuYpriKP9j1mALlAK5rQGnK48XKmOMCTdedD7oXo", alt: "design-book"}
+            .thumb-hover
+              .general-thumb-link-wrap
+                %a.thumb-hover-link{href: "#"}
+                  %i.fa.fa-eye.thumb-icon{'aria-hidden': "true"}
+                %a.thumb-hover-link{href: "#"}
+                  %i.fa.fa-shopping-cart.thumb-icon
+        .general-thumb-info
+          %p.title Learning SQL 2016 Reporting Services
+          %p.font-16.in-gold-500 €28.50
+          %span.divider-sm
+          %p.lead.small Stefan Wintermeyer
+      .col-xs-6.col-sm-3
+        .general-thumb-wrap
+          .thumbnail.general-thumbnail
+            %img.img-shadow.general-thumbnail-img{src: "https://00e9e64bac39e503e3d9614090ace0f7551c10581f2dcfa8bf-apidata.googleusercontent.com/download/storage/v1/b/bookstore-image/o/uploads%2Fprinciples-of-beautiful-web-design.jpg?qk=AD5uMEublTZTTRoJjJ03sF6P4zofKqo-OANLgRBvd6L5bgzgt0DtKbIPKeDzH9rwd_hVbR64_lizTlfXfHDzXF6r8Z3eArMeWHC5nnt4MLRf7rOZ1DnxWkt--ZLw6ZvMjbKVR3pxtlm1OaMpLAmgPRW-x0dXe4k4OvicL6qu_yC9NMk-0UpQ76Isj10uAwkzbZJFYcZQ1ZggIogm6YtlxVGiI3X3SyDGs8F5AxvYOnsnNAtwHGzoSDBzp0gKurKuMKDS80nZbph8xGAsdlN1mZhbNM-gNLGpIzwL0j1uRKFNTfwM6litQAI-nPjtoFeG3aCBWFjJerlYc3-IFFtBiQ87QgMAGNmqVSMu9F9V3zvXbBDjXgNySBMspNKf34re4jMnVbgL_8YxTLvI3KpvebGDQ_hV_gBUtcPwItK3ywOv8UemOItm-N7OfJK01BwMXVuVBoGGc5tvuKPy_-xeo_1M5Rf09JAzBj6WmgxA_V9CJfBZZx7NIhbzqpiMkSEefXfbRgDtgGrK3coXWZ5Tj1EH3xcj6oPvWEVPhINJaicNZeP-zkInoitN_BRvLohYfUQots2zukm9kZwjNkX0eTNXx1Coh-hQIM3tS40i8uOBQDBwls0wQVObE5ccRfDge4AZn4f4y_L6ShhD-kHEz3PIHbis4iV6VoDdjPtKG-A4RAalplXBqI08CgU4Yw3kAJxp9PKhoOd0b189pP4vpow6BSf08_BYXHar55P9rdq6stBuf0m9Bwv4lkQZY_1ChZ51XX3SaY5uNysFN2TyYxk7-oXCFe81Hg", alt: "design-book"}
+            .thumb-hover
+              .general-thumb-link-wrap
+                %a.thumb-hover-link{href: "#"}
+                  %i.fa.fa-eye.thumb-icon{'aria-hidden': "true"}
+                %a.thumb-hover-link{href: "#"}
+                  %i.fa.fa-shopping-cart.thumb-icon
+        .general-thumb-info
+          %p.title Beautiful Web Design
+          %p.font-16.in-gold-500 €38.75
+          %span.divider-sm
+          %p.lead.small David Cochran
+    .text-center
+      %button.btn.btn-primary View More
+    %h3 .
+    .container
+      .mb-35
+        .general-message-wrap.divider-lg
+        %h3.in-gold-500.mb-25 It can be interesting for you:
+        .row
+          .col-sm-6.col-md-3
+            .general-thumb-wrap
+              .thumbnail.general-thumbnail
+                %img.img-shadow.general-thumbnail-img{src: "http://whatpixel.com/images/2017/01/11-ror5-webdev-for-beginners.jpg", alt: "design-book"}
+                .thumb-hover
+                  .general-thumb-link-wrap
+                    %a.thumb-hover-link{href: "#"}
+                      %i.fa.fa-eye.thumb-icon{'aria-hidden': "true"}
+                    %a.thumb-hover-link{href: "#"}
+                      %i.fa.fa-shopping-cart.thumb-icon
+            .mb-35
+              .clearfix
+                %p.pull-right.font-16.in-gold-500 €55.50
+                %p.title.mr-55 RoR 5: Web App Development for Beginners
+              %span.divider-sm
+              %p.lead.small Mark Smart
+          .col-sm-6.col-md-3
+            .general-thumb-wrap
+              .thumbnail.general-thumbnail
+                %img.img-shadow.general-thumbnail-img{src: "http://whatpixel.com/images/2017/01/03-head-first-ruby.jpg", alt: "design-book"}
+                .thumb-hover
+                  .general-thumb-link-wrap
+                    %a.thumb-hover-link{href: "#"}
+                      %i.fa.fa-eye.thumb-icon{'aria-hidden': "true"}
+                    %a.thumb-hover-link{href: "#"}
+                      %i.fa.fa-shopping-cart.thumb-icon
+            .mb-35
+              .clearfix
+                %p.pull-right.font-16.in-gold-500 €48.50
+                %p.title.mr-55 Head First Ruby
+              %span.divider-sm
+              %p.lead.small John Horton
+          .col-sm-6.col-md-3
+            .general-thumb-wrap
+              .thumbnail.general-thumbnail
+                %img.img-shadow.general-thumbnail-img{src: "http://whatpixel.com/images/2017/01/14-well-grounded-rubyist.jpg", alt: "design-book"}
+                .thumb-hover
+                  .general-thumb-link-wrap
+                    %a.thumb-hover-link{href: "#"}
+                      %i.fa.fa-eye.thumb-icon{'aria-hidden': "true"}
+                    %a.thumb-hover-link{href: "#"}
+                      %i.fa.fa-shopping-cart.thumb-icon
+            .mb-35
+              .clearfix
+                %p.pull-right.font-16.in-gold-500 €41.00
+                %p.title.mr-55 The Well-Grounded Rubyist
+              %span.divider-sm
+              %p.lead.small David A.Black
+          .col-sm-6.col-md-3
+            .general-thumb-wrap
+              .thumbnail.general-thumbnail
+                %img.img-shadow.general-thumbnail-img{src: "https://www.packtpub.com/sites/default/files/ReactJSEssentials.png", alt: "design-book"}
+                .thumb-hover
+                  .general-thumb-link-wrap
+                    %a.thumb-hover-link{href: "#"}
+                      %i.fa.fa-eye.thumb-icon{'aria-hidden': "true"}
+                    %a.thumb-hover-link{href: "#"}
+                      %i.fa.fa-shopping-cart.thumb-icon
+            .mb-35
+              .clearfix
+                %p.pull-right.font-16.in-gold-500 €27.50
+                %p.title.mr-55 React.js Essentials
+              %span.divider-sm
+              %p.lead.small Artemij Fedosejrv

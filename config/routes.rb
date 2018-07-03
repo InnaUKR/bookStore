@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     put :up_quantity
     put :down_quantity
   end
-  resources :carts, only: :show
+  resources :carts, only: %i[show update]
   resources :books, only: :show do
     put :change_quantity
     resources :reviews

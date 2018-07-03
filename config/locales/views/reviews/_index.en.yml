@@ -1,0 +1,5 @@
+en:
+  reviews:
+    index:
+      reviews_number: "Reviews(%{number})"
+      verified_reviewer: 'Verified Reviewer'

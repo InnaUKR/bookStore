@@ -1,0 +1,10 @@
+en:
+  partials:
+    book:
+      dropdown_menu:
+        newest_first: 'Newest first'
+        popular_first: 'Popular first'
+        price_low_to_hight: 'Price: Low to hight'
+        price_hight_to_low: 'Price: Hight to low'
+        title_a_z: "Title: A - Z"
+        title_z_a: "Title: Z - A"

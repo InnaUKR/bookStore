@@ -1,0 +1,5 @@
+en:
+  partials:
+    book:
+      categories:
+        all: 'All'

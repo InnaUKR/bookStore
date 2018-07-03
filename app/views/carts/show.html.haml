@@ -1,38 +1,36 @@
 %main.container.general-main-wrap
-  %h1.general-title-margin Cart
+  %h1.general-title-margin= t('.cart')
   .visible-xs
     = render partial:'carts/item_mobile', collection: @line_items, as: :item
   .hidden-xs
     %table.table.table-hover
-      = render 'partials/cart/table_header_for_desktop'
       = render partial:'carts/item_desktop', collection: @line_items, as: :item
   .general-order-wrap
     .row
       .col-sm-4
         .input-group.general-input-group
-          %label.input-label Enter Your Coupon Code
-          %input.form-control.mb-30{type: "text", placeholder: "Enter Your Coupon Code "}
-          %div
-            %button.btn.btn-primary.mr-5.mb-15.visible-xs-inline-block Apply Coupon
-            %button.btn.btn-primary.mb-15.res-block Update cart
+          = form_tag cart_path, method: :put,:authenticity_token => true do
+            = label_tag :name, t('.enter_coupon'), class: 'input-label'
+            = text_field_tag(:name, nil, placeholder: t('.enter_coupon'), class: 'form-control mb-30')
+            %div
+              = submit_tag t('.update_cart_button'), class: 'btn btn-primary mb-15 res-block'
       .col-sm-8
         .res-mr-200.text-center.general-text-right
-          %p.in-gold-500.font-18 Order Summary
+          %p.in-gold-500.font-18= t('.order_summary')
           %table.general-summary-table.general-summary-table-right.general-text-right
             %tr
               %td
-                %p.font-16 Subtotal:
+                %p.font-16= t('.subtotal')
               %td
                 %p.font-16= show_price(@cart.total_price)
             %tr
               %td
-                %p.font-16 Coupon:
+                %p.font-16= t('.coupon')
               %td
-                %p.font-16 €0.00
+                %p.font-16= 0 #(@coupon.price)
             %tr
               %td
-                %strong.font-18 Order Total:
+                %strong.font-18= t('.order_total')
               %td
-                %strong.font-18= show_price(@cart.price_with_coupon(coupon_price=0))
-          %button.btn.btn-default.mb-20.visible-xs-inline-block Checkout
-  =button_to 'Checkout', new_order_path, method: :get, class:'btn btn-default mb-20 hidden-xs center-block'
+                %strong.font-18= show_price(@cart.price)
+  =button_to t('.checkout_button'), orders_path, method: :post, class:'btn btn-default mb-20 hidden-xs center-block'

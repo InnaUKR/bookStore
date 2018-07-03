@@ -1,0 +1,12 @@
+= "#{@order.shipping_address.first_name} #{@order.shipping_address.last_name}"
+- if request.env['REQUEST_PATH'].include?('confirm')
+  = link_to edit_checkout_path(id: :address) do
+    %span.general-edit edit
+%br
+= @order.shipping_address.address
+%br
+= "#{@order.shipping_address.city} #{@order.shipping_address.zipcode}"
+%br
+= @order.shipping_address.country
+%br
+= "Phone #{@order.shipping_address.phone}"

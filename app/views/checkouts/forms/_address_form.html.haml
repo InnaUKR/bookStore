@@ -1,0 +1,31 @@
+.form-group{ class: ('has-error' if form.errors.messages.include? :first_name) }
+  = f.label :first_name, class: "control-label input-label"
+  = f.input_field :first_name, class: "form-control",
+    value: "#{form.first_name || current_user.first_name}"
+  %span.help-block= form.errors.messages[:first_name].join(', ')
+.form-group{ class: ('has-error' if form.errors.messages.include? :last_name) }
+  = f.label :last_name, class: "control-label input-label"
+  = f.input_field :last_name, class: "form-control",
+    value: "#{form.last_name || current_user.last_name}"
+  %span.help-block= form.errors.messages[:last_name].join(', ')
+.form-group{ class: ('has-error' if form.errors.messages.include? :address) }
+  = f.label :address, class: "control-label input-label"
+  = f.input_field :address, class: "form-control"
+  %span.help-block= form.errors.messages[:address].join(', ')
+.form-group{ class: ('has-error' if form.errors.messages.include? :city) }
+  = f.label :city, class: "control-label input-label"
+  = f.input_field :city, class: "form-control"
+  %span.help-block= form.errors.messages[:city].join(', ')
+.form-group{ class: ('has-error' if form.errors.messages.include? :zipcode) }
+  = f.label :zipcode, class: "control-label input-label"
+  = f.input_field :zipcode, class: "form-control"
+  %span.help-block= form.errors.messages[:zipcode].join(', ')
+.form-group{ class: ('has-error' if form.errors.messages.include? :country) }
+  = f.label :country, class: "control-label input-label"
+  = f.input_field :country, collection: countries.keys, selected: form.country,
+    include_blank: true, class: "form-control"
+  %span.help-block= form.errors.messages[:country].join(', ')
+.form-group{ class: ('has-error' if form.errors.messages.include? :phone) }
+  = f.label :phone, class: "control-label input-label"
+  = f.input_field :phone, class: "form-control"
+  %span.help-block= form.errors.messages[:phone].join(', ')

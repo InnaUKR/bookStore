@@ -1,0 +1,12 @@
+en:
+  carts:
+    show:
+      cart: 'Cart'
+      enter_coupon: 'Enter Your Coupon Code'
+      apply_coupon_button: 'Apply Coupon'
+      update_cart_button: 'Update cart'
+      order_summary: 'Order Summary'
+      subtotal: 'Subtotal:'
+      coupon: 'Coupon:'
+      order_total: 'Order Total:'
+      checkout_button: 'Checkout'

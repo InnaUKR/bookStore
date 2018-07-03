@@ -1,7 +1,7 @@
 %main.container
   = link_to(categories_path, class: 'general-back-link') do
     %i.fa.fa-long-arrow-left.mr-15
-    Back to results
+    =t('.back_to_results')
   .row
     =render 'books/book_images'
     .col-sm-6
@@ -21,27 +21,24 @@
                 method: :put, class: "input-link" do
               %i.fa.fa-plus.line-height-40
         .col-xs-7.col-md-5
-          = link_to 'Add to Cart',
+          = link_to t('.add_to_cart'),
             line_items_path(line_items: {quantity: @item.quantity,
             price: @book.price, book_id: @book.id}), method: :post,
             class: "btn btn-default pull-right general-position"
-
       .general-info-wrap.divider-lg
-        %p Description
+        %p=t('.description')
         %p.lead.small.line-height-2= @book.description
-        = link_to 'Read More', '', class: 'in-gold-500 ml-10 read-more'
       .general-info-wrap.divider-lg
         .clearfix
-          %p.pull-left Year of publication
+          %p.pull-left= t('.year_of_publication')
           %p.lead.small.pull-right= @book.year_of_publication
       .general-info-wrap.divider-lg
         .clearfix
-          %p.pull-left Dimensions
+          %p.pull-left= t('.dimensions')
           %p.lead.small.pull-right= @book.dimensions
       .general-info-wrap.divider-lg
         .clearfix
-          %p.pull-left Materials
+          %p.pull-left= t('.materials')
           %p.lead.small.pull-right= @book.material
-  .mb-80
-    =render 'reviews/index'
-    =render 'reviews/new'
+  =render 'reviews/index'
+  =render 'reviews/new'
