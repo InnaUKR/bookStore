@@ -1,6 +1,6 @@
 .general-cart-item.divider-lg-bottom
   = link_to line_item_path(item),
-            data: {confirm: t('carts.item.confirm'), method: :delete},
+            data: {confirm: t('orders.item.confirm'), method: :delete},
             class: 'close general-cart-close', type: 'button', 'aria-label': 'Close' do
     %span{'aria-hidden': 'true'} &times;
   .general-img-wrap-table
@@ -11,12 +11,12 @@
   %table.table
     %tr
       %td
-        %span.in-grey-600= t('carts.item.price')
+        %span.in-grey-600= t('orders.item.price')
       %td
         %span.font-16.in-gold-500= show_price(item.book.price)
     %tr
       %td.vertical-middle
-        %span.in-grey-600= t('carts.item.quantity')
+        %span.in-grey-600= t('orders.item.quantity')
       %td
         .input-group
           = link_to line_item_down_quantity_path(item), method: :put, class: 'input-link' do
@@ -26,6 +26,6 @@
             %i.fa.fa-plus.line-heaght-40
     %tr
       %td
-        %span.in-grey-600= t('carts.item.subtotal')
+        %span.in-grey-600= t('orders.item.subtotal')
       %td
         %span.font-16.in-gold-500= show_price(item.total_price)

@@ -8,6 +8,6 @@ module ApplicationHelper
   end
 
   def books_in_curt
-    current_cart.line_items.sum(&:quantity)
+    current_order.line_items.sum(&:quantity)
   end
 end

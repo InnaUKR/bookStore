@@ -1,10 +1,36 @@
 class Order < ApplicationRecord
   include AASM
 
+  has_many :line_items, dependent: :destroy
+
+
   belongs_to :user
-  belongs_to :delivery
+  belongs_to :delivery, optional: true
+  belongs_to :credit_card, optional: true
   validates :state, presence: true
-  validates :total_price, numericality: { greater_than_or_equal_to: 0.01 }
+  validates :total_price, numericality: { greater_than_or_equal_to: 0.0 }
+
+  def add_book(line_item_params)
+    current_item = line_items.find_by(book_id: line_item_params[:book_id])
+    if current_item
+      current_item.quantity += line_item_params[:quantity]
+    else
+      current_item = line_items.build(line_item_params)
+    end
+    current_item
+  end
+
+  def sub_total
+    line_items.sum(&:total_price)
+  end
+
+  def coupon
+    coupon_id ? Coupon.find(coupon_id).amount : 0
+  end
+
+  def order_total
+    coupon_id ? sub_total - coupon : sub_total
+  end
 
   aasm column: :state do
     state :filling, initial: true

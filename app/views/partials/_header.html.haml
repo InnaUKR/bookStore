@@ -8,10 +8,12 @@
         %span.icon-bar
       %a.navbar-brand
         = t('.bookstore')
-      =link_to cart_path(current_cart.id), class:'shop-link pull-right visible-xs' do
+
+      =link_to '#', class:'shop-link pull-right visible-xs' do
         %span.shop-icon
           %span.shop-quantity= books_in_curt
-    =link_to cart_path(current_cart.id), class:'shop-link pull-right hidden-xs' do
+
+    =link_to '#', class:'shop-link pull-right hidden-xs' do
       %span.shop-icon
         %span.shop-quantity= books_in_curt
     #navbar.navbar-collapse.collapse.pl-30{'aria-expanded': "false"}

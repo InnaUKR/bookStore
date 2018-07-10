@@ -1,5 +1,5 @@
 en:
-  carts:
+  orders:
     show:
       cart: 'Cart'
       enter_coupon: 'Enter Your Coupon Code'

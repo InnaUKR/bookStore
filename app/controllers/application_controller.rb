@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  helper_method :current_user, :current_cart
+  helper_method :current_user, :current_order
   before_action :set_locale
 
   def set_locale
@@ -8,8 +8,8 @@ class ApplicationController < ActionController::Base
     I18n.locale = I18n.available_locales.include?(locale) ? locale : I18n.default_locale
   end
 
-  def current_cart
-    current_user.cart || current_user.create_cart
+  def current_order
+    Order.find(session[:current_order_id].nil? ? session[:current_order_id] = create_order.id : session[:current_order_id])
   end
 
   def current_user
@@ -27,5 +27,9 @@ class ApplicationController < ActionController::Base
     user.email = "guest_#{Time.now.to_i}#{rand(99)}@guest.com"
     user.save(validate: false)
     user
+  end
+
+  def create_order
+    current_user.orders.create
   end
 end

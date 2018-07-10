@@ -1,15 +1,16 @@
 %main.container.general-main-wrap
   %h1.general-title-margin= t('.cart')
   .visible-xs
-    = render partial:'carts/item_mobile', collection: @line_items, as: :item
+    = render partial:'orders/item_mobile', collection: @line_items, as: :item
   .hidden-xs
     %table.table.table-hover
-      = render partial:'carts/item_desktop', collection: @line_items, as: :item
+      = render 'partials/cart/table_header_for_desktop'
+      = render partial:'orders/item_desktop', collection: @line_items, as: :item
   .general-order-wrap
     .row
       .col-sm-4
         .input-group.general-input-group
-          = form_tag cart_path, method: :put,:authenticity_token => true do
+          = form_tag order_path(), method: :put,:authenticity_token => true do
             = label_tag :name, t('.enter_coupon'), class: 'input-label'
             = text_field_tag(:name, nil, placeholder: t('.enter_coupon'), class: 'form-control mb-30')
             %div
@@ -22,15 +23,15 @@
               %td
                 %p.font-16= t('.subtotal')
               %td
-                %p.font-16= show_price(@cart.total_price)
+                %p.font-16= show_price(@order.sub_total)
             %tr
               %td
                 %p.font-16= t('.coupon')
               %td
-                %p.font-16= 0 #(@coupon.price)
+                %p.font-16= show_price(@order.coupon)
             %tr
               %td
                 %strong.font-18= t('.order_total')
               %td
-                %strong.font-18= show_price(@cart.price)
+                %strong.font-18= show_price(@order.order_total)
   =button_to t('.checkout_button'), orders_path, method: :post, class:'btn btn-default mb-20 hidden-xs center-block'

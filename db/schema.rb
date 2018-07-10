@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180529091402) do
+ActiveRecord::Schema.define(version: 20180709155036) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,6 +83,17 @@ ActiveRecord::Schema.define(version: 20180529091402) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "credit_cards", force: :cascade do |t|
+    t.string "number"
+    t.integer "cvv"
+    t.string "card_name"
+    t.string "exp_date"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_credit_cards_on_user_id"
+  end
+
   create_table "deliveries", force: :cascade do |t|
     t.string "method_name", null: false
     t.string "days", null: false
@@ -107,8 +118,10 @@ ActiveRecord::Schema.define(version: 20180529091402) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "quantity", default: 1
+    t.bigint "order_id"
     t.index ["book_id"], name: "index_line_items_on_book_id"
     t.index ["cart_id"], name: "index_line_items_on_cart_id"
+    t.index ["order_id"], name: "index_line_items_on_order_id"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -118,6 +131,10 @@ ActiveRecord::Schema.define(version: 20180529091402) do
     t.string "state"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "credit_card_id"
+    t.bigint "coupon_id"
+    t.index ["coupon_id"], name: "index_orders_on_coupon_id"
+    t.index ["credit_card_id"], name: "index_orders_on_credit_card_id"
     t.index ["delivery_id"], name: "index_orders_on_delivery_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
@@ -166,6 +183,7 @@ ActiveRecord::Schema.define(version: 20180529091402) do
   add_foreign_key "authors_books", "books"
   add_foreign_key "carts", "users"
   add_foreign_key "line_items", "books"
-  add_foreign_key "line_items", "carts"
+  add_foreign_key "line_items", "orders"
+  add_foreign_key "orders", "coupons"
   add_foreign_key "orders", "deliveries"
 end
