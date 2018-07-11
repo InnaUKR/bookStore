@@ -19,19 +19,5 @@
         .res-mr-200.text-center.general-text-right
           %p.in-gold-500.font-18= t('.order_summary')
           %table.general-summary-table.general-summary-table-right.general-text-right
-            %tr
-              %td
-                %p.font-16= t('.subtotal')
-              %td
-                %p.font-16= show_price(@order.sub_total)
-            %tr
-              %td
-                %p.font-16= t('.coupon')
-              %td
-                %p.font-16= show_price(@order.coupon)
-            %tr
-              %td
-                %strong.font-18= t('.order_total')
-              %td
-                %strong.font-18= show_price(@order.order_total)
-  =button_to t('.checkout_button'), orders_path, method: :post, class:'btn btn-default mb-20 hidden-xs center-block'
+            =render 'partials/order_summary'
+  =button_to t('.checkout_button'), edit_order_path, method: :get, class:'btn btn-default mb-20 hidden-xs center-block'

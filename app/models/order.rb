@@ -32,6 +32,10 @@ class Order < ApplicationRecord
     coupon_id ? sub_total - coupon : sub_total
   end
 
+  def price
+    total_price || order_total
+  end
+
   aasm column: :state do
     state :filling, initial: true
     state :in_confirmation, after_enter: :send_confirmation

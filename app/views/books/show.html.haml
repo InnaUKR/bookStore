@@ -21,10 +21,8 @@
                 method: :put, class: "input-link" do
               %i.fa.fa-plus.line-height-40
         .col-xs-7.col-md-5
-          = link_to t('.add_to_cart'),
-            line_items_path(line_items: {quantity: @item.quantity,
-            price: @book.price, book_id: @book.id}), method: :post,
-            class: "btn btn-default pull-right general-position"
+          = link_to t('.add_to_cart'), line_items_path(line_item: {quantity: @item.quantity, book_id: @book.id}),
+            method: :post, class: "btn btn-default pull-right general-position"
       .general-info-wrap.divider-lg
         %p=t('.description')
         %p.lead.small.line-height-2= @book.description

@@ -1,0 +1,15 @@
+%tr
+  %td
+    %p.font-16= t('.subtotal')
+  %td
+    %p.font-16= show_price(@order.sub_total)
+  %tr
+    %td
+      %p.font-16= t('.coupon')
+    %td
+      %p.font-16= show_price(@order.coupon)
+  %tr
+    %td
+      %strong.font-18= t('.order_total')
+    %td
+      %strong.font-18= show_price(@order.price)

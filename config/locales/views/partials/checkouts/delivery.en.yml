@@ -1,0 +1,7 @@
+en:
+  checkouts:
+    delivery:
+      method: 'Method'
+      days: 'Days'
+      price: 'Price'
+      submit_button: 'Save and Continue'

@@ -1,35 +1,35 @@
 class CheckoutsController < ApplicationController
   include Wicked::Wizard
-  #include Rectify::ControllerHelpers
+  include Rectify::ControllerHelpers
   steps :delivery, :payment, :confirm, :complete
-
-  def new
-    @form = AddressForm.new
-    render_wizard
-  end
+  before_action :set_step, only: :show
+  before_action :order, only: :update
 
   def show
-    @order = Order.new
-    @deliveries = Delivery.all
+    @form = "#{step.capitalize}Form".constantize
     render_wizard
   end
 
   def update
-
+    capital_step = step.to_s.capitalize
+    form_name = "#{capital_step}Form".constantize
+    @form = form_name.from_params(order_params).with_context(order: @order)
+    render_wizard @form
   end
 
-  def create
-    render_wizard
-    @order = Order.new
-    @order_form = DeliveryForm.new
-    @form = DeliveryForm.from_params(params)
+  private
 
-    if @form.valid?
-      render_wizard
-    else
-      redirect_to wizard_path(steps.first)
-    end
-    #redirect_to wizard_path(steps.first, :order_id => @order.id)
+  def order_params
+    params.require(:order).permit(:delivery_id)
   end
 
+  def order
+    order_id = session[:order_id]
+    @order = Order.find(order_id)
+  end
+
+  def set_step
+    order
+    params[:id] = @order.step || step
+  end
 end

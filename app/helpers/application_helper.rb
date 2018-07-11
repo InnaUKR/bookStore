@@ -7,6 +7,10 @@ module ApplicationHelper
     Category.all
   end
 
+  def deliveries
+    Delivery.all
+  end
+
   def books_in_curt
     current_order.line_items.sum(&:quantity)
   end
