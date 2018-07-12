@@ -21,10 +21,11 @@
       %span.step-number 5
       %span.step-text.hidden-xs Complete
   %h3.general-subtitle Credit Card
+
   = simple_form_for @form,:url => wizard_path, method: :put, html: { class: "max-600 mb-80" } do |f|
     .form-group{ class: ('has-error' if @form.errors.messages[:number].any?) }
       = f.label :number, 'Card Number', class: 'control-label input-label'
-      = f.text_field :number, label: false, placeholder: "Card Number", id:'cardNumber',class:'form-control'
+      = f.text_field :number, label: false, placeholder:"Card Number", id:'cardNumber',class:'form-control'
       %span.help-block= @form.errors.messages[:number].join(', ')
     .row
       .col-sm-6
@@ -36,7 +37,7 @@
         .form-group{ class: ('has-error' if @form.errors.messages[:exp_date].any?) }
           = f.label :exp_date, 'MM / YY', class: 'control-label input-label'
           = f.text_field :exp_date, label: false, placeholder: "MM / YY", id:'cardName',class:'form-control'
-          %span.help-block= @form.errors.messages[:card_name].join(', ')
+          %span.help-block= @form.errors.messages[:exp_date].join(', ')
       .col-sm-3
         .form-group.relative{ class: ('has-error' if @form.errors.messages[:cvv].any?) }
           = f.label :cvv, 'CVV', class: 'control-label input-label'
@@ -46,20 +47,6 @@
     .general-text-align
       %p.in-gold-500.font-18 Order Summary
       %table.general-summary-table
-        %tr
-          %td
-            %p.font-16 Subtotal:
-          %td
-            %p.font-16 €117.69
-        %tr
-          %td
-            %p.font-16 Coupon:
-          %td
-            %p.font-16 €0.00
-        %tr
-          %td
-            %strong.font-18 Order Total:
-          %td
-            %strong.font-18 €117.69
+        = render partial: 'partials/order_summary'
     .container.mb-res-50.text-center
       = f.submit 'Save and Continue', class: 'btn btn-default mb-80'

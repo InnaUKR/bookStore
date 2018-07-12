@@ -6,6 +6,8 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: [:facebook]
   has_one :cart
   has_many :reviews
+  has_many :orders
+  has_many :credit_cards
   has_one :image, as: :imageable
   accepts_nested_attributes_for :image
 

@@ -6,21 +6,28 @@ class CheckoutsController < ApplicationController
   before_action :order, only: :update
 
   def show
-    @form = "#{step.capitalize}Form".constantize
-    render_wizard
+    @form = "#{@step.to_s.capitalize}Form".constantize.new
+    render @step
   end
 
   def update
-    capital_step = step.to_s.capitalize
+    capital_step = step.capitalize
     form_name = "#{capital_step}Form".constantize
-    @form = form_name.from_params(order_params).with_context(order: @order)
+    params = send("#{step}_params")
+    @form = form_name.from_params(params).with_context(order: @order,
+                                                       user: current_user,
+                                                       step: next_step)
     render_wizard @form
   end
 
   private
 
-  def order_params
+  def delivery_params
     params.require(:order).permit(:delivery_id)
+  end
+
+  def payment_params
+    params.require(:payment).permit(:number, :card_name, :cvv, :exp_date)
   end
 
   def order
@@ -30,6 +37,6 @@ class CheckoutsController < ApplicationController
 
   def set_step
     order
-    params[:id] = @order.step || step
+    @step = (params[:step] ? params[:step] : (@order.step || step))
   end
 end
