@@ -20,33 +20,34 @@
     %li.step
       %span.step-number 5
       %span.step-text.hidden-xs Complete
-  %h3.general-subtitle Credit Card
 
-  = simple_form_for @form,:url => wizard_path, method: :put, html: { class: "max-600 mb-80" } do |f|
-    .form-group{ class: ('has-error' if @form.errors.messages[:number].any?) }
-      = f.label :number, 'Card Number', class: 'control-label input-label'
-      = f.text_field :number, label: false, placeholder:"Card Number", id:'cardNumber',class:'form-control'
-      %span.help-block= @form.errors.messages[:number].join(', ')
-    .row
-      .col-sm-6
-        .form-group{ class: ('has-error' if @form.errors.messages[:card_name].any?) }
-          = f.label :card_name, 'Name on Card', class: 'control-label input-label'
-          = f.text_field :card_name, label: false, placeholder: "Name on Card", id:'cardName',class:'form-control'
-          %span.help-block= @form.errors.messages[:card_name].join(', ')
-      .col-sm-3
-        .form-group{ class: ('has-error' if @form.errors.messages[:exp_date].any?) }
-          = f.label :exp_date, 'MM / YY', class: 'control-label input-label'
-          = f.text_field :exp_date, label: false, placeholder: "MM / YY", id:'cardName',class:'form-control'
-          %span.help-block= @form.errors.messages[:exp_date].join(', ')
-      .col-sm-3
-        .form-group.relative{ class: ('has-error' if @form.errors.messages[:cvv].any?) }
-          = f.label :cvv, 'CVV', class: 'control-label input-label'
-          = f.text_field :cvv, label: false, placeholder: "CVV",class:'form-control'
-          %span.help-block= @form.errors.messages[:cvv].join(', ')
-          %i.fa.fa-question-circle.general-form-help{ title: 'cvv hint' }
-    .general-text-align
-      %p.in-gold-500.font-18 Order Summary
-      %table.general-summary-table
-        = render partial: 'partials/order_summary'
-    .container.mb-res-50.text-center
-      = f.submit 'Save and Continue', class: 'btn btn-default mb-80'
+  %h3.general-subtitle= t('checkouts.show.payment.credit_card')
+  = form_for @order,:url => wizard_path, method: :put, html: { class: "max-600 mb-80" } do |ff|
+    =ff.fields_for @order.credit_card do |f|
+      .form-group{ class: ('has-error' if @form.errors.messages[:number].any?) }
+        = f.label :number, t('checkouts.show.payment.card_number'), class: 'control-label input-label'
+        = f.text_field :number, label: false, placeholder: t('checkouts.show.payment.card_number'), id:'cardNumber',class:'form-control'
+        %span.help-block= @form.errors.messages[:number].join(', ')
+      .row
+        .col-sm-6
+          .form-group{ class: ('has-error' if @form.errors.messages[:card_name].any?) }
+            = f.label :card_name, t('checkouts.show.payment.name_of_card'), class: 'control-label input-label'
+            = f.text_field :card_name, label: false, placeholder: t('checkouts.show.payment.name_of_card'), id:'cardName',class:'form-control'
+            %span.help-block= @form.errors.messages[:card_name].join(', ')
+        .col-sm-3
+          .form-group{ class: ('has-error' if @form.errors.messages[:exp_date].any?) }
+            = f.label :exp_date, t('checkouts.show.payment.mm_yy'), class: 'control-label input-label'
+            = f.text_field :exp_date, label: false, placeholder: t('checkouts.show.payment.mm_yy'), id:'cardName',class:'form-control'
+            %span.help-block= @form.errors.messages[:exp_date].join(', ')
+        .col-sm-3
+          .form-group.relative{ class: ('has-error' if @form.errors.messages[:cvv].any?) }
+            = f.label :cvv, t('checkouts.show.payment.cvv'), class: 'control-label input-label'
+            = f.text_field :cvv, label: false, placeholder: t('checkouts.show.payment.cvv') ,class:'form-control'
+            %span.help-block= @form.errors.messages[:cvv].join(', ')
+            %i.fa.fa-question-circle.general-form-help{ title: 'cvv hint' }
+      .general-text-align
+        %p.in-gold-500.font-18= t('checkouts.show.payment.order_summary')
+        %table.general-summary-table
+          = render partial: 'partials/order_summary'
+      .container.mb-res-50.text-center
+        = f.submit t('checkouts.save_and_continue'), class: 'btn btn-default mb-80'

@@ -29,20 +29,20 @@ class LineItemsController < ApplicationController
 
   def destroy
     @line_item.destroy
-    redirect_to current_order, notice: 'Book item was successfully destroyed.'
+    redirect_back(fallback_location: root_path, notice: 'Book item was successfully destroyed.')
   end
 
   def up_quantity
     @line_item.increment!(:quantity)
-    redirect_to current_order
+    redirect_back(fallback_location: root_path)
   end
 
   def down_quantity
     if @line_item.quantity > 1
       @line_item.decrement!(:quantity)
-      redirect_to current_order
+      redirect_back(fallback_location: root_path)
     else
-      render 'orders/show', notice: "Quantity can't be less than 1. Use X button if you want delet ."
+      redirect_back(fallback_location: root_path, notice: "Quantity can't be less than 1. Use X button if you want delet .")
     end
   end
 

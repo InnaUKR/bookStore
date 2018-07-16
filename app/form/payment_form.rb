@@ -1,4 +1,4 @@
-class PaymentForm < Rectify::Form
+class PaymentForm < CheckoutForm
   attribute :number, String
   attribute :card_name, String
   attribute :cvv, Integer
@@ -15,28 +15,17 @@ class PaymentForm < Rectify::Form
   validates :exp_date, presence: true,
             length: { maximum: 5 }
 
-  def save
-    if valid?
-      update!
-      true
-    else
-      false
-    end
+  def update!(order)
+    credit_card = credit_card(order)
+    order.update(credit_card_id: credit_card.id)
   end
 
   private
 
-  def update!
-    context.order.update(step: context.step)
-    context.order.update(credit_card_id: credit_card)
-  end
-
-  def credit_card
-    card1 = CreditCard.find_by(number: number)
-    card2 = context.user.credit_cards.create(number: number,
-                                             card_name: card_name,
+  def credit_card(order)
+    CreditCard.find_by(number: number) || order.user.credit_cards.create(number: number,
+                                              card_name: card_name,
                                              cvv: cvv,
                                              exp_date: exp_date)
-    card1 || card2
   end
 end

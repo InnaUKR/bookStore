@@ -1,0 +1,10 @@
+en:
+  checkouts:
+    show:
+      payment:
+        card_number: 'Card Number'
+        name_of_card: 'Name on Card'
+        mm_yy: 'MM / YY'
+        cvv: 'CVV'
+        order_summary: 'Order Summary'
+        credit_card: 'Credit Card'

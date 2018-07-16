@@ -29,11 +29,10 @@ class Order < ApplicationRecord
   end
 
   def order_total
-    coupon_id ? sub_total - coupon : sub_total
-  end
-
-  def price
-    total_price || order_total
+    sum = sub_total
+    sum -= coupon if coupon_id
+    sum += delivery.price
+    sum
   end
 
   aasm column: :state do

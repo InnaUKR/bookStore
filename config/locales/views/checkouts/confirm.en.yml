@@ -1,0 +1,9 @@
+en:
+  checkouts:
+    show:
+      confirm:
+        shipping_address: 'Shipping Address'
+        edit: 'edit'
+        billing_address: 'Billing Address'
+        shipments: 'Shipments'
+        payment_iformation: 'Payment Information'
