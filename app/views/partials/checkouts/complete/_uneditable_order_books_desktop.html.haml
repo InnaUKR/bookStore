@@ -1,0 +1,29 @@
+.hidden-xs.divider-lg.pt-20
+  %table.table.table-hover
+    %thead
+      %tr
+        %th
+          %span.in-grey-600=t('checkouts.show.complete.book')
+        %th.col-method
+        %th
+          %span.in-grey-600=t('checkouts.show.complete.price')
+        %th
+          %span.in-grey-600=t('checkouts.show.complete.quantity')
+        %th
+          %span.in-grey-600=t('checkouts.show.complete.total')
+    %tbody
+      %tr
+        %td
+          .general-img-wrap-table
+            = link_to book_path(item.book) do
+              -if item.book.images.any?
+                =image_tag item.book.images.first.image_url, class: 'cart-img-shadow pull-left', alt: 'book-image'
+        %td
+          %p.title= item.book.title
+          %p.in-grey-600.fw-300= item.book.description
+        %td
+          %span.font-16.in-gold-500= show_price(item.book.price)
+        %td
+          %span.ml-30= item.quantity
+        %td
+          %span.font-16.in-gold-500= show_price(item.total_price)

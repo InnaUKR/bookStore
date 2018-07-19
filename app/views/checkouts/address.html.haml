@@ -1,73 +1,58 @@
 %main.container
-  %h1.general-title-margin= t('.checkouts')
+  %h1.general-title-margin Checkout
   %ul.steps.list-inline
     %li.step.active
       %span.step-number 1
-      %span.step-text.hidden-xs= t('.address')
+      %span.step-text.hidden-xs Address
     %li.step-divider
     %li.step
       %span.step-number 2
-      %span.step-text.hidden-xs= t('.delivery')
+      %span.step-text.hidden-xs Delivery
     %li.step-divider
     %li.step
       %span.step-number 3
-      %span.step-text.hidden-xs= t('.payment')
+      %span.step-text.hidden-xs Payment
     %li.step-divider
     %li.step
       %span.step-number 4
-      %span.step-text.hidden-xs= t('.confirm')
+      %span.step-text.hidden-xs Confirm
     %li.step-divider
     %li.step
       %span.step-number 5
-      %span.step-text.hidden-xs= t('.complete')
-  = simple_form_for @order_form, url: wizard_path, method: :put,
-    html: { class: "res-mb-100" } do |f|
-    .hidden-xs.hidden-sm
+      %span.step-text.hidden-xs Complete
+
+    = form_for @form,:url => wizard_path, method: :put, html: { class: "res-mb-100" } do |ff|
+      .hidden-xs.visible-sm
+        .row
+          .col-md-5
+            %h3.general-subtitle Billing Address
+            %p.general-info-text all fields are required
+          .col-md-5.col-md-offset-1
+            %h3.general-subtitle Shipping Address
       .row
-        .col-md-5
-          %h3.general-subtitle= t('.billing_address')
-          %p.general-info-text= t('.all_fields_required')
-        .col-md-5.col-md-offset-1
-          %h3.general-subtitle= t('.shipping_address')
-    .row
-      .col-md-5.mb-40
-        .visible-xs.visible-sm
-          %h3.general-subtitle= t('.billing_address')
-          %p.general-info-text= t('all_fields_required')
-        = f.fields_for :billing_address,
-          @order_form.billing_address do |address_f|
-          = render 'address_form', f: address_f,
-            form: @order_form.billing_address
-      .col-md-5.col-md-offset-1.mb-60#shipping-address
-        .visible-xs.visible-sm
-          %h3.general-subtitle= t('.shipping_address')
-        = f.fields_for :shipping_address,
-          @order_form.shipping_address do |address_f|
-          = render 'address_form', f: address_f,
-            form: @order_form.shipping_address
+        .col-md-5.mb-40
+          %h3.general-subtitle Billing Address
+          %p.general-info-text all fields are required
+          =render 'partials/checkouts/address/address_form', ff:ff, form: @form.billing_address, parameter: :billing_address_form
+
+        .col-md-5.col-md-offset-1.mb-60
+          #order_shipping_address{class: ('hidden' if @form.use_billing=='true')}
+            %h3.general-subtitle Shipping Address
+            %br
+            =render 'partials/checkouts/address/address_form', ff:ff, form: @form.shipping_address, parameter: :shipping_address_form
+
           .form-group.checkbox
             %label.checkbox-label
-              = check_box_tag "use_billing", true, false,
-                class: "checkbox-input", hidden: 'true'
+              = ff.check_box :use_billing,{class: "checkbox-input", hidden: 'true'}, 'true', 'false'
               %span.checkbox-icon
                 %i.fa.fa-check
-              %span.checkbox-text= t('.use_billing')
-    .general-text-align.mb-60
-      %p.in-gold-500.font-18= t('.order_summary')
-      %table.general-summary-table
-        %tr
-          %td
-            %p.font-16= t('.item_total') + ': '
-          %td
-            %p.font-16= order.subtotal_price_eu
-        %tr
-          %td
-            %strong.font-18= t('.order_total') + ': '
-          %td
-            %strong.font-18= order.total_price_eu
-      - if request.original_url.include? "edit"
-        = f.submit '.save_and_continue',
-          class: "btn btn-default center-block mb-20", name: "user_edited_form"
-      - else
-        = f.submit '.save_and_continue',
-          class: "btn btn-default center-block mb-20"
+              %span.checkbox-tex Use Billing Adress
+          .form-group.checkbox
+
+
+      .general-text-align.mb-60
+        %p.in-gold-500.font-18 Order Summary
+        %table.general-summary-table
+          = render partial: 'partials/order_summary'
+
+        = ff.submit t('checkouts.save_and_continue'), class: 'btn btn-default center-block mb-80'

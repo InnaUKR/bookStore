@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :reviews
   has_many :orders
   has_many :credit_cards
+  has_many :addresses
   has_one :image, as: :imageable
   accepts_nested_attributes_for :image
 

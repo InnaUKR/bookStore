@@ -7,6 +7,8 @@ class Order < ApplicationRecord
   belongs_to :user
   belongs_to :delivery, optional: true
   belongs_to :credit_card, optional: true
+  belongs_to :billing_address, :class_name => 'Address'
+  belongs_to :shipping_address, :class_name => 'Address'
   validates :state, presence: true
   validates :total_price, numericality: { greater_than_or_equal_to: 0.0 }
 
@@ -55,7 +57,7 @@ class Order < ApplicationRecord
       transitions from: :in_processing, to: :in_delivery
     end
 
-    event :'complete.html.haml.haml' do
+    event :'complete.en.yml.haml' do
       transitions from: :in_delivery, to: :completed
     end
 

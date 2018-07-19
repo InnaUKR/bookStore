@@ -1,8 +1,8 @@
 class CheckoutsController < ApplicationController
   include Wicked::Wizard
   include Rectify::ControllerHelpers
-  steps :delivery, :payment, :confirm, :complete
-  STEPS = [:delivery, :payment, :confirm, :complete]
+  steps :address, :delivery, :payment, :confirm, :complete
+  STEPS = [:address, :delivery, :payment, :confirm, :complete]
   before_action :order, only: [:index, :update, :show]
 
   def index
@@ -19,7 +19,7 @@ class CheckoutsController < ApplicationController
   def update
     @form = "#{step.capitalize}Form".constantize
     params = send("#{step}_params")
-    @form.from_params(params || {})
+    @form = @form.from_params(params)
     if @form.valid?
       @form.update!(@order)
       if !@order.step || STEPS.index(@order.step.to_sym) < STEPS.index(next_step)
@@ -41,6 +41,10 @@ class CheckoutsController < ApplicationController
   end
 
   def confirm_params; end
+
+  def address_params
+    params.require(:address)
+  end
 
   def order
     @order = Order.find(session[:order_id])

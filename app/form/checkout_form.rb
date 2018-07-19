@@ -6,4 +6,5 @@ class CheckoutForm < Rectify::Form
       false
     end
   end
+
 end

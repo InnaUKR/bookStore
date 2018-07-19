@@ -1,3 +1,2 @@
 class CompleteForm < CheckoutForm
-
 end

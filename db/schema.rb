@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180711110336) do
+ActiveRecord::Schema.define(version: 20180719100628) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,11 +23,10 @@ ActiveRecord::Schema.define(version: 20180711110336) do
     t.string "zip", null: false
     t.string "country", null: false
     t.string "phone", null: false
-    t.string "addressable_type"
-    t.bigint "addressable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["addressable_type", "addressable_id"], name: "index_addresses_on_addressable_type_and_addressable_id"
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_addresses_on_user_id"
   end
 
   create_table "authors", force: :cascade do |t|
@@ -127,9 +126,13 @@ ActiveRecord::Schema.define(version: 20180711110336) do
     t.integer "credit_card_id"
     t.bigint "coupon_id"
     t.string "step"
+    t.bigint "shipping_address_id"
+    t.bigint "billing_address_id"
+    t.index ["billing_address_id"], name: "index_orders_on_billing_address_id"
     t.index ["coupon_id"], name: "index_orders_on_coupon_id"
     t.index ["credit_card_id"], name: "index_orders_on_credit_card_id"
     t.index ["delivery_id"], name: "index_orders_on_delivery_id"
+    t.index ["shipping_address_id"], name: "index_orders_on_shipping_address_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
@@ -173,6 +176,7 @@ ActiveRecord::Schema.define(version: 20180711110336) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "addresses", "users"
   add_foreign_key "authors_books", "authors"
   add_foreign_key "authors_books", "books"
   add_foreign_key "line_items", "books"

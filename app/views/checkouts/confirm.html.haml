@@ -1,5 +1,3 @@
-= simple_form_for @form,:url => wizard_path, method: :put do |f|
-  = f.submit
 %main.container.general-main-wrap
   %h1.general-title-margin Checkout
   %ul.steps.list-inline
@@ -26,29 +24,33 @@
     .col-sm-3
       %h3.general-subtitle= t('checkouts.show.confirm.shipping_address')
       %p.general-address
-        John Doe
+        = @order.shipping_address.first_name
+        = @order.shipping_address.last_name
         %span.general-edit= t('checkouts.show.confirm.edit')
         %br
-        44 Fifth Ave v231
+        = @order.shipping_address.address
+        = @order.shipping_address.city
+        = @order.shipping_address.zip
         %br
-        New York NY 1001
+        = @order.shipping_address.country
         %br
-        United States
-        %br
-        Phone +16507599755
+        Phone
+        = @order.shipping_address.phone
     .col-sm-3
       %h3.general-subtitle= t('checkouts.show.confirm.billing_address')
       %p.general-address
-        John Doe
+        = @order.billing_address.first_name
+        = @order.billing_address.last_name
         %span.general-edit= t('checkouts.show.confirm.edit')
         %br
-        44 Fifth Ave v231
+        = @order.billing_address.address
+        = @order.billing_address.city
+        = @order.billing_address.zip
         %br
-        New York NY 1001
+        = @order.billing_address.country
         %br
-        United States
-        %br
-        Phone +16507599755
+        Phone
+        = @order.billing_address.phone
     .col-sm-3
       %h3.general-subtitle= t('checkouts.show.confirm.shipments')
       %p.general-address

@@ -23,9 +23,16 @@ class PaymentForm < CheckoutForm
   private
 
   def credit_card(order)
-    CreditCard.find_by(number: number) || order.user.credit_cards.create(number: number,
-                                              card_name: card_name,
-                                             cvv: cvv,
-                                             exp_date: exp_date)
+    card = CreditCard.find_by(number: number)
+    if card
+      card.update(card_name: card_name,
+                  cvv: cvv,
+                  exp_date: exp_date)
+      card
+    else
+      return order.user.credit_cards.create(number: number, card_name: card_name,
+                                     cvv: cvv,
+                                     exp_date: exp_date)
+    end
   end
 end

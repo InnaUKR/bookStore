@@ -1,24 +1,52 @@
-class AddressForm < Rectify::Form
-  attribute :first_name, String
-  attribute :last_name, String
-  attribute :address, String
-  attribute :city, String
-  attribute :zip, String
-  attribute :country, String
-  attribute :phone, String
+class AddressForm < CheckoutForm
+  attr_accessor :billing_address, :shipping_address
+  attribute :use_billing, Boolean, default: 'false'
 
-  validates :address, :first_name, :last_name, :city, :country, :zip, :phone,
-            presence: true
-  validates :address, :first_name, :last_name, :city, :country,
-            numericality: { less_than: 50 }
-  validates :first_name, :last_name, :city, :country,
-            format: { with: /\A[a-zA-Z]+\z/ }
-  validates :address,
-            format: { with: /\A[a-zA-Z0-9\s,-]+\z/ }
-  validates :zip,
-            format: { with: /\A[0-9]+\z/ },
-            length: { maximum: 10 }
-  validates :phone,
-            format: { with: /\A\+[\d]{3}[0-9]+\z/ },
-            numericality: { less_than_or_equal_to: 15 }
+  def initialize(params = nil)
+    if params
+      if params[:use_billing] == 'true'
+        address_params = billing_params(params)
+        @billing_address = AddressFieldsForm.from_params(address_params)
+        @shipping_address = @billing_address
+      else
+        @billing_address = AddressFieldsForm.from_params(billing_params(params))
+        @shipping_address = AddressFieldsForm.from_params(shipping_params(params))
+      end
+    else
+      @billing_address = AddressFieldsForm.new
+      @shipping_address = AddressFieldsForm.new
+    end
+    super
+  end
+
+  def valid?
+    billing = @billing_address.valid?
+    shipping = @shipping_address.valid?
+    billing && shipping
+  end
+
+  def update!(order)
+    billing = address(order, @billing_address)
+    shipping = address(order, @shipping_address)
+
+    order.update(billing_address_id: billing.id, shipping_address_id: shipping.id)
+  end
+  private
+
+  def billing_params(params)
+    params[:billing_address_form]
+  end
+
+  def shipping_params(params)
+    params[:shipping_address_form]
+  end
+
+  def address(order, address)
+    if Address.find_by(address.attributes)
+      order.user.addresses.find_by(address.attributes)
+    else
+      order.user.addresses.create(address.attributes)
+    end
+  end
+
 end
