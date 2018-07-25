@@ -60,4 +60,4 @@
       %table.general-summary-table.general-summary-table-right.general-text-right
         =render partial: 'partials/order_summary'
   .text-center
-    =link_to 'Place Order', wizard_path(:complete), class: 'btn btn-default mb-20'
+    =link_to 'Place Order', wizard_path, method: :put, class: 'btn btn-default mb-20'

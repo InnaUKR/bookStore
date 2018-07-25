@@ -43,7 +43,7 @@ class AddressForm < CheckoutForm
 
   def address(order, address)
     if Address.find_by(address.attributes)
-      order.user.addresses.find_by(address.attributes)
+      Address.find_by(address.attributes)
     else
       order.user.addresses.create(address.attributes)
     end
