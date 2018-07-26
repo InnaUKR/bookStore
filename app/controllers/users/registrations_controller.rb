@@ -5,6 +5,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
     super
   end
 
+  def delete
+    super
+  end
+
   def update
     super
   end

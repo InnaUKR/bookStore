@@ -1,13 +1,19 @@
 class OrderDecorator < Draper::Decorator
   delegate_all
 
-  # Define presentation-specific methods here. Helpers are accessed through
-  # `helpers` (aka `h`). You can override attributes, for example:
-  #
-  #   def created_at
-  #     helpers.content_tag :span, class: 'time' do
-  #       object.created_at.strftime("%a %m/%d/%y")
-  #     end
-  #   end
+  def coupon
+    coupon_id ? Coupon.find(coupon_id).amount : 0
+  end
 
+  def number
+    'R' + '0' * (8 - id.to_s.length) + id.to_s
+  end
+
+  def date
+    created_at.strftime("%b %d %Y")
+  end
+
+  def status
+    state.capitalize
+  end
 end

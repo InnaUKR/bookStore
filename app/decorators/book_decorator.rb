@@ -10,7 +10,6 @@ class BookDecorator < Draper::Decorator
   end
 
   def authors_to_string
-    authors.nil? ? '': authors.each(&:to_s).join(', ')
+    authors.nil? ? '' : authors.each(&:to_s).join(', ')
   end
-
 end

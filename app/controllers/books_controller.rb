@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
   before_action :set_book, only: %i[show edit update destroy]
+  skip_authorization_check only: [:index, :show]
 
   def index
     @books = Book.all.decorate
@@ -44,7 +45,7 @@ class BooksController < ApplicationController
       @item = @book.line_items.build(quantity: quantity)
       render 'books/show'
     else
-      redirect_to @book, alert: 'The value of quantity must be greater than 0.'
+      redirect_to @book, alert: t('books_controller.quantity_eq_0')
     end
   end
 
@@ -52,7 +53,7 @@ class BooksController < ApplicationController
     begin
       respond_to do |format|
         if @book.update(book_params)
-          format.html { redirect_to @book, notice: 'Book was successfully updated.' }
+          format.html { redirect_to @book, notice: 'Book was successfully updated.'}
         else
           format.html { render :edit }
         end
@@ -77,8 +78,7 @@ class BooksController < ApplicationController
   end
 
   def book_params
-    params.require(:book).p
-    ermit(:title, :price, :description,
+    params.require(:book).permit(:title, :price, :description,
                                  :date_of_publication, :height, :width, :depth,
                                  :material, :category_id,
                                  images_attributes: [:image])

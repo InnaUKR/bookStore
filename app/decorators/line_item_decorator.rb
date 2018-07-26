@@ -4,9 +4,4 @@ class LineItemDecorator < Draper::Decorator
   def total_price
     quantity.to_f * book.price
   end
-=begin
-  def increment_quantity
-    increment!(:quantity)
-  end
-=end
 end

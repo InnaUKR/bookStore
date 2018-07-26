@@ -1,18 +1,14 @@
 class LineItemsController < ApplicationController
   before_action :set_line_item, only: %I[destroy show edit update up_quantity down_quantity]
+  authorize_resource
   def new
     @line_item = LineItem.new
   end
 
   def create
     @line_item = current_order.add_book(line_item_params)
-    respond_to do |format|
-      if @line_item.save
-        format.html { redirect_to current_order, notice: 'Book was successfully added to cart.' }
-      else
-        format.html { render :new }
-      end
-    end
+    @line_item.save
+    redirect_back(fallback_location: root_path, notice: 'Book was successfully added to cart.' )
   end
 
   def update

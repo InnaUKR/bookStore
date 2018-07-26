@@ -9,7 +9,8 @@ class ApplicationController < ActionController::Base
   end
 
   def current_order
-    Order.find(session[:current_order_id].nil? ? session[:current_order_id] = create_order.id : session[:current_order_id])
+    id = session[:current_order_id] ? session[:current_order_id] : create_order
+    Order.find(id)
   end
 
   def current_user
@@ -30,6 +31,18 @@ class ApplicationController < ActionController::Base
   end
 
   def create_order
-    current_user.orders.create
+    session[:current_order_id] = current_user.orders.create.id
   end
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_back(fallback_location: root_path, alert: exception.message )
+  end
+
+  check_authorization unless: :do_not_check_authorization?
+  private
+
+  def do_not_check_authorization?
+    :devise_controller? || :rails_admin_controller?
+  end
+
+
 end
