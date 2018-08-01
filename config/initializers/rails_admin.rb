@@ -1,47 +1,53 @@
+require "rails_admin/config/actions/change_state"
+
 RailsAdmin.config do |config|
-
-  config.authorize_with do
-    redirect_to main_app.root_path unless current_user.admin?
-  end
-
   config.parent_controller = '::ApplicationController'
-  ### Popular gems integration
-
-  ## == Devise ==
-  # config.authenticate_with do
-  #   warden.authenticate! scope: :user
-  # end
-  # config.current_user_method(&:current_user)
-
-  ## == Cancan ==
-  # config.authorize_with :cancan
-
-  ## == Pundit ==
-  # config.authorize_with :pundit
-
-  ## == PaperTrail ==
-  # config.audit_with :paper_trail, 'User', 'PaperTrail::Version' # PaperTrail >= 3.0.0
-
-  ### More at https://github.com/sferik/rails_admin/wiki/Base-configuration
-
-  ## == Gravatar integration ==
-  ## To disable Gravatar integration in Navigation Bar set to false
-  # config.show_gravatar = true
+  config.authenticate_with { warden.authenticate! scope: :user }
+  config.current_user_method(&:current_user)
+  config.authorize_with { redirect_to main_app.root_path unless current_user.admin == true }
 
   config.actions do
-    dashboard                     # mandatory
-    index                         # mandatory
+    dashboard
+    index
     new
     export
     bulk_delete
-    show
-    edit
-    delete
-    show_in_app
+    edit do
+      except [Order]
+    end
+    delete do
+      except [Order]
+    end
+    show_in_app do
+      except [Order]
+    end
+    change_state do
+      only [Order]
+    end
+  end
 
-    ## With an audit adapter, you can add:
-    # history_index
-    # history_show
+  config.model Order do
+    list do
+      scopes [nil, 'in_progress', 'delivered', 'canceled']
+      field :id do
+        label 'Number'
+        formatted_value do
+          OrderDecorator.decorate(bindings[:object]).number
+        end
+      end
+      field :created_at do
+        label 'Date of Creation'
+      end
+      field :state
+    end
+
+    edit do
+      field :state, :enum do
+        enum do
+          bindings[:object].aasm.states(permitted: true).map(&:name)
+        end
+      end
+    end
   end
 
   config.model Image do
@@ -49,6 +55,7 @@ RailsAdmin.config do |config|
       field :image, :carrierwave
     end
   end
+
   config.model Review do
     edit do
       field :body do
