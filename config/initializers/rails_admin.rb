@@ -1,5 +1,3 @@
-require "rails_admin/config/actions/change_state"
-
 RailsAdmin.config do |config|
   config.parent_controller = '::ApplicationController'
   config.authenticate_with { warden.authenticate! scope: :user }
@@ -12,17 +10,12 @@ RailsAdmin.config do |config|
     new
     export
     bulk_delete
-    edit do
-      except [Order]
-    end
+    edit
     delete do
       except [Order]
     end
     show_in_app do
       except [Order]
-    end
-    change_state do
-      only [Order]
     end
   end
 
@@ -50,6 +43,28 @@ RailsAdmin.config do |config|
     end
   end
 
+  config.model Book do
+    weight -1
+    list do
+      field :image do
+        formatted_value do
+          if bindings[:object].images != []
+            bindings[:view].tag(:img,
+                                src: bindings[:object].images.first.image_url,
+                                style: 'max-width: 100%')
+          end
+        end
+      end
+      field :category
+      field :authors do
+        formatted_value do
+          value.join(', ')
+        end
+      end
+      fields :title, :description, :price
+    end
+  end
+
   config.model Image do
     edit do
       field :image, :carrierwave
@@ -65,4 +80,7 @@ RailsAdmin.config do |config|
       field :approve
     end
   end
-end
+  end
+
+
+
