@@ -1,6 +1,10 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
+  CHERACTERS = "!#\\$%&'\\*\\+\\-\\/=\\?\\^_`{|}~"
+  LABEL = "([\\w+[#{CHERACTERS}]?]){1,62}"
+  DOT_LABELS = "(\\.([\\w+[#{CHERACTERS}]?]){1,62})*"
+  RIGHT_MOST_LABEL = "\\.([a-z+]){1,62}"
+  VALID_EMAIL_REGEX = /\A#{LABEL}#{DOT_LABELS}@#{LABEL}#{DOT_LABELS}#{RIGHT_MOST_LABEL}\z/i
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [:facebook]
@@ -11,6 +15,11 @@ class User < ApplicationRecord
   has_many :addresses
   has_one :image, as: :imageable
   accepts_nested_attributes_for :image
+
+  validates :email,
+            presence: true,
+            format: { with: VALID_EMAIL_REGEX,
+                      message: 'incorrect format of email' }
 
   def self.new_with_session(params, session)
     super.tap do |user|
