@@ -4,6 +4,7 @@ class User < ApplicationRecord
   DOT_LABELS = "(\\.(?!-)(\\w+(?!-\\.)(?!-\\@)[#{CHERACTERS}]?){1,62})*"
   RIGHT_MOST_LABEL = "\\.([a-z+]){1,62}"
   VALID_EMAIL_REGEX = /\A#{LABEL}#{DOT_LABELS}@#{LABEL}#{DOT_LABELS}#{RIGHT_MOST_LABEL}\z/i
+  VALID_PASSWORD_REGEXP = /\A(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[a-zA-Z\d]{8,}\z/
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
@@ -20,6 +21,11 @@ class User < ApplicationRecord
             presence: true,
             format: { with: VALID_EMAIL_REGEX,
                       message: 'incorrect format of email' }
+  validates :password,
+            format: { with: VALID_PASSWORD_REGEXP,
+                      message: 'should contain at least 1 uppercase, 1 lowercase and 1 number' },
+            confirmation: true,
+            presence: true, if: :password_required?
 
   def self.new_with_session(params, session)
     super.tap do |user|

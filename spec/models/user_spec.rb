@@ -69,23 +69,60 @@ RSpec.describe User, :type => :model do
       user.valid?
       expect(user.errors[:email]).to include('incorrect format of email')
     end
+
     context 'right-most label' do
       it 'is alphabetic'do
         user = User.new(email: 'test.test@gmail.com')
         user.valid?
         expect(user.errors[:email]).to be_empty
       end
+
       it 'is not digit'do
         user = User.new(email: 'test.test@gmail.4com')
         user.valid?
         expect(user.errors[:email]).to include('incorrect format of email')
       end
-      it 'is not consist one of !#$%&\'*+-/=?^_`{|}~.' do
+
+      it 'does not consist one of !#$%&\'*+-/=?^_`{|}~.' do
         user = User.new(email: 'test.test@gmail.c&m')
         user.valid?
         expect(user.errors[:email]).to include('incorrect format of email')
       end
     end
   end
-  it { is_expected.to validate_presence_of(:password) }
+
+  context 'password' do
+    it { is_expected.to validate_presence_of(:password) }
+    it { is_expected.to validate_length_of(:password).is_at_least(8) }
+
+    it 'contains uppercase letters, lowercase letters and numbers' do
+      user = User.new(password: 'PAsswoRD1234')
+      user.valid?
+      expect(user.errors[:password]).to be_empty
+    end
+
+    it 'does not contain uppercase letters' do
+      user = User.new(password: 'password1234')
+      user.valid?
+      expect(user.errors[:password]).to include('should contain at least 1 uppercase, 1 lowercase and 1 number')
+    end
+
+    it 'does not contain lowercase letters' do
+      user = User.new(password: 'PASSWORD1234')
+      user.valid?
+      expect(user.errors[:password]).to include('should contain at least 1 uppercase, 1 lowercase and 1 number')
+    end
+
+    it 'does not contain numbers' do
+      user = User.new(password: 'PAsswoRD')
+      user.valid?
+      expect(user.errors[:password]).to include('should contain at least 1 uppercase, 1 lowercase and 1 number')
+    end
+
+    it 'mustn’t contain spaces inside' do
+      user = User.new(password: 'PAsswoRD 1234')
+      user.valid?
+      expect(user.errors[:password]).to include('should contain at least 1 uppercase, 1 lowercase and 1 number')
+    end
+  end
 end
