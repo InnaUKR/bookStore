@@ -1,7 +1,7 @@
 class User < ApplicationRecord
-  CHERACTERS = "!#\\$%&'\\*\\+\\-\\/=\\?\\^_`{|}~"
-  LABEL = "([\\w+[#{CHERACTERS}]?]){1,62}"
-  DOT_LABELS = "(\\.([\\w+[#{CHERACTERS}]?]){1,62})*"
+  CHERACTERS = "\\-!#\\$%&'\\*\\+\\/=\\?\\^_`{|}~"
+  LABEL = "(?!-)(\\w+(?!-\\.)[#{CHERACTERS}]?){1,62}"
+  DOT_LABELS = "(\\.(?!-)(\\w+(?!-\\.)(?!-\\@)[#{CHERACTERS}]?){1,62})*"
   RIGHT_MOST_LABEL = "\\.([a-z+]){1,62}"
   VALID_EMAIL_REGEX = /\A#{LABEL}#{DOT_LABELS}@#{LABEL}#{DOT_LABELS}#{RIGHT_MOST_LABEL}\z/i
 
