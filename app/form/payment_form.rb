@@ -4,16 +4,23 @@ class PaymentForm < CheckoutForm
   attribute :cvv, Integer
   attribute :exp_date, String
 
-  validates :number, presence: true,
-            format: { with: /\A[0-9]\d+/ }, length: { maximum: 16 }
-  validates :cvv, presence: true,
+  validates :number,
+            presence: true,
+            format: { with: /\A[\d ]\d+\z/ }
+  validates :card_name,
+            presence: true,
+            length: { maximum: 50 },
+            format: { with: /\A[a-z ]+\z/i,
+                      message: 'can consist of English letters and spaces' }
+  validates :exp_date,
+            presence: true,
+            format: { with: /\A(0[1-9])|1[0-2]\/\d{2}\z/,
+                      message: 'month value can not be one digit' }
+  validates :cvv,
+            presence: true,
             length: { in: 3..4 },
             numericality: true
-  validates :card_name, presence: true,
-            length: { maximum: 50 },
-            format: { with: /\A[a-zа-я\s]+\z/i }
-  validates :exp_date, presence: true,
-            length: { maximum: 5 }
+
 
   def update!(order)
     credit_card = credit_card(order)
