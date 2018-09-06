@@ -14,11 +14,14 @@ class AddressFieldsForm < Rectify::Form
   validates :first_name, :last_name, :city, :country,
             format: { with: /\A[a-zA-Zа-яА-Я]+\z/ }
   validates :address,
-            format: { with: /\A[a-zA-Zа-яА-Я0-9\s,-]+\z/ }
+            format: { with: /\A[a-zA-Zа-яА-Я0-9\s,\-]+\z/ },
+            length: { maximum: 50 }
   validates :zip,
-            format: { with: /\A[0-9]+\z/ },
+            format: { with: /\A[0-9]+\z/,
+                      message: 'should not contain any special symbols' },
             length: { maximum: 10 }
   validates :phone,
-            format: { with: /\A\+[\d]{3}[0-9]+\z/ },
+            format: { with: /\A\+[\d]{3}[0-9]+\z/,
+                      message: 'should not contain special symbols' },
             length: { maximum: 15 }
 end
