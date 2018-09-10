@@ -19,6 +19,8 @@ RailsAdmin.config do |config|
     end
   end
 
+  config.included_models = %w[Order Book Author Category  Review]
+
   config.model Order do
     list do
       scopes [nil, 'in_progress', 'delivered', 'canceled']
@@ -57,12 +59,23 @@ RailsAdmin.config do |config|
       end
       field :category
       field :authors do
-        formatted_value do
+        pretty_value do
           value.join(', ')
         end
       end
       fields :title, :description, :price
     end
+  end
+
+  config.model Author do
+    fields :first_name, :last_name
+    field :biography do
+      label 'Description'
+    end
+  end
+
+  config.model 'Category' do
+    field :name
   end
 
   config.model Image do
@@ -72,15 +85,34 @@ RailsAdmin.config do |config|
   end
 
   config.model Review do
+    list do
+      scopes [nil, 'new_reviews', 'processed']
+      field :book
+      field :title
+      field :created_at do
+        label 'Date'
+      end
+      field :user
+      field :state
+    end
+
     edit do
-      field :body do
+      field :title do
         read_only true
         help false
       end
-      field :approve
+      field :text do
+        read_only true
+        help false
+      end
+      field :state, :enum do
+        enum do
+          bindings[:object].aasm.states(permitted: true).map(&:name)
+        end
+      end
     end
   end
-  end
+end
 
 
 

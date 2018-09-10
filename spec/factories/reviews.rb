@@ -6,15 +6,13 @@ FactoryBot.define do
     user { create(:user) }
     book { create(:book) }
     state { 'unprocessed' }
+
     trait :approved do
       state { 'approved' }
     end
+
     trait :rejected do
       state { 'rejected' }
     end
-  end
-
-  factory :invalid_review, class: 'Review' do
-    body nil
   end
 end
