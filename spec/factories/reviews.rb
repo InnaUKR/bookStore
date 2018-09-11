@@ -15,4 +15,10 @@ FactoryBot.define do
       state { 'rejected' }
     end
   end
+
+  factory :invalid_review, class: Review do
+    title { nil }
+    text { nil }
+  end
+
 end
