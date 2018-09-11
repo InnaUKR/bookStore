@@ -4,7 +4,7 @@
     .general-message-wrap.divider-lg
       .clearfix
         - if review.user.avatar.blank?
-          %span.img-circle.logo-size.inlide-block.pull-left.logo-empty= review.user.name.first.upcase
+          %span.img-circle.logo-size.inlide-block.pull-left.logo-empty= review.user.email.first.upcase
         - else
           = image_tag(review.user.avatar, class: 'img-circle logo-size inlide-block pull-left')
         .ml-70
@@ -18,4 +18,5 @@
               %i.fa.fa-star.rate-star
             -review.blank_stars.to_i.times do
               %i.fa.fa-star.rate-star.rate-empty
-          %p= review.body
+          %h4= review.title
+          %p= review.text
