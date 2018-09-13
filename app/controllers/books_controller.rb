@@ -11,7 +11,7 @@ class BooksController < ApplicationController
   def change_quantity
     @book = Book.find(params[:book_id]).decorate
     quantity = params[:quantity].to_i
-    if quantity > 1
+    if quantity >= 1
       @review = @book.reviews.build
       @reviews = Review.approved_reviews(@book).decorate
       @item = @book.line_items.build(quantity: quantity)
