@@ -9,10 +9,9 @@ class Book < ApplicationRecord
   has_and_belongs_to_many :authors
   has_many :line_items
   belongs_to :category, counter_cache: true
-  has_many :reviews, dependent: :destroy
+  has_many :reviews
   has_many :images, as: :imageable
 
-  before_destroy :ensure_not_referenced_by_any_line_item
   validates :title, :date_of_publication, presence: true
   validates :title, uniqueness: true
   validates :price, numericality: { greater_than_or_equal_to: 0.01 }
@@ -22,13 +21,13 @@ class Book < ApplicationRecord
 
   scope :filter_category, ->(category, filter) { where(category_id: category).order(FILTERS[filter.to_sym]) }
   scope :filter, ->(filter) { order(FILTERS[filter.to_sym]) }
+  scope :latest_books, -> { order('created_at').last(3) }
 
-  private
-
-  def ensure_not_referenced_by_any_line_item
-    unless line_items.empty?
-      errors.add(:base, 'Line Items present')
-    end
-    throw :abort
+  def self.best_sellers
+    find_by_sql(" SELECT books.*
+                  FROM books
+                  INNER JOIN line_items ON books.id = line_items.book_id
+                  GROUP BY books.id
+                  ORDER BY SUM(line_items.quantity) desc;")
   end
 end
