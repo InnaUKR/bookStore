@@ -59,21 +59,18 @@ RSpec.describe Book, type: :model do
   end
 
   it '.best_sellers' do
-    user = create(:user)
-    user.orders.first.line_items.create(book_id: @book.id, quantity: 5)
-    user.orders.first.line_items.create(book_id: @second_book.id, quantity: 4)
-    user.orders.first.line_items.create(book_id: @third_book.id, quantity: 3)
+    create(:line_items, quantity: 5, book: @book.id)
+    create(:line_items, quantity: 4, book: @second_book.id)
+    create(:line_items, quantity: 3, book: @third_book.id)
     expect(Book.best_sellers).to eq([@book, @second_book, @third_book])
   end
 
   it '.latest_books' do
-    latest_books = [@book, @second_book, @third_book]
-    expect(Book.latest_books).to eq(latest_books)
+    expect(Book.latest_books).to eq([@book, @second_book, @third_book])
   end
 
   it '.latest_books' do
-    latest_books = [@third_book, @second_book, @book]
-    expect(Book.latest_books).to_not eq(latest_books)
+    expect(Book.latest_books).to_not eq([@third_book, @second_book, @book])
   end
 
   context '.filter' do
