@@ -1,3 +1,0 @@
-en:
-  books_controller:
-      quantity_eq_0: 'The value of quantity must be greater than 0.'
