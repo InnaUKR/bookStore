@@ -2,6 +2,8 @@ require 'rails_helper'
 
 RSpec.describe CheckoutsController, type: :controller do
   let(:order) { create(:order) }
+  let(:user) { create(:user) }
+
   steps = ['address', 'delivery', 'payment', 'confirm', 'complete']
 
   describe 'GET #show' do
@@ -9,8 +11,8 @@ RSpec.describe CheckoutsController, type: :controller do
       context step do
         before { get :show, params: { id: step }, session: { order_id: order.id } }
 
-        it '@form is instance of "#{step.capitalize}Form".constantize' do
-          expect(assigns[:form]).to be_instance_of "#{step.capitalize}Form".constantize
+        it "@form is instance of #{step.capitalize}Form" do
+          expect(assigns[:form]).to be_instance_of(("#{step.capitalize}Form").constantize)
         end
 
         it 'render step view' do
@@ -74,7 +76,7 @@ RSpec.describe CheckoutsController, type: :controller do
     end
 
     steps[0..2].each do |step|
-      context 'goes from confirm form to' do
+      context 'goes from confirm forms to' do
         before do
           order.update(step: 'confirm')
           step_class = "#{step.capitalize}Form".constantize
