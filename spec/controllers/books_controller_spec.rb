@@ -26,9 +26,15 @@ RSpec.describe BooksController, type: :controller do
       expect(response).to render_template :show
     end
 
-    it 'redirects to book page when quantity less than 1' do
-      put :change_quantity, params: { book_id: book.to_param, quantity: 0 }
-      expect(response).to redirect_to(book)
+    context 'when quantity equal 0' do
+      before { put :change_quantity, params: { book_id: book.to_param, quantity: 0 } }
+      it 'show flash message' do
+        expect(flash[:alert]).to eq(I18n.t('books.change_quantity.quantity_eq_0'))
+      end
+
+      it 'redirects to book page' do
+        is_expected.to redirect_to(book)
+      end
     end
 
     it 'assigns item quantity' do
