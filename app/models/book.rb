@@ -21,7 +21,7 @@ class Book < ApplicationRecord
 
   scope :filter_category, ->(category, filter) { where(category_id: category).order(FILTERS[filter.to_sym]) }
   scope :filter, ->(filter) { order(FILTERS[filter.to_sym]) }
-  scope :latest_books, -> { order('created_at').last(3) }
+  scope :latest_books, -> { order('created_at DESC') }
 
   def self.best_sellers
     find_by_sql(" SELECT books.*

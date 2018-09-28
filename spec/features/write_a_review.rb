@@ -19,8 +19,9 @@ feature 'Write a Review', %q{
     sign_in(user)
     visit book_path(book)
 
-    fill_in 'Score', with: 5
-    fill_in 'review_body', with: 'My review'
+    select 5, from: 'review_score'
+    fill_in 'review_title', with: 'Review title'
+    fill_in 'review_text', with: 'Review text'
 
     click_on 'Post'
     expect(current_path).to eq book_path(book)
