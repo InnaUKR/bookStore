@@ -1,4 +1,4 @@
-require_relative 'acceptance_helper'
+require 'rails_helper'
 
 feature 'Write a Review', %q{
   Given The user is logged in
