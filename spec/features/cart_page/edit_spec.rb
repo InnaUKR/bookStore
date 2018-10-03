@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'edit cart', %{
+feature 'edit cart', %q{
   Given The user is logged in or a guest
   And he is at the Cart page,
   When he wants to change the quantity of products in the cart,
