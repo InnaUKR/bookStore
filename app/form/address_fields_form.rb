@@ -12,7 +12,7 @@ class AddressFieldsForm < Rectify::Form
   validates :address, :first_name, :last_name, :city, :country,
             length: { maximum: 50 }
   validates :first_name, :last_name, :city, :country,
-            format: { with: /\A[a-zA-Zа-яА-Я]+\z/ }
+            format: { with: /\A[a-zA-Zа-яА-Я ]+\z/ }
   validates :address,
             format: { with: /\A[a-zA-Zа-яА-Я0-9\s,\-]+\z/ },
             length: { maximum: 50 }
