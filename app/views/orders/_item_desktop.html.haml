@@ -5,7 +5,7 @@
         -if item.book.images.any?
           =image_tag item.book.images.first.image_url, class: 'cart-img-shadow pull-left', alt: 'book-image'
   %td
-    %p.title= item.book.title
+    %p.title=link_to  item.book.title, book_path(item.book)
   %td
     %span.font-16.in-gold-500= show_price(item.book.price)
   %td

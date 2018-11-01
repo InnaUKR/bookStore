@@ -9,16 +9,17 @@
           .row
             .col-sm-5
               .general-img-wrap
-                %img.img-shadow.general-thumbnail-img{src: "http://jonathantweedy.com/resources/thumbs/SmashingBook5ResponsiveWebDesign.jpg", alt: "design-book"}
+                -if item.images.any?
+                  =image_tag item.images.first.image_url, class: 'img-shadow.general-thumbnail-img', alt: "book-image"
             .col-sm-7
               .mb-60
                 %h1= item.title
                 - unless item.description.empty?
                   %p.lead= item.description
-                %p.lead.small= item.authors
+                %p.lead.small= item.authors_to_string
                 .general-align
-                  =link_to line_items_path(book_id: item), method: :post do
-                    %button.btn.btn-primary Buy Now
+                  =link_to line_items_path(line_item: { book_id: item, quantity: 1} ), method: :post do
+                    %button.btn.btn-primary= t('.buy_btn')
     %a.left.carousel-control{href: "#slider", role: "button", 'data-slide': "prev"}
       %span.icon-prev{'aria-hidden': "true"}
       %span.sr-only= t('main.previous_slide')
@@ -31,12 +32,12 @@
 
   .container
     .jumbotron.text-center.mb-0
-      %h2.h1= t('main.welcome')
+      %h2.h1= t('.welcome')
       .mb-res-50
-        %p= t('main.welcome_subphrase')
-      = link_to t('main.welcome_btn'), categories_path, class: 'btn btn-default'
+        %p= t('.welcome_subphrase')
+      = link_to t('.welcome_btn'), categories_path, class: 'btn btn-default'
     .mb-35
-      %h3= t('main.best_sellers')
+      %h3= t('.best_sellers')
       .row
         - @best_sellers.each do |book|
           = render 'books/book', book: book.decorate

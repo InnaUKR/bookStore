@@ -12,7 +12,7 @@
       .col-md-5.mb-40
         %h3.general-subtitle= t('checkouts.show.address.billing_address')
         %p.general-info-text= t('checkouts.show.address.all_fields_required')
-        =render 'partials/checkouts/address/address_form', ff:ff, form: address.billing_address, parameter: :billing_address_form
+        =render 'partials/checkouts/address/address_form', ff:ff, form: @form.billing_address, parameter: :billing_address_form
 
       .col-md-5.col-md-offset-1.mb-60
         #order_shipping_address{class: ('hidden' if @form.use_billing=='true')}

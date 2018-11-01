@@ -6,7 +6,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def delete
-    super
+    super if params[:delete_account] == 'true'
   end
 
   def update

@@ -8,7 +8,7 @@ class CategoriesController < ApplicationController
     @categories = Category.all
     @books = @category.nil? ? Book.filter(@filter).decorate : Book.filter_category(@category, @filter).decorate
   end
-
+=begin
   def show; end
 
   def new
@@ -30,6 +30,7 @@ class CategoriesController < ApplicationController
     end
   end
 
+
   def update
     respond_to do |format|
       if @category.update(book_params)
@@ -41,14 +42,7 @@ class CategoriesController < ApplicationController
       end
     end
   end
-
-  def destroy
-    @category.destroy
-    respond_to do |format|
-      format.html { redirect_to books_url, notice: 'Book was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
+=end
 
   private
 
@@ -59,8 +53,9 @@ class CategoriesController < ApplicationController
   def set_filter
     @filter = Book::FILTERS.key?(params[:filter]&.to_sym) ? params[:filter] : Book::DEFAULT_FILTER
   end
-
+=begin
   def category_params
     params.require(:category).permit(:name)
   end
+=end
 end

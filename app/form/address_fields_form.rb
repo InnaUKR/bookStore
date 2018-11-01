@@ -6,6 +6,8 @@ class AddressFieldsForm < Rectify::Form
   attribute :zip, String
   attribute :country, String
   attribute :phone, String
+  attribute :billing, Boolean, default: false
+  attribute :shipping, Boolean, default: false
 
   validates :address, :first_name, :last_name, :city, :country, :zip, :phone,
             presence: true

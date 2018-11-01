@@ -1,12 +1,11 @@
 class AddressForm < CheckoutForm
   attr_accessor :billing_address, :shipping_address
-  attribute :use_billing, Boolean, default: 'false'
+  attribute :use_billing, String, default: 'false'
 
   def initialize(params = nil)
     if params
       if params[:use_billing] == 'true'
-        address_params = billing_params(params)
-        @billing_address = AddressFieldsForm.from_params(address_params)
+        @billing_address = AddressFieldsForm.from_params(billing_params(params).to_h.merge!(shipping: true))
         @shipping_address = @billing_address
       else
         @billing_address = AddressFieldsForm.from_params(billing_params(params))
@@ -29,16 +28,17 @@ class AddressForm < CheckoutForm
     billing = address(order, @billing_address)
     shipping = address(order, @shipping_address)
 
-    order.update(billing_address_id: billing.id, shipping_address_id: shipping.id)
+    order.update(billing_address: billing, shipping_address: shipping)
   end
+
   private
 
   def billing_params(params)
-    params[:billing_address_form]
+    params[:billing_address_form].to_h.merge!(billing: true)
   end
 
   def shipping_params(params)
-    params[:shipping_address_form]
+    params[:shipping_address_form].to_h.merge!(shipping: true)
   end
 
   def address(order, address)

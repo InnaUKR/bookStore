@@ -1,7 +1,15 @@
 module CheckoutHelper
   def address
-    @form.billing_address = @order.billing_address if @order.billing_address
-    @form.shipping_address = @order.shipping_address  if @order.shipping_address
+    if @order.billing_address
+      @form.billing_address = @order.billing_address
+    elsif current_user.addresses.where(billing: true)
+      @form.billing_address = current_user.addresses.where(billing: true)
+    end
+    if @order.shipping_address
+      @form.shipping_address = @order.shipping_address
+    elsif current_user.addresses.where(shipping: true)
+      @form.shipping_address = current_user.addresses.where(shipping: true)
+    end
     @form
   end
 

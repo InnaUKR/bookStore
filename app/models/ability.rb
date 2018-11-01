@@ -30,5 +30,6 @@ class Ability
     guest_abilities
     can :create, Review
     can :update, Order, user: user
+    can :update, User, id: user.id
   end
 end

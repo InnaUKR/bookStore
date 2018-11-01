@@ -1,0 +1,9 @@
+en:
+  orders:
+    index:
+      title: 'My Orders'
+      sort_by: 'Sort by'
+      number: 'Number'
+      completed_at: 'Completed at'
+      status: 'Status'
+      total: 'Total'

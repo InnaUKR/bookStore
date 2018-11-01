@@ -3,6 +3,9 @@ class ApplicationController < ActionController::Base
   helper_method :current_user, :current_order
   before_action :set_locale
 
+  check_authorization unless: :do_not_check_authorization?
+
+
   def set_locale
     locale = params[:locale].to_s.strip.to_sym
     I18n.locale = I18n.available_locales.include?(locale) ? locale : I18n.default_locale
@@ -34,10 +37,10 @@ class ApplicationController < ActionController::Base
     session[:current_order_id] = current_user.orders.create.id
   end
   rescue_from CanCan::AccessDenied do |exception|
-    redirect_back(fallback_location: root_path, alert: exception.message )
+    redirect_back(fallback_location: root_path, alert: exception.message)
   end
 
-  check_authorization unless: :do_not_check_authorization?
+
   private
 
   def do_not_check_authorization?

@@ -5,7 +5,7 @@ Rails.application.routes.draw do
         registrations: 'users/registrations',
         omniauth_callbacks: 'users/omniauth_callbacks'
       }
-  resources :users, :controller => "users"
+  resources :users, only: %i[edit]
   resources :line_items, only: %i[show destroy create] do
     put :up_quantity
     put :down_quantity

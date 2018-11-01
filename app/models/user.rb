@@ -9,7 +9,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [:facebook]
-  has_one :cart
   has_many :reviews
   has_many :orders
   has_many :credit_cards
@@ -20,7 +19,7 @@ class User < ApplicationRecord
   validates :email,
             presence: true,
             format: { with: VALID_EMAIL_REGEX,
-                      message: 'incorrect format of email' }
+                      message: 'incorrect format' }
   validates :password,
             format: { with: VALID_PASSWORD_REGEXP,
                       message: 'should contain at least 1 uppercase, 1 lowercase and 1 number' },
@@ -38,7 +37,7 @@ class User < ApplicationRecord
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
-      user.password = Devise.friendly_token[0,20]
+      user.password = Devise.friendly_token[0, 20]
       user.name = auth.info.name
       #user.image = auth.info.image
     end

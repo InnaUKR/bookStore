@@ -1,6 +1,8 @@
 class LineItemsController < ApplicationController
-  before_action :set_line_item, only: %I[destroy show edit update up_quantity down_quantity]
+  before_action :set_line_item, only: %I[destroy up_quantity]
+  before_action :set, only: %I[down_quantity]
   authorize_resource
+
   def new
     @line_item = LineItem.new
   end
@@ -8,43 +10,48 @@ class LineItemsController < ApplicationController
   def create
     @line_item = current_order.add_book(line_item_params)
     @line_item.save
-    redirect_back(fallback_location: root_path, notice: 'Book was successfully added to cart.' )
+    redirect_to order_cart_path(current_order), notice: t('.success')
   end
 
+=begin
   def update
     respond_to do |format|
       if @line_item.update(line_item)
-        format.html { redirect_to @line_item, notice: 'Book item was successfully updated.' }
-        format.json { render :show, status: :ok, location: @line_item }
+        redirect_to @line_item, notice: 'Book item was successfully updated.'
       else
-        format.html { render :edit }
-        format.json { render json: @line_item.errors, status: :unprocessable_entity }
+        render :edit
       end
     end
   end
+=end
 
   def destroy
     @line_item.destroy
-    redirect_back(fallback_location: root_path, notice: 'Book item was successfully destroyed.')
+    redirect_back(fallback_location: root_path, notice: t('.success'))
   end
 
   def up_quantity
     @line_item.increment!(:quantity)
-    redirect_back(fallback_location: root_path)
+    redirect_to order_cart_path(@line_item.order)
   end
 
   def down_quantity
     if @line_item.quantity > 1
       @line_item.decrement!(:quantity)
-      redirect_back(fallback_location: root_path)
+      redirect_to order_cart_path(@line_item.order)
     else
-      redirect_back(fallback_location: root_path, notice: "Quantity can't be less than 1. Use X button if you want delet .")
+      redirect_to order_cart_path(@line_item.order), alert: t('.unsuccess')
     end
   end
 
   private
+
   def set_line_item
     @line_item = LineItem.find(params[:id] || params[:line_item_id])
+  end
+
+  def set
+    @line_item = LineItem.find(params[:line_item_id])
   end
 
   def line_item_params

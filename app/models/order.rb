@@ -7,6 +7,7 @@ class Order < ApplicationRecord
   belongs_to :credit_card, optional: true
   belongs_to :billing_address, :class_name => 'Address', optional: true
   belongs_to :shipping_address, :class_name => 'Address', optional: true
+  belongs_to :coupon, optional: true
 
   default_scope { order(created_at: :desc) }
 
@@ -31,15 +32,15 @@ class Order < ApplicationRecord
     current_item
   end
 
-  def sub_total
-    line_items.sum(&:total_price)
-  end
-
   def order_total
     sum = sub_total
-    sum -= Coupon.find(coupon_id).amount if coupon_id
+    sum -= coupon.amount if coupon
     sum += delivery.price if delivery
     sum
+  end
+
+  def sub_total
+    line_items.sum(&:total_price)
   end
 
   aasm column: :state do
@@ -65,7 +66,5 @@ class Order < ApplicationRecord
       transitions from: %i[filling in_progress in_queue in_delivery elivered completed], to: :canceled
     end
   end
-
-
 end
 

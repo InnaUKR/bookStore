@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-feature 'Checkout page, the Delivery tab' do
+feature 'At the Checkout page, the Delivery tab' do
   given!(:delivery) { create(:delivery) }
-  given(:line_item) { create(:line_item, order: (create(:order, step: 'delivery'))) }
+  given(:line_item) { create(:line_item, order: create(:order, :delivery)) }
 
   scenario 'User clicks chosen option. Then he clicks Save and Continue button.\
             And user will be transferred to the Payment step.' do

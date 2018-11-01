@@ -27,10 +27,11 @@ class OrdersController < ApplicationController
   end
 
   def update
-    if @order.update(coupon_id: coupon_params)
-      redirect_to order_cart_path(@order), notice: 'Order was successfully updated.'
+    if coupon
+      @order.update(coupon: coupon)
+      redirect_to order_cart_path(@order), notice: t('.success')
     else
-      render :edit
+      redirect_to order_cart_path(@order), alert: t('.unsuccess')
     end
   end
 
@@ -44,7 +45,9 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:order_id]).decorate
   end
 
-  def coupon_params
-    Coupon.find_by(name: params[:name]).id
+  def coupon
+    Coupon.find_by(name: params.require(:name))
+  rescue NoMethodError, ActionController::ParameterMissing
+    nil
   end
 end

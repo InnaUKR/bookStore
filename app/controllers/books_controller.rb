@@ -17,7 +17,7 @@ class BooksController < ApplicationController
       @item = @book.line_items.build(quantity: quantity)
       render 'books/show'
     else
-      redirect_to @book, alert: t('books_controller.quantity_eq_0')
+      redirect_to @book, alert: t('.quantity_eq_0')
     end
   end
 
