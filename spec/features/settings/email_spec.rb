@@ -8,18 +8,17 @@ RSpec.feature 'Settings#email' do
 
   scenario 'Registered user successfully changes password' do
     sign_in(user)
-    visit edit_user_registration_path
-    fill_in 'user_email', with: new_valid_email
+    visit edit_user_path(user)
+    fill_in 'email', with: new_valid_email
     find("#save_email_btn").click
-    expect(user.reload.email).to eq(new_valid_email)
+    expect(page).to have_field("email", placeholder: 'Enter your new email. Current email ' + new_valid_email)
   end
 
   scenario 'Registered user successfully changes password' do
     sign_in(user)
-    visit edit_user_registration_path
-    fill_in 'user_email', with: new_invalid_email
+    visit edit_user_path(user)
+    fill_in 'email', with: new_invalid_email
     find("#save_email_btn").click
-    expect(page).to have_content('incorrect format')
-    expect(page).to have_css('.has-error')
+    expect(find('form.email_form')).to have_content('incorrect format')
   end
 end
