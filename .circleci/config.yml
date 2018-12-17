@@ -1,7 +1,7 @@
-version: 1
+version: 2
 jobs:
   build:
-    working_directory: ~/workspace/bookstore
+    working_directory: ~/workspace/bookStore
     docker:
       # specify the version you desire here
       - image: circleci/ruby:2.5.1-node-browsers
@@ -16,7 +16,6 @@ jobs:
           POSTGRES_USER: root
           POSTGRES_DB: circle_test
           POSTGRES_PASSWORD: ""
-
 
     steps:
       - checkout
