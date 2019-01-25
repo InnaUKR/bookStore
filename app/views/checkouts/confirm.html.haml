@@ -3,7 +3,7 @@
   .row.mb-20
     .col-sm-3
       %h3.general-subtitle= t('checkouts.show.confirm.shipping_address')
-      %p.general-address
+      %p.general-address.shipping
         = @order.shipping_address.first_name
         = @order.shipping_address.last_name
         = link_to wizard_path(:address) do

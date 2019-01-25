@@ -3,7 +3,7 @@
 
   %h3.general-subtitle= t('checkouts.show.payment.credit_card')
   = form_for @order,:url => wizard_path, method: :put, html: { class: "max-600 mb-80" } do |ff|
-    =ff.fields_for 'credit_card', payment do |f|
+    =ff.fields_for 'credit_card', @form do |f|
       .form-group{ class: ('has-error' if @form.errors.messages[:number].any?) }
         = f.label :number, t('checkouts.show.payment.card_number'), class: 'control-label input-label'
         = f.text_field :number, label: false, placeholder: t('checkouts.show.payment.card_number'), id:'cardNumber',class:'form-control'

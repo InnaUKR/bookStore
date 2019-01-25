@@ -1,35 +1,34 @@
-=ff.fields_for parameter, form do |f|
-  .form-group{ class: ('has-error' if form.errors.messages[:first_name].any?) }
-    = f.label :first_name, class: "control-label input-label"
-    = f.text_field :first_name, placeholder: "First Name", class: "form-control"
-    %span.help-block= form.errors.messages[:first_name].join(', ')
+.form-group{ class: ('has-error' if form.errors.messages[:first_name].any?) }
+  = ff.label :first_name, class: "control-label input-label"
+  = ff.text_field :first_name, placeholder: "First Name", class: "form-control"
+  %span.help-block= form.errors.messages[:first_name].join(', ')
 
-  .form-group{ class: ('has-error' if form.errors.messages[:last_name].any?) }
-    = f.label :last_name, class: "control-label input-label"
-    = f.text_field :last_name, placeholder: "Last Name", class: "form-control"
-    %span.help-block= form.errors.messages[:last_name].join(', ')
+.form-group{ class: ('has-error' if form.errors.messages[:last_name].any?) }
+  = ff.label :last_name, class: "control-label input-label"
+  = ff.text_field :last_name, placeholder: "Last Name", class: "form-control"
+  %span.help-block= form.errors.messages[:last_name].join(', ')
 
-  .form-group{ class: ('has-error' if form.errors.messages.include? :address) }
-    = f.label :address, class: "control-label input-label"
-    = f.text_field :address, placeholder: "Address", class: "form-control"
-    %span.help-block= form.errors.messages[:address].join(', ')
+.form-group{ class: ('has-error' if form.errors.messages.include? :address) }
+  = ff.label :address, class: "control-label input-label"
+  = ff.text_field :address, placeholder: "Address", class: "form-control"
+  %span.help-block= form.errors.messages[:address].join(', ')
 
-  .form-group{ class: ('has-error' if form.errors.messages.include? :city) }
-    = f.label :city, class: "control-label input-label"
-    = f.text_field :city, placeholder: "City", class: "form-control"
-    %span.help-block= form.errors.messages[:city].join(', ')
+.form-group{ class: ('has-error' if form.errors.messages.include? :city) }
+  = ff.label :city, class: "control-label input-label"
+  = ff.text_field :city, placeholder: "City", class: "form-control"
+  %span.help-block= form.errors.messages[:city].join(', ')
 
-  .form-group{ class: ('has-error' if form.errors.messages.include? :zipcode) }
-    = f.label :zip, class: "control-label input-label"
-    = f.text_field :zip, placeholder: "Zip", class: "form-control"
-    %span.help-block= form.errors.messages[:zipcode].join(', ')
+.form-group{ class: ('has-error' if form.errors.messages.include? :zip) }
+  = ff.label :zip, class: "control-label input-label"
+  = ff.text_field :zip, placeholder: "Zip", class: "form-control"
+  %span.help-block= form.errors.messages[:zip].join(', ')
 
-  .form-group{ class: ('has-error' if form.errors.messages.include? :country) }
-    = f.label :country, class: "control-label input-label"
-    = f.text_field :country, placeholder: "Country", class: "form-control"
-    %span.help-block= form.errors.messages[:country].join(', ')
+.form-group{ class: ('has-error' if form.errors.messages.include? :country) }
+  = ff.label :country, class: "control-label input-label"
+  = ff.text_field :country, placeholder: "Country", class: "form-control"
+  %span.help-block= form.errors.messages[:country].join(', ')
 
-  .form-group{ class: ('has-error' if form.errors.messages.include? :phone) }
-    = f.label :phone, class: "control-label input-label"
-    = f.text_field :phone, placeholder: "Example +355 66 123 4567", class: "form-control"
-    %span.help-block= form.errors.messages[:phone].join(', ')
+.form-group{ class: ('has-error' if form.errors.messages.include? :phone) }
+  = ff.label :phone, class: "control-label input-label"
+  = ff.text_field :phone, placeholder: "Example +355 66 123 4567", class: "form-control"
+  %span.help-block= form.errors.messages[:phone].join(', ')

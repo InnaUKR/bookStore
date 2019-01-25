@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: [:update, :destroy]
+  before_action :set_order, only: [:update, :destroy, :edit]
   before_action :set_cart, only: :cart
 
   authorize_resource
@@ -23,7 +23,8 @@ class OrdersController < ApplicationController
   def edit
     session[:current_order_id] = nil if session[:current_order_id].to_i == params[:id].to_i
     session[:order_id] = params[:id]
-    redirect_to checkouts_path
+    @order.update(step: :address) if @order.step.nil?
+    redirect_to checkout_path(@order.step.to_sym)
   end
 
   def update

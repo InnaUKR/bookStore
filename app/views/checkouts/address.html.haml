@@ -1,28 +1,24 @@
 %main.container
   =render 'partials/checkouts/steps'
-  = form_for @form, :url => wizard_path, method: :put, html: { class: "res-mb-100" } do |ff|
-    .hidden-xs.visible-sm
-      .row
-        .col-md-5
-          %h3.general-subtitle= t('checkouts.show.address.billing_address')
-          %p.general-info-text= t('checkouts.show.address.all_fields_required')
-        .col-md-5.col-md-offset-1
-          %h3.general-subtitle= t('checkouts.show.address.shipping_address')
+  = form_for @form, :url => wizard_path, method: :patch, html: { class: "res-mb-100" } do |f|
+
     .row
       .col-md-5.mb-40
         %h3.general-subtitle= t('checkouts.show.address.billing_address')
         %p.general-info-text= t('checkouts.show.address.all_fields_required')
-        =render 'partials/checkouts/address/address_form', ff:ff, form: @form.billing_address, parameter: :billing_address_form
+        =f.fields_for :billing_address_form, @form.billing_address do |ff|
+          =render 'partials/checkouts/address/address_form', ff: ff, form: @form.billing_address
 
       .col-md-5.col-md-offset-1.mb-60
         #order_shipping_address{class: ('hidden' if @form.use_billing=='true')}
           %h3.general-subtitle= t('checkouts.show.address.shipping_address')
           %br
-          =render 'partials/checkouts/address/address_form', ff:ff, form: address.shipping_address, parameter: :shipping_address_form
+          =f.fields_for :shipping_address_form, @form.shipping_address do |ff|
+            =render 'partials/checkouts/address/address_form', ff: ff, form: @form.shipping_address
 
         .form-group.checkbox
           %label.checkbox-label
-            = ff.check_box :use_billing,{class: "checkbox-input", hidden: 'true'}, 'true', 'false'
+            = f.check_box :use_billing,{class: "checkbox-input", hidden: 'true'}, 'true', 'false'
             %span.checkbox-icon
               %i.fa.fa-check
             %span.checkbox-tex= t('checkouts.show.address.use_billing')
@@ -34,4 +30,4 @@
       %table.general-summary-table
         = render partial: 'partials/order_summary'
 
-      = ff.submit t('checkouts.save_and_continue'), class: 'btn btn-default center-block mb-80'
+      = f.submit t('checkouts.save_and_continue'), class: 'btn btn-default center-block mb-80'

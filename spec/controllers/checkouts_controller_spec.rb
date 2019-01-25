@@ -22,26 +22,6 @@ RSpec.describe CheckoutsController, type: :controller do
     end
   end
 
-  describe 'GET #index' do
-    steps.each do |step|
-      context step do
-        before do
-          order.update(step: step)
-          get :index, session: { order_id: order.id }
-        end
-
-        it 'render step view' do
-          expect(response).to redirect_to :action => :show, :id => step
-        end
-      end
-    end
-
-    it 'when  @order.step is nil' do
-      get :index, session: { order_id: order.id }
-      expect(response).to redirect_to :action => :show, :id => :address
-    end
-  end
-
   describe 'POST #update' do
     steps[0...steps.length - 1].each_with_index do |step, index|
       context 'with valid attributes' do

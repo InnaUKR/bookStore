@@ -3,9 +3,10 @@ Rails.application.routes.draw do
   devise_for :users, controllers:
       {
         registrations: 'users/registrations',
-        omniauth_callbacks: 'users/omniauth_callbacks'
+        omniauth_callbacks: 'users/omniauth_callbacks',
       }
   resources :users, only: %i[edit]
+
   resources :line_items, only: %i[show destroy create] do
     put :up_quantity
     put :down_quantity
@@ -19,11 +20,5 @@ Rails.application.routes.draw do
     get :cart
   end
   root 'home#index'
-  resources :checkouts
-
-  namespace :checkouts do
-    resources :orders do
-      put :confirm
-    end
-  end
+  resources :checkouts, only: %i[show update]
 end
