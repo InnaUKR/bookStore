@@ -16,61 +16,61 @@ RSpec.describe Book, type: :model do
 
   it { is_expected.to accept_nested_attributes_for :images }
 
-  before(:all) do
-    @category = create(:category)
-    @book = create(:book,date_of_publication: Date.new(2017, 12, 8), category_id: @category.id)
-    @second_book = create(:book, date_of_publication: Date.new(2016, 12, 8), category_id: @category.id)
-    @third_book = create(:book, date_of_publication: Date.new(2015, 12, 8), category_id: create(:category).id)
-  end
+  let!(:category) { create(:category) }
+  let!(:book) { create(:book,date_of_publication: Date.new(2017, 12, 8), category_id: category.id) }
+  let!(:second_book) { create(:book, date_of_publication: Date.new(2016, 12, 8), category_id: category.id) }
+  let!(:third_book ) { create(:book, date_of_publication: Date.new(2015, 12, 8), category_id: create(:category).id) }
 
   context '.filter_category' do
     it 'includes books from category' do
-      expect(Book.filter_category(@category.id, 'newest_first')).to include(@book, @second_book)
+      expect(Book.filter_category(category.id, 'newest_first')).to eq([book, second_book])
     end
 
     it 'does not include books from other categories' do
-      expect(Book.filter_category(@category.id, 'newest_first')).to_not include(@third_book)
+      expect(Book.filter_category(category.id, 'newest_first')).to_not include(third_book)
     end
 
     it 'sorts by date of publication' do
-      expect(Book.filter_category(@category.id, 'newest_first')).to
-      eq(Book.where(category_id: @category.id).order('date_of_publication DESC'))
+      expect(Book.filter_category(category.id, 'newest_first')).to eq(Book.where(category_id: category.id).order('date_of_publication DESC'))
     end
 
     it 'sorts by price' do
-      expect(Book.filter_category(@category.id, 'price_low_to_hight')).to
-      eq(Book.where(category_id: @category.id).order('price'))
+      expect(Book.filter_category(category.id, 'price_low_to_hight')).to\
+        eq(Book.where(category_id: category.id).order('price'))
     end
 
     it 'sorts descending by price' do
-      expect(Book.filter_category(@category.id, 'price_hight_to_low')).to
-      eq(Book.where(category_id: @category.id).order('price DESC'))
+      expect(Book.filter_category(category.id, 'price_hight_to_low')).to\
+        eq(Book.where(category_id: category.id).order('price DESC'))
     end
 
     it 'sorts by title' do
-      expect(Book.filter_category(@category.id, 'title_a_z')).to
-      eq(Book.where(category_id: @category.id).order('title'))
+      expect(Book.filter_category(category.id, 'title_a_z')).to\
+        eq(Book.where(category_id: category.id).order('title'))
     end
 
     it 'sorts descending by title' do
-      expect(Book.filter_category(@category.id, 'title_z_a')).to
-      eq(Book.where(category_id: @category.id).order('title DESC'))
+      expect(Book.filter_category(category.id, 'title_z_a')).to\
+        eq(Book.where(category_id: category.id).order('title DESC'))
     end
   end
 
+  it '.latest_books' do
+    book
+    second_book
+    third_book
+    expect(Book.latest_books).to eq([third_book, second_book, book])
+  end
+
+  it '.latest_books' do
+    expect(Book.latest_books).to_not eq([book, second_book, third_book])
+  end
+
   it '.best_sellers' do
-    create(:line_items, quantity: 5, book: @book.id)
-    create(:line_items, quantity: 4, book: @second_book.id)
-    create(:line_items, quantity: 3, book: @third_book.id)
-    expect(Book.best_sellers).to eq([@book, @second_book, @third_book])
-  end
-
-  it '.latest_books' do
-    expect(Book.latest_books).to eq([@book, @second_book, @third_book])
-  end
-
-  it '.latest_books' do
-    expect(Book.latest_books).to_not eq([@third_book, @second_book, @book])
+    create(:line_item, quantity: 5, book: book)
+    create(:line_item, quantity: 4, book: second_book)
+    create(:line_item, quantity: 3, book: third_book)
+    expect(Book.best_sellers).to match_array([book, second_book, third_book])
   end
 
   context '.filter' do
