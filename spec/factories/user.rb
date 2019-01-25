@@ -12,9 +12,9 @@ FactoryBot.define do
   end
 
   factory :admin, class: User do
-    email
-    password '12345678'
-    password_confirmation '12345678'
+    sequence(:email) { |n| "user#{n}@test.com" }
+    password 'AdminNo1'
+    password_confirmation 'AdminNo1'
     admin true
   end
 end
