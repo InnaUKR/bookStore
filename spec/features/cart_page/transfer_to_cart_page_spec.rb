@@ -7,7 +7,7 @@ feature 'Cart #transfer_to_cart_page', %q{
 } do
   scenario do
     visit root_path
-    click_on('a.shop-link.pull-right.hidden-xs')
+    find('a.shop-link.pull-right.hidden-xs').click
     expect(page).to have_current_path('/orders/1/cart')
   end
 end

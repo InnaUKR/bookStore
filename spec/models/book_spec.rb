@@ -19,7 +19,7 @@ RSpec.describe Book, type: :model do
   let!(:category) { create(:category) }
   let!(:book) { create(:book,date_of_publication: Date.new(2017, 12, 8), category_id: category.id) }
   let!(:second_book) { create(:book, date_of_publication: Date.new(2016, 12, 8), category_id: category.id) }
-  let!(:third_book ) { create(:book, date_of_publication: Date.new(2015, 12, 8), category_id: create(:category).id) }
+  let!(:third_book) { create(:book, date_of_publication: Date.new(2015, 12, 8), category_id: create(:category).id) }
 
   context '.filter_category' do
     it 'includes books from category' do

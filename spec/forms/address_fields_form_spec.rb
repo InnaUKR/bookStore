@@ -29,7 +29,7 @@ RSpec.describe AddressFieldsForm, type: :model do
 
     it 'do not consist special symbols' do
       address = AddressFieldsForm.new(first_name: 'Ann (#awesome!)', last_name: 'Doe1',
-                                      city: 'New-York', country: 'U SA')
+                                      city: 'New-York', country: '@1USA')
       address.valid?
       expect(address.errors[:first_name]).to include('is invalid')
       expect(address.errors[:last_name]).to include('is invalid')

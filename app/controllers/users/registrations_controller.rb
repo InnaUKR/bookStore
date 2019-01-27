@@ -13,6 +13,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
     super
   end
 
+  def edit
+    super
+  end
+
+
   def create
     @user = guest_user
     @user.update(user_params)

@@ -40,7 +40,7 @@ RSpec.describe OrdersController, type: :controller do
     it 'user redirects to checkouts page' do
       sign_in user
       get :edit, params: { id: order.id }
-      is_expected.to redirect_to(checkouts_path)
+      is_expected.to redirect_to(checkout_path(:address))
     end
   end
 end

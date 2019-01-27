@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :book, class: Book do
-    title { Faker::Book.title }
+    sequence(:title) { |n| Faker::Book.title + n.to_s }
     price { Faker::Commerce.price }
     description { '' }
     date_of_publication Date.today
@@ -9,6 +9,5 @@ FactoryBot.define do
     width { Faker::Number.between(0.00, 10.00) }
     depth { Faker::Number.between(0.00, 10.00) }
     category_id { FactoryBot.create(:category).id }
-
   end
 end

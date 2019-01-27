@@ -39,7 +39,7 @@
           %p.in-gold-500.font-18.mb-25 Email
 
           .form-group.mb-35{ class: ('has-error' if current_user.errors.messages[:email].any?) }
-            =form_tag(edit_user_path(current_user), method: :get) do
+            =form_tag(edit_user_path(current_user), method: :get, class: 'email_form') do
               = label_tag :email, 'Enter New Email', class: 'control-label input-label'
               = text_field_tag :email, (params[:email] if current_user.errors.messages[:email].any?),class: 'form-control', placeholder: "Enter your new email. Current email #{@email}"
               %span.help-block= current_user.errors.messages[:email].join(', ')
@@ -67,7 +67,7 @@
                 %span.help-block= @user.errors.messages[:password_confirmation].join(', ')
 
             .general-text-align
-              = f.submit "Save", class: 'btn btn-default mb-10'
+              = f.submit "Save", class: 'btn btn-default mb-10', id: 'save_password_btn'
         .col-sm-12
           %p.in-gold-500.font-18.mb-25 Remove Account
           =form_tag(user_registration_path, method: :delete) do

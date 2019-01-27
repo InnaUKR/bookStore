@@ -6,8 +6,7 @@ class User < ApplicationRecord
   VALID_EMAIL_REGEX = /\A#{LABEL}#{DOT_LABELS}@#{LABEL}#{DOT_LABELS}#{RIGHT_MOST_LABEL}\z/i
   VALID_PASSWORD_REGEXP = /\A(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[a-zA-Z\d]{8,}\z/
 
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable,
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [:facebook]
   has_many :reviews
   has_many :orders

@@ -40,12 +40,7 @@ class ApplicationController < ActionController::Base
     redirect_back(fallback_location: root_path, alert: exception.message)
   end
 
-
-  private
-
   def do_not_check_authorization?
     :devise_controller? || :rails_admin_controller?
   end
-
-
 end

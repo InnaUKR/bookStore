@@ -17,7 +17,7 @@ feature 'At the Checkout page, the Delivery tab' do
     expect(page).to have_current_path('/checkouts/payment')
 
     order_total = find('table.general-summary-table').all('td').last.text
-    expect(order_total).to eq('€' + (line_item.total_price + delivery.price).to_s)
+    expect(order_total).to eq('€' + ('%.2f' % (line_item.total_price + delivery.price).to_s))
   end
 
   scenario 'User does not choose any option. Then he clicks Save and Continue button.\

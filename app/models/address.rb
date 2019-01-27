@@ -2,6 +2,6 @@ class Address < ApplicationRecord
   validates :address, :first_name, :last_name, :city, :country, :zip, :phone,
             presence: true
 
-  has_one :user
-  has_many :orders
+  has_many :orders, foreign_key: :shipping_address_id
+  has_many :orders, foreign_key: :billing_address_id
 end
