@@ -19,7 +19,7 @@ RailsAdmin.config do |config|
     end
   end
 
-  config.included_models = %w[Order Book Author Category  Review]
+  config.included_models = %w[Order Book Author Category Review Coupon]
 
   config.model Order do
     list do
@@ -111,6 +111,11 @@ RailsAdmin.config do |config|
         end
       end
     end
+  end
+
+  config.model Coupon do
+    field :name
+    field :amount
   end
 end
 
