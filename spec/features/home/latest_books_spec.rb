@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-feature 'Latest books', %{
+feature 'Latest books', %(
   In order to add book to the cart
   As a guest or as a user
-  I want to be able to click the Buy Now link} do
+  I want to be able to click the Buy Now link) do
   before { create_list(:book, 3) }
 
   scenario 'User clicks the Buy Now' do

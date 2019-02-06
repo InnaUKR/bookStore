@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :delivery, class: Delivery do
     method_name 'method name'

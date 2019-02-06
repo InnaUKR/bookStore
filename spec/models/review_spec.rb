@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Review, type: :model do
@@ -5,7 +7,6 @@ RSpec.describe Review, type: :model do
   let(:unprocessed_review) { create(:review, book: book) }
   let(:approved_review) { create(:review, :approved, book: book) }
   let(:rejected_review) { create(:review, :rejected, book: book) }
-
 
   it { is_expected.to belong_to :book }
   it { is_expected.to belong_to :user }
@@ -25,7 +26,6 @@ RSpec.describe Review, type: :model do
       review.valid?
       expect(review.errors[:title]).to include('is invalid')
     end
-
   end
 
   context 'text' do

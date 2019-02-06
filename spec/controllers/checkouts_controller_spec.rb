@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe CheckoutsController, type: :controller do
   let(:order) { create(:order) }
   let(:user) { create(:user) }
 
-  steps = ['address', 'delivery', 'payment', 'confirm', 'complete']
+  steps = %w[address delivery payment confirm complete]
 
   describe 'GET #show' do
     steps.each do |step|
@@ -12,7 +14,7 @@ RSpec.describe CheckoutsController, type: :controller do
         before { get :show, params: { id: step }, session: { order_id: order.id } }
 
         it "@form is instance of #{step.capitalize}Form" do
-          expect(assigns[:form]).to be_instance_of(("#{step.capitalize}Form").constantize)
+          expect(assigns[:form]).to be_instance_of("#{step.capitalize}Form".constantize)
         end
 
         it 'render step view' do
@@ -68,7 +70,7 @@ RSpec.describe CheckoutsController, type: :controller do
         end
 
         it "#{step} and after successful update redirect back to confirm" do
-          expect(response).to redirect_to("/checkouts/confirm")
+          expect(response).to redirect_to('/checkouts/confirm')
         end
       end
     end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class OrderDecorator < Draper::Decorator
   delegate_all
 
@@ -10,7 +12,7 @@ class OrderDecorator < Draper::Decorator
   end
 
   def date
-    created_at.strftime("%b %d %Y")
+    created_at.strftime('%b %d %Y')
   end
 
   def status

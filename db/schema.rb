@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181008113111) do
+ActiveRecord::Schema.define(version: 20190201184310) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -130,10 +130,12 @@ ActiveRecord::Schema.define(version: 20181008113111) do
     t.string "step"
     t.bigint "shipping_address_id"
     t.bigint "billing_address_id"
+    t.bigint "line_item_id"
     t.index ["billing_address_id"], name: "index_orders_on_billing_address_id"
     t.index ["coupon_id"], name: "index_orders_on_coupon_id"
     t.index ["credit_card_id"], name: "index_orders_on_credit_card_id"
     t.index ["delivery_id"], name: "index_orders_on_delivery_id"
+    t.index ["line_item_id"], name: "index_orders_on_line_item_id"
     t.index ["shipping_address_id"], name: "index_orders_on_shipping_address_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
@@ -186,4 +188,5 @@ ActiveRecord::Schema.define(version: 20181008113111) do
   add_foreign_key "line_items", "orders"
   add_foreign_key "orders", "coupons"
   add_foreign_key "orders", "deliveries"
+  add_foreign_key "orders", "line_items"
 end

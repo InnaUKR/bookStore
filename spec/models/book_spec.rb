@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Book, type: :model do
@@ -17,7 +19,7 @@ RSpec.describe Book, type: :model do
   it { is_expected.to accept_nested_attributes_for :images }
 
   let!(:category) { create(:category) }
-  let!(:book) { create(:book,date_of_publication: Date.new(2017, 12, 8), category_id: category.id) }
+  let!(:book) { create(:book, date_of_publication: Date.new(2017, 12, 8), category_id: category.id) }
   let!(:second_book) { create(:book, date_of_publication: Date.new(2016, 12, 8), category_id: category.id) }
   let!(:third_book) { create(:book, date_of_publication: Date.new(2015, 12, 8), category_id: create(:category).id) }
 

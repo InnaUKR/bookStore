@@ -3609,7 +3609,7 @@ function detach() {
  */
 function completed() {
 
-	// readyState === "complete.html.haml.haml" is good enough for us to call the dom ready in oldIE
+	// readyState === "complete.en.yml.haml" is good enough for us to call the dom ready in oldIE
 	if ( document.addEventListener ||
 		window.event.type === "load" ||
 		document.readyState === "complete" ) {
@@ -7192,7 +7192,7 @@ jQuery.each( [ "height", "width" ], function( i, name ) {
 		get: function( elem, computed, extra ) {
 			if ( computed ) {
 
-				// certain elements can have dimension info if we invisibly show them
+				// certain elements can have dimension info if we invisibly cart them
 				// however, it must have a current display style that would benefit from this
 				return rdisplayswap.test( jQuery.css( elem, "display" ) ) &&
 					elem.offsetWidth === 0 ?
@@ -7563,7 +7563,7 @@ function defaultPrefilter( elem, props, opts ) {
 
 		anim.always( function() {
 
-			// doing this makes sure that the complete.html.haml.haml handler will be called
+			// doing this makes sure that the complete.en.yml.haml handler will be called
 			// before this completes
 			anim.always( function() {
 				hooks.unqueued--;
@@ -7614,7 +7614,7 @@ function defaultPrefilter( elem, props, opts ) {
 		}
 	}
 
-	// show/hide pass
+	// cart/hide pass
 	for ( prop in props ) {
 		value = props[ prop ];
 		if ( rfxtypes.exec( value ) ) {
@@ -7622,8 +7622,8 @@ function defaultPrefilter( elem, props, opts ) {
 			toggle = toggle || value === "toggle";
 			if ( value === ( hidden ? "hide" : "show" ) ) {
 
-				// If there is dataShow left over from a stopped hide or show
-				// and we are going to proceed with show, we should pretend to be hidden
+				// If there is dataShow left over from a stopped hide or cart
+				// and we are going to proceed with cart, we should pretend to be hidden
 				if ( value === "show" && dataShow && dataShow[ prop ] !== undefined ) {
 					hidden = true;
 				} else {
@@ -7912,7 +7912,7 @@ jQuery.speed = function( speed, easing, fn ) {
 jQuery.fn.extend( {
 	fadeTo: function( speed, to, easing, callback ) {
 
-		// show any hidden elements after setting opacity to 0
+		// cart any hidden elements after setting opacity to 0
 		return this.filter( isHidden ).css( "opacity", 0 ).show()
 
 			// animate to the value specified
@@ -7982,7 +7982,7 @@ jQuery.fn.extend( {
 			}
 
 			// start the next in the queue if the last step wasn't forced
-			// timers currently will call their complete.html.haml.haml callbacks, which will dequeue
+			// timers currently will call their complete.en.yml.haml callbacks, which will dequeue
 			// but only if they were gotoEnd
 			if ( dequeue || !gotoEnd ) {
 				jQuery.dequeue( this, type );
@@ -10258,7 +10258,7 @@ if ( xhrSupported ) {
 					callback = function( _, isAbort ) {
 						var status, statusText, responses;
 
-						// Was never called and is aborted or complete.html.haml.haml
+						// Was never called and is aborted or complete.en.yml.haml
 						if ( callback && ( isAbort || xhr.readyState === 4 ) ) {
 
 							// Clean up
@@ -10307,7 +10307,7 @@ if ( xhrSupported ) {
 							}
 						}
 
-						// Call complete.html.haml.haml if needed
+						// Call complete.en.yml.haml if needed
 						if ( responses ) {
 							complete( status, statusText, responses, xhr.getAllResponseHeaders() );
 						}
@@ -10622,7 +10622,7 @@ jQuery.fn.load = function( url, params, callback ) {
 			data: params
 		} ).done( function( responseText ) {
 
-			// Save response for use in complete.html.haml.haml callback
+			// Save response for use in complete.en.yml.haml callback
 			response = arguments;
 
 			self.html( selector ?
@@ -11166,7 +11166,7 @@ return jQuery;
             element.trigger('ajax:success', [data, status, xhr]);
           },
           complete: function(xhr, status) {
-            element.trigger('ajax:complete.html.haml.haml', [xhr, status]);
+            element.trigger('ajax:complete.en.yml.haml', [xhr, status]);
           },
           error: function(xhr, status, error) {
             element.trigger('ajax:error', [xhr, status, error]);
@@ -11293,12 +11293,12 @@ return jQuery;
    /* For 'data-confirm' attribute:
       - Fires `confirm` event
       - Shows the confirmation dialog
-      - Fires the `confirm:complete.html.haml.haml` event
+      - Fires the `confirm:complete.en.yml.haml` event
 
       Returns `true` if no function stops the chain and user chose yes; `false` otherwise.
       Attaching a handler to the element's `confirm` event that returns a `falsy` value cancels the confirmation dialog.
-      Attaching a handler to the element's `confirm:complete.html.haml.haml` event that returns a `falsy` value makes this function
-      return false. The `confirm:complete.html.haml.haml` event is fired whether or not the user answered true or false to the dialog.
+      Attaching a handler to the element's `confirm:complete.en.yml.haml` event that returns a `falsy` value makes this function
+      return false. The `confirm:complete.en.yml.haml` event is fired whether or not the user answered true or false to the dialog.
    */
     allowAction: function(element) {
       var message = element.data('confirm'),
@@ -11311,7 +11311,7 @@ return jQuery;
         } catch (e) {
           (console.error || console.log).call(console, e.stack || e);
         }
-        callback = rails.fire(element, 'confirm:complete.html.haml.haml', [answer]);
+        callback = rails.fire(element, 'confirm:complete.en.yml.haml', [answer]);
       }
       return answer && callback;
     },
@@ -11425,11 +11425,11 @@ return jQuery;
       });
     });
 
-    $document.on('ajax:complete.html.haml.haml', rails.linkDisableSelector, function() {
+    $document.on('ajax:complete.en.yml.haml', rails.linkDisableSelector, function() {
         rails.enableElement($(this));
     });
 
-    $document.on('ajax:complete.html.haml.haml', rails.buttonDisableSelector, function() {
+    $document.on('ajax:complete.en.yml.haml', rails.buttonDisableSelector, function() {
         rails.enableFormElement($(this));
     });
 
@@ -11552,7 +11552,7 @@ return jQuery;
       if (this === event.target) rails.disableFormElements($(this));
     });
 
-    $document.on('ajax:complete.html.haml.haml.rails', rails.formSubmitSelector, function(event) {
+    $document.on('ajax:complete.en.yml.haml.rails', rails.formSubmitSelector, function(event) {
       if (this === event.target) rails.enableFormElements($(this));
     });
 
@@ -11584,7 +11584,7 @@ return jQuery;
 //         $.ajax(this.action, {
 //             files: $(":file", this),
 //             iframe: true
-//         }).complete.html.haml.haml(function(data) {
+//         }).complete.en.yml.haml(function(data) {
 //             console.log(data);
 //         });
 //     });
@@ -11601,7 +11601,7 @@ return jQuery;
 //             files: $(":file", this),
 //             iframe: true,
 //             processData: false
-//         }).complete.html.haml.haml(function(data) {
+//         }).complete.en.yml.haml(function(data) {
 //             console.log(data);
 //         });
 //     });
@@ -11625,7 +11625,7 @@ return jQuery;
 // `data-type` attribute on to jQuery as if it was the "Content-Type" response
 // header, thereby enabling the same kind of conversions that jQuery applies
 // to regular responses. For the example above you should get a Javascript
-// object as the `data` parameter of the `complete.html.haml.haml` callback, with the
+// object as the `data` parameter of the `complete.en.yml.haml` callback, with the
 // properties `ok: true` and `message: "Thanks so much"`.
 
 // ### Handling Server Errors
@@ -11634,7 +11634,7 @@ return jQuery;
 // impossible for the javascript code to determine the HTTP status code of the
 // servers response. Effectively, all of the calls you make will look like they
 // are getting successful responses, and thus invoke the `done()` or
-// `complete.html.haml.haml()` callbacks. You can only communicate problems using the content
+// `complete.en.yml.haml()` callbacks. You can only communicate problems using the content
 // of the response payload. For example, consider using a JSON response such as
 // the following to indicate a problem with an uploaded file:
 
@@ -13054,7 +13054,7 @@ $.fn.extend({
 			effectMethod = $.effects.effect[ args.effect ];
 
 		if ( $.fx.off || !effectMethod ) {
-			// delegate to the original method (e.g., .show()) if possible
+			// delegate to the original method (e.g., .cart()) if possible
 			if ( mode ) {
 				return this[ mode ]( args.duration, args.complete );
 			} else {
@@ -17249,7 +17249,7 @@ $.widget( "ui.autocomplete", {
 	},
 
 	_normalize: function( items ) {
-		// assume all items have the right format when the first item is complete.html.haml.haml
+		// assume all items have the right format when the first item is complete.en.yml.haml
 		if ( items.length && items[ 0 ].label && items[ 0 ].value ) {
 			return items;
 		}
@@ -28043,7 +28043,7 @@ return $.ui.autocomplete;
 
                 currentDate = viewDate.clone().startOf('M').startOf('w').startOf('d');
 
-                for (i = 0; i < 42; i++) { //always display 42 days (should show 6 weeks)
+                for (i = 0; i < 42; i++) { //always display 42 days (should cart 6 weeks)
                     if (currentDate.weekday() === 0) {
                         row = $('<tr>');
                         if (options.calendarWeeks) {
@@ -28412,7 +28412,7 @@ return $.ui.autocomplete;
                             $this.find('span').toggleClass(options.icons.time + ' ' + options.icons.date);
                         }
 
-                        // NOTE: uncomment if toggled state will be restored in show()
+                        // NOTE: uncomment if toggled state will be restored in cart()
                         //if (component) {
                         //    component.find('span').toggleClass(options.icons.time + ' ' + options.icons.date);
                         //}
@@ -28487,7 +28487,7 @@ return $.ui.autocomplete;
             },
 
             show = function () {
-                ///<summary>Shows the widget. Possibly will emit dp.show and dp.change</summary>
+                ///<summary>Shows the widget. Possibly will emit dp.cart and dp.change</summary>
                 var currentMoment,
                     useCurrentGranularity = {
                         'year': function (m) {
@@ -31194,7 +31194,7 @@ return $.ui.autocomplete;
 
       var dialog = this._getModal();
 
-      setTimeout(function(){ // fix race condition with modal insertion in the dom (Chrome => Team/add a new fan => #modal not found when it should have). Somehow .on('show') is too early, tried it too.
+      setTimeout(function(){ // fix race condition with modal insertion in the dom (Chrome => Team/add a new fan => #modal not found when it should have). Somehow .on('cart') is too early, tried it too.
         $.ajax({
           url: url,
           beforeSend: function(xhr) {
@@ -31235,7 +31235,7 @@ return $.ui.autocomplete;
 
       $(document).trigger('rails_admin.dom_ready', [form])
 
-      form.bind("ajax:complete.html.haml.haml", function(xhr, data, status) {
+      form.bind("ajax:complete.en.yml.haml", function(xhr, data, status) {
         if (status == 'error') {
           dialog.find('.modal-body').html(data.responseText);
           widget._bindFormEvents();
@@ -31514,7 +31514,7 @@ function pjax(options) {
     if (timeoutTimer)
       clearTimeout(timeoutTimer)
 
-    fire('pjax:complete.html.haml.haml', [xhr, textStatus, options])
+    fire('pjax:complete.en.yml.haml', [xhr, textStatus, options])
 
     fire('pjax:end', [xhr, options])
   }

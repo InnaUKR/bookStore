@@ -1,6 +1,7 @@
 en:
   orders:
     index:
+      all: 'All'
       title: 'My Orders'
       sort_by: 'Sort by'
       number: 'Number'

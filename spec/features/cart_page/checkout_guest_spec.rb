@@ -1,12 +1,14 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-feature 'checkout guest', %q{
+feature 'checkout guest', '
   Given The user is a guest
   And he is at the Cart page,
   When he wants to check out his order
   And he clicks the Checkout button,
   Then he will be transferred to the Checkout Login page.
-} do
+' do
   before do
     guest = create(:user, :guest)
     @line_item = create(:line_item, order: create(:order, user: guest))

@@ -1,8 +1,9 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-feature 'User sign in', %q{
-
-} do
+feature 'User sign in', '
+' do
   given(:user) { create(:user) }
   scenario 'Registered user try to sign in' do
     sign_in(user)

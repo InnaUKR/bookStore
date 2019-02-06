@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class BooksController < ApplicationController
   before_action :set_book, only: %i[show edit update destroy]
   before_action :set_review_params, only: %i[show]
@@ -28,11 +30,11 @@ class BooksController < ApplicationController
   end
 
   def set_review_params
-    if params.include?(:review)
-      @review = @book.reviews.build(params.require(:review).permit(:title, :text, :score))
-    else
-      @review = @book.reviews.build
-    end
+    @review = if params.include?(:review)
+                @book.reviews.build(params.require(:review).permit(:title, :text, :score))
+              else
+                @book.reviews.build
+              end
   end
 
   def book_params

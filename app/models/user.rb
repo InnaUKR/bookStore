@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   CHARACTERS = "\\-!#\\$%&'\\*\\+\\/=\\?\\^_`{|}~"
   LABEL = "(?!-)(\\w+(?!-\\.)[#{CHARACTERS}]?){1,62}"
   DOT_LABELS = "(\\.(?!-)(\\w+(?!-\\.)(?!-\\@)[#{CHARACTERS}]?){1,62})*"
-  RIGHT_MOST_LABEL = "\\.([a-z+]){1,62}"
+  RIGHT_MOST_LABEL = '\\.([a-z+]){1,62}'
   VALID_EMAIL_REGEX = /\A#{LABEL}#{DOT_LABELS}@#{LABEL}#{DOT_LABELS}#{RIGHT_MOST_LABEL}\z/i
   VALID_PASSWORD_REGEXP = /\A(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[a-zA-Z\d]{8,}\z/
 
@@ -27,8 +29,8 @@ class User < ApplicationRecord
 
   def self.new_with_session(params, session)
     super.tap do |user|
-      if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
-        user.email = data["email"] if user.email.blank?
+      if data = session['devise.facebook_data'] && session['devise.facebook_data']['extra']['raw_info']
+        user.email = data['email'] if user.email.blank?
       end
     end
   end
@@ -38,8 +40,7 @@ class User < ApplicationRecord
       user.email = auth.info.email
       user.password = Devise.friendly_token[0, 20]
       user.name = auth.info.name
-      #user.image = auth.info.image
+      # user.image = auth.info.image
     end
   end
-
 end

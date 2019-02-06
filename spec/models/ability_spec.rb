@@ -1,8 +1,9 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 require 'cancan/matchers'
 
 describe Ability do
-
   subject(:ability) { Ability.new(user) }
 
   describe 'for admin' do
@@ -43,6 +44,4 @@ describe Ability do
     it { is_expected.to be_able_to :create, Review }
     it { is_expected.to be_able_to :edit, Order }
   end
-
-
 end

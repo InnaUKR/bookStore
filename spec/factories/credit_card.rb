@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :credit_card, class: CreditCard do
     number { '12345678' }

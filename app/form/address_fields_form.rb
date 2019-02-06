@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddressFieldsForm < Rectify::Form
   attribute :first_name, String
   attribute :last_name, String

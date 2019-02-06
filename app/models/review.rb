@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Review < ApplicationRecord
   include AASM
   CHARACTERS = "\\-!#\\$%&'\\*\\+\\/=\\?\\^_`{|}~\\."
@@ -30,5 +32,4 @@ class Review < ApplicationRecord
       transitions from: :unprocessed, to: :rejected
     end
   end
-
 end

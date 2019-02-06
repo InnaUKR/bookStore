@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe ReviewsController, type: :controller do
@@ -12,9 +14,9 @@ RSpec.describe ReviewsController, type: :controller do
 
       context 'with valid attributes' do
         it 'adds a review' do
-          expect {
+          expect do
             post :create, params: { review: attributes_for(:review, user_id: user), book_id: book }
-          }.to change(Review.all, :count).by(1)
+          end.to change(Review.all, :count).by(1)
         end
 
         it 'redirects to the book page' do
@@ -30,9 +32,9 @@ RSpec.describe ReviewsController, type: :controller do
 
       context 'with invalid attributes' do
         it 'does not add a review' do
-          expect {
+          expect do
             post :create, params: { review: attributes_for(:invalid_review), book_id: book }
-          }.to change(Review.all, :count).by(0)
+          end.to change(Review.all, :count).by(0)
         end
 
         it 'redirects to the book page' do
@@ -54,9 +56,9 @@ RSpec.describe ReviewsController, type: :controller do
       end
 
       it 'does not add a review' do
-        expect {
+        expect do
           post :create, params: { review: attributes_for(:review, user_id: user), book_id: book }
-        }.to change(Review.all, :count).by(0)
+        end.to change(Review.all, :count).by(0)
       end
     end
   end

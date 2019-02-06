@@ -7,3 +7,4 @@ en:
         billing_address: 'Billing Address'
         shipments: 'Shipments'
         payment_iformation: 'Payment Information'
+        order_summary: 'Order Summary'

@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users, controllers:
       {
         registrations: 'users/registrations',
-        omniauth_callbacks: 'users/omniauth_callbacks',
+        omniauth_callbacks: 'users/omniauth_callbacks'
       }
   resources :users, only: %i[edit]
 
@@ -16,7 +18,7 @@ Rails.application.routes.draw do
     resources :reviews
   end
   resources :categories, only: :index
-  resources :orders do
+  resources :orders, only: %i[index update edit show] do
     get :cart
   end
   root 'home#index'

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ConvertImageToPolymorphic < ActiveRecord::Migration[5.1]
   def change
     remove_index :images, :book_id

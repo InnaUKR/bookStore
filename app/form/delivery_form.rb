@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class DeliveryForm < CheckoutForm
   attribute :delivery_id, Integer
   validates :delivery_id, presence: true
@@ -5,5 +7,4 @@ class DeliveryForm < CheckoutForm
   def update!(order)
     order.update(delivery_id: delivery_id, total_price: order.total_price)
   end
-
 end

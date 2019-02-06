@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Order < ApplicationRecord
   include AASM
   has_many :line_items, dependent: :destroy
@@ -5,8 +7,8 @@ class Order < ApplicationRecord
   belongs_to :user
   belongs_to :delivery, optional: true
   belongs_to :credit_card, optional: true
-  belongs_to :billing_address, :class_name => 'Address', optional: true
-  belongs_to :shipping_address, :class_name => 'Address', optional: true
+  belongs_to :billing_address, class_name: 'Address', optional: true
+  belongs_to :shipping_address, class_name: 'Address', optional: true
   belongs_to :coupon, optional: true
 
   default_scope { order(created_at: :desc) }
@@ -20,7 +22,6 @@ class Order < ApplicationRecord
     where('state=? OR state=? OR state=?',
           'in_progress', 'in_queue', 'in_delivery')
   }
-
 
   def add_book(line_item_params)
     current_item = line_items.find_by(book_id: line_item_params[:book_id])
@@ -67,4 +68,3 @@ class Order < ApplicationRecord
     end
   end
 end
-

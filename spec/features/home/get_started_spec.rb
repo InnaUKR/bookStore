@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-feature 'get started', %q{
+feature 'get started', "
   In order to be transferred to the Catalog page'
   As a guest or as a user
   I want to be able to click the Get Started
- }do
+ " do
   scenario 'User clicks Get Started' do
     sign_in create(:user)
     visit root_path

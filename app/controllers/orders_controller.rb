@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class OrdersController < ApplicationController
-  before_action :set_order, only: [:update, :destroy, :edit]
+  before_action :set_order, only: %i[update destroy edit show]
   before_action :set_cart, only: :cart
 
   authorize_resource
@@ -8,12 +10,18 @@ class OrdersController < ApplicationController
     redirect_to new_user_session_path
   end
 
+  def show
+    @line_items = @order.line_items
+    @order = @order.decorate
+  end
+
   def index
-    if params[:status]
-      @orders = current_user.orders.public_send(params[:status]).where.not(id: current_order).decorate
-    else
-      @orders = current_user.orders.where.not(id: current_order).decorate
-    end
+    @statuses = Order.aasm.states.map(&:name).map(&:to_s)
+    @orders = if params[:status]
+                current_user.orders.where(state: params[:status]).where.not(id: current_order).decorate
+              else
+                current_user.orders.where.not(id: current_order).decorate
+              end
   end
 
   def cart

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :order, class: Order do
     user
@@ -37,6 +39,5 @@ FactoryBot.define do
       delivery
       credit_card
     end
-
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 feature 'At the Checkout page, the Payment tab' do
@@ -30,5 +32,4 @@ feature 'At the Checkout page, the Payment tab' do
 
     expect(page).to have_current_path('/checkouts/payment')
   end
-
 end

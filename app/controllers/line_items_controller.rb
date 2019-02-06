@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class LineItemsController < ApplicationController
   before_action :set_line_item, only: %I[destroy up_quantity]
   before_action :set, only: %I[down_quantity]
@@ -13,17 +15,15 @@ class LineItemsController < ApplicationController
     redirect_to order_cart_path(current_order), notice: t('.success')
   end
 
-=begin
-  def update
-    respond_to do |format|
-      if @line_item.update(line_item)
-        redirect_to @line_item, notice: 'Book item was successfully updated.'
-      else
-        render :edit
-      end
-    end
-  end
-=end
+  #   def update
+  #     respond_to do |format|
+  #       if @line_item.update(line_item)
+  #         redirect_to @line_item, notice: 'Book item was successfully updated.'
+  #       else
+  #         render :edit
+  #       end
+  #     end
+  #   end
 
   def destroy
     @line_item.destroy
@@ -57,5 +57,4 @@ class LineItemsController < ApplicationController
   def line_item_params
     params.require(:line_item).permit(:book_id, :quantity)
   end
-
 end

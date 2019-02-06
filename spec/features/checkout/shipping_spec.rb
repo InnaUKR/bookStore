@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 feature 'At the Checkout page, the Delivery tab' do
@@ -17,7 +19,7 @@ feature 'At the Checkout page, the Delivery tab' do
     expect(page).to have_current_path('/checkouts/payment')
 
     order_total = find('table.general-summary-table').all('td').last.text
-    expect(order_total).to eq('€' + ('%.2f' % (line_item.total_price + delivery.price).to_s))
+    expect(order_total).to eq('€' + format('%.2f', (line_item.total_price + delivery.price).to_s))
   end
 
   scenario 'User does not choose any option. Then he clicks Save and Continue button.\
@@ -32,7 +34,7 @@ feature 'At the Checkout page, the Delivery tab' do
 
   scenario 'Guest try to visit Checkout page, the Delivery tab. He will be redirected to the Sign In page' do
     guest = create(:user, :guest)
-    create(:line_item, order: (create(:order, user: guest, step: 'delivery')))
+    create(:line_item, order: create(:order, user: guest, step: 'delivery'))
     visit edit_order_path(line_item.order)
     expect(page).to have_current_path(new_user_session_path)
   end

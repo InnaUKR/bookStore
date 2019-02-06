@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-feature 'Write a Review', %q{
+feature 'Write a Review', '
   Given The user is logged in
   And he is at the Book view
   When he wants to leave a review about a book
@@ -11,7 +13,7 @@ feature 'Write a Review', %q{
   And clicks the Post button,
   Then the user will see a message: ‘Thanks for Review. It will be published as soon as Admin will approve it.’
   #And his review is sent to the Admin panel, Reviews, the New tab.
-} do
+' do
   given(:user) { create(:user) }
   given(:book) { create(:book) }
 

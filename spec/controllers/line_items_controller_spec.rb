@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe LineItemsController, type: :controller do
@@ -22,7 +24,7 @@ RSpec.describe LineItemsController, type: :controller do
   end
 
   describe 'PUT #up_quantity' do
-    before {put :up_quantity, params: { line_item_id: line_item.id } }
+    before { put :up_quantity, params: { line_item_id: line_item.id } }
     it { is_expected.to redirect_to "/orders/#{line_item.order.id}/cart" }
     it { expect(line_item.reload.quantity).to eq(2) }
   end

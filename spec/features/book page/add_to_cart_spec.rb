@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-feature 'Book', %q{
+feature 'Book', '
   In order to add a book to the cart
   As a user or as a guest
   I want to be able to choose quantity by clicking the ‘-’/‘+’ buttons and click the Add to Cart button
- } do
-  let!(:book){create(:book)}
+ ' do
+  let!(:book) { create(:book) }
   scenario 'User chooses quantity and clicks the Add to Cart button' do
     sign_in(create(:user))
     visit book_path(book)

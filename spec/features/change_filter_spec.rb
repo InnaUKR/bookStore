@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-feature 'Catalog', %q{
+feature 'Catalog', '
   In order to change the order of displayed books
   I as user or as guest
   I want to be able to change a filter(only one filter can be chosen from this list)
-} do
+' do
   before do
     category = create(:category)
     @a_cheaper_book = create(:book, title: 'a', price: 1, category: category)

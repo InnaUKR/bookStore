@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RailsAdmin.config do |config|
   config.parent_controller = '::ApplicationController'
   config.authenticate_with { warden.authenticate! scope: :user }
@@ -46,7 +48,7 @@ RailsAdmin.config do |config|
   end
 
   config.model Book do
-    weight -1
+    weight - 1
     list do
       field :image do
         formatted_value do
@@ -118,6 +120,3 @@ RailsAdmin.config do |config|
     field :amount
   end
 end
-
-
-

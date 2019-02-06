@@ -1,11 +1,12 @@
-ENV["RAILS_ENV"] ||= 'test'
+# frozen_string_literal: true
+
+ENV['RAILS_ENV'] ||= 'test'
 require 'spec_helper'
-require File.expand_path("../../config/environment", __FILE__)
+require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
 require 'shoulda/matchers'
 require 'cancan/ability'
 require 'support/factory_bot'
-
 
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
@@ -14,7 +15,7 @@ Shoulda::Matchers.configure do |config|
   end
 end
 
-Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
+Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|

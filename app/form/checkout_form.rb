@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CheckoutForm < Rectify::Form
   def save
     if valid?
@@ -6,5 +8,4 @@ class CheckoutForm < Rectify::Form
       false
     end
   end
-
 end

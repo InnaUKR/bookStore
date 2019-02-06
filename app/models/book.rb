@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Book < ApplicationRecord
   FILTERS = { newest_first: 'date_of_publication DESC',
               price_low_to_hight: 'price',

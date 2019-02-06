@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :review do
     title { 'MyText' }
@@ -20,5 +22,4 @@ FactoryBot.define do
     title { nil }
     text { nil }
   end
-
 end

@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 class AddressForm < CheckoutForm
   attr_accessor :billing_address, :shipping_address
   attribute :use_billing, String, default: 'false'
-
 
   def initialize(params = {})
     if params.any?
@@ -53,5 +54,4 @@ class AddressForm < CheckoutForm
       order.user.addresses.create(address.attributes)
     end
   end
-
 end

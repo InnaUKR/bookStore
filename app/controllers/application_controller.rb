@@ -1,10 +1,11 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :current_user, :current_order
   before_action :set_locale
 
   check_authorization unless: :do_not_check_authorization?
-
 
   def set_locale
     locale = params[:locale].to_s.strip.to_sym
@@ -27,7 +28,7 @@ class ApplicationController < ActionController::Base
   end
 
   def create_guest_user
-    user = User.new { |user| user.guest = true }
+    user = User.new(guest: true)
     user.email = "guest_#{Time.now.to_i}#{rand(99)}@guest.com"
     user.save(validate: false)
     user

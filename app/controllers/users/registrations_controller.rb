@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Users::RegistrationsController < Devise::RegistrationsController
   prepend_before_action :require_no_authentication, only: :cancel
 
@@ -17,7 +19,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
     super
   end
 
-
   def create
     @user = guest_user
     @user.update(user_params)
@@ -32,11 +33,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def self.create_from_omniauth(params)
     user = find_or_create_by(email: params.info.email, uid: params.uid)
-    user.update({
-                    token: params.credentials.token,
-                    name: params.info.name,
-                    avatar: params.info.image
-                })
+    user.update(
+      token: params.credentials.token,
+      name: params.info.name,
+      avatar: params.info.image
+    )
     user
   end
 

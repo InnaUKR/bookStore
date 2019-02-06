@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-feature 'edit cart', %q{
+feature 'edit cart', '
   Given The user is logged in or a guest
   And he is at the Cart page,
   When he wants to change the quantity of products in the cart,
@@ -8,30 +10,30 @@ feature 'edit cart', %q{
   Then quantity of the product will be changed.
   When he wants to delete a product from the cart,
   And he clicks the Cross icon against the product
-  Then the item will be deleted from the Cart.} do
+  Then the item will be deleted from the Cart.' do
   given(:line_item) { create(:line_item, quantity: 2, order: create(:order, user: create(:user, :guest))) }
   scenario 'decrements the quantity of products in the cart' do
     visit order_cart_path(line_item.order)
 
-    expect {
+    expect do
       within 'div.general-cart-item.divider-lg-bottom' do
         find('a.input-link:eq(1)').click
       end
-    }.to (change {
+    end.to (change do
       within 'div.general-cart-item.divider-lg-bottom' do
         find('.form-control.quantity-input').value
       end
-    }).from('2').to('1')
+    end).from('2').to('1')
 
-    expect {
+    expect do
       within 'div.general-cart-item.divider-lg-bottom' do
         find('a.input-link:eq(1)').click
       end
-    }.to_not (change {
+    end.to_not (change do
       within 'div.general-cart-item.divider-lg-bottom' do
         find('.form-control.quantity-input').value
       end
-    })
+    end)
 
     expect(page).to have_content('Quantity can not be less than 1. Use X button if you want delete')
   end
@@ -39,15 +41,15 @@ feature 'edit cart', %q{
   scenario 'increments the quantity of products in the cart' do
     visit order_cart_path(line_item.order)
 
-    expect {
+    expect do
       within 'div.general-cart-item.divider-lg-bottom' do
         find('a.input-link:eq(2)').click
       end
-    }.to (change {
+    end.to (change do
       within 'div.general-cart-item.divider-lg-bottom' do
         find('.form-control.quantity-input').value
       end
-    }).from('2').to('3')
+    end).from('2').to('3')
   end
 
   scenario 'delete a product from the cart' do

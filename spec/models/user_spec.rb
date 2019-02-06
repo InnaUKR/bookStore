@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe User, :type => :model do
+RSpec.describe User, type: :model do
   it { is_expected.to have_many(:orders) }
   it { is_expected.to have_many(:credit_cards) }
   it { is_expected.to have_many(:addresses) }
@@ -76,13 +78,13 @@ RSpec.describe User, :type => :model do
     end
 
     context 'right-most label' do
-      it 'is alphabetic'do
+      it 'is alphabetic' do
         user = User.new(email: 'test.test@gmail.com')
         user.valid?
         expect(user.errors[:email]).to be_empty
       end
 
-      it 'is not digit'do
+      it 'is not digit' do
         user = User.new(email: 'test.test@gmail.4com')
         user.valid?
         expect(user.errors[:email]).to include('incorrect format')

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class DropCarts < ActiveRecord::Migration[5.1]
   def up
     drop_table :carts

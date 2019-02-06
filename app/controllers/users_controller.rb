@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UsersController < ApplicationController
   before_action :set_user
   authorize_resource
@@ -15,12 +17,12 @@ class UsersController < ApplicationController
     if @user.valid_password?(current_password_params[:current_password])
       if @user.update_attributes(new_password_params)
         bypass_sign_in(@user)
-        flash[:notice] = "Password updated"
+        flash[:notice] = 'Password updated'
         params[:user].except(:password, :password_confirmation, :current_password)
       end
     else
-      flash[:alert] = "Password not updated"
-      @user.errors[:current_password] << "Incorrect password"
+      flash[:alert] = 'Password not updated'
+      @user.errors[:current_password] << 'Incorrect password'
     end
   end
 
