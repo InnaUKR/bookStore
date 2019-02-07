@@ -108,13 +108,11 @@ ActiveRecord::Schema.define(version: 20190201184310) do
 
   create_table "line_items", force: :cascade do |t|
     t.bigint "book_id"
-    t.bigint "cart_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "quantity", default: 1
     t.bigint "order_id"
     t.index ["book_id"], name: "index_line_items_on_book_id"
-    t.index ["cart_id"], name: "index_line_items_on_cart_id"
     t.index ["order_id"], name: "index_line_items_on_order_id"
   end
 
@@ -128,8 +126,8 @@ ActiveRecord::Schema.define(version: 20190201184310) do
     t.integer "credit_card_id"
     t.bigint "coupon_id"
     t.string "step"
-    t.bigint "shipping_address_id"
     t.bigint "billing_address_id"
+    t.bigint "shipping_address_id"
     t.bigint "line_item_id"
     t.index ["billing_address_id"], name: "index_orders_on_billing_address_id"
     t.index ["coupon_id"], name: "index_orders_on_coupon_id"
@@ -186,6 +184,8 @@ ActiveRecord::Schema.define(version: 20190201184310) do
   add_foreign_key "authors_books", "books"
   add_foreign_key "line_items", "books"
   add_foreign_key "line_items", "orders"
+  add_foreign_key "orders", "addresses", column: "billing_address_id"
+  add_foreign_key "orders", "addresses", column: "shipping_address_id"
   add_foreign_key "orders", "coupons"
   add_foreign_key "orders", "deliveries"
   add_foreign_key "orders", "line_items"
