@@ -37,10 +37,14 @@
       %h3.general-subtitle= t('checkouts.show.confirm.shipments')
       %p.general-address
         = @order.delivery.method_name
+        = link_to wizard_path(:shipping) do
+          %span.general-edit= t('checkouts.show.confirm.edit')
     .col-sm-3
       %h3.general-subtitle= t('checkouts.show.confirm.payment_iformation')
       %p.general-address
         = "** ** ** #{@order.credit_card.number.last(4)}"
+        = link_to wizard_path(:payment) do
+          %span.general-edit= t('checkouts.show.confirm.edit')
         %br
         = @order.credit_card.exp_date
   .visible-xs
