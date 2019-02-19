@@ -17,12 +17,12 @@ class UsersController < ApplicationController
     if @user.valid_password?(current_password_params[:current_password])
       if @user.update_attributes(new_password_params)
         bypass_sign_in(@user)
-        flash[:notice] = 'Password updated'
+        flash[:notice] = I18n.t('user.update_password.updated')
         params[:user].except(:password, :password_confirmation, :current_password)
       end
     else
-      flash[:alert] = 'Password not updated'
-      @user.errors[:current_password] << 'Incorrect password'
+      flash[:alert] = I18n.t('user.update_password.invalid')
+      @user.errors[:current_password] << I18n.t('user.update_password.invalid')
     end
   end
 

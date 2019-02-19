@@ -14,19 +14,19 @@ RSpec.describe User, type: :model do
     it 'localpart is not empty(The localpart on the left of an @)' do
       user = User.new(email: '@gmail.com')
       user.valid?
-      expect(user.errors[:email]).to include('incorrect format')
+      expect(user.errors[:email]).to include(I18n.t('errors.messages.email'))
     end
 
     it 'domain is not empty(The domain on the right of an @)' do
       user = User.new(email: 'testUser@')
       user.valid?
-      expect(user.errors[:email]).to include('incorrect format')
+      expect(user.errors[:email]).to include(I18n.t('errors.messages.email'))
     end
 
     it 'is neither the localpart nor the domain can be empty' do
       user = User.new(email: '@')
       user.valid?
-      expect(user.errors[:email]).to include('incorrect format')
+      expect(user.errors[:email]).to include(I18n.t('errors.messages.email'))
     end
 
     it 'is separated by dots' do
@@ -38,19 +38,19 @@ RSpec.describe User, type: :model do
     it 'is not have two successive dots' do
       user = User.new(email: 'test..test@test..test')
       user.valid?
-      expect(user.errors[:email]).to include('incorrect format')
+      expect(user.errors[:email]).to include(I18n.t('errors.messages.email'))
     end
 
     it 'is not start with a dot' do
       user = User.new(email: '.test.test@test.test')
       user.valid?
-      expect(user.errors[:email]).to include('incorrect format')
+      expect(user.errors[:email]).to include(I18n.t('errors.messages.email'))
     end
 
     it 'is not end with a dot.' do
       user = User.new(email: 'test.test@test.test.')
       user.valid?
-      expect(user.errors[:email]).to include('incorrect format')
+      expect(user.errors[:email]).to include(I18n.t('errors.messages.email'))
     end
 
     it 'labels consist of a-z, A-Z, 0-9, or one of !#$%&\'*+-/=?^_`{|}~.' do
@@ -62,19 +62,19 @@ RSpec.describe User, type: :model do
     it 'labels is not start with a hyphen' do
       user = User.new(email: '-test.-test@-gmail.com')
       user.valid?
-      expect(user.errors[:email]).to include('incorrect format')
+      expect(user.errors[:email]).to include(I18n.t('errors.messages.email'))
     end
 
     it 'labels is not end with a hyphen' do
       user = User.new(email: 'test-.test-@gmail-.com')
       user.valid?
-      expect(user.errors[:email]).to include('incorrect format')
+      expect(user.errors[:email]).to include(I18n.t('errors.messages.email'))
     end
 
     it 'contain two successive hyphens' do
       user = User.new(email: 'test--test@gmail.com')
       user.valid?
-      expect(user.errors[:email]).to include('incorrect format')
+      expect(user.errors[:email]).to include(I18n.t('errors.messages.email'))
     end
 
     context 'right-most label' do
@@ -87,13 +87,13 @@ RSpec.describe User, type: :model do
       it 'is not digit' do
         user = User.new(email: 'test.test@gmail.4com')
         user.valid?
-        expect(user.errors[:email]).to include('incorrect format')
+        expect(user.errors[:email]).to include(I18n.t('errors.messages.email'))
       end
 
       it 'does not consist one of !#$%&\'*+-/=?^_`{|}~.' do
         user = User.new(email: 'test.test@gmail.c&m')
         user.valid?
-        expect(user.errors[:email]).to include('incorrect format')
+        expect(user.errors[:email]).to include(I18n.t('errors.messages.email'))
       end
     end
   end
@@ -111,25 +111,25 @@ RSpec.describe User, type: :model do
     it 'does not contain uppercase letters' do
       user = User.new(password: 'password1234')
       user.valid?
-      expect(user.errors[:password]).to include('should contain at least 1 uppercase, 1 lowercase and 1 number')
+      expect(user.errors[:password]).to include(I18n.t('errors.messages.password '))
     end
 
     it 'does not contain lowercase letters' do
       user = User.new(password: 'PASSWORD1234')
       user.valid?
-      expect(user.errors[:password]).to include('should contain at least 1 uppercase, 1 lowercase and 1 number')
+      expect(user.errors[:password]).to include(I18n.t('errors.messages.password '))
     end
 
     it 'does not contain numbers' do
       user = User.new(password: 'PAsswoRD')
       user.valid?
-      expect(user.errors[:password]).to include('should contain at least 1 uppercase, 1 lowercase and 1 number')
+      expect(user.errors[:password]).to include(I18n.t('errors.messages.password '))
     end
 
     it 'mustn’t contain spaces inside' do
       user = User.new(password: 'PAsswoRD 1234')
       user.valid?
-      expect(user.errors[:password]).to include('should contain at least 1 uppercase, 1 lowercase and 1 number')
+      expect(user.errors[:password]).to include(I18n.t('errors.messages.password '))
     end
   end
 end

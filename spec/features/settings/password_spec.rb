@@ -23,7 +23,7 @@ feature 'Settings#update_password' do
     visit edit_user_path(user)
     fill_in 'user_current_password', with: 'Wrong' + password
     find('#save_password_btn').click
-    expect(page).to have_content 'Incorrect password'
+    expect(page).to have_content I18n.t('user.update_password.invalid')
   end
 
   scenario 'Registered user tries to change current password to invalid
@@ -34,7 +34,7 @@ feature 'Settings#update_password' do
     fill_in 'user_password',               with: new_invalid_password
     fill_in 'user_password_confirmation',  with: new_invalid_password + 'something randomly pressed'
     find('#save_password_btn').click
-    expect(page).to have_content 'should contain at least 1 uppercase, 1 lowercase and 1 number'
+    expect(page).to have_content I18n.t('errors.messages.password ')
     expect(page).to have_content 'doesn\'t match Password'
   end
 
@@ -46,6 +46,6 @@ feature 'Settings#update_password' do
     fill_in 'user_password',               with: new_invalid_password
     fill_in 'user_password_confirmation',  with: new_invalid_password
     find('#save_password_btn').click
-    expect(page).to have_content 'should contain at least 1 uppercase, 1 lowercase and 1 number'
+    expect(page).to have_content I18n.t('errors.messages.password ')
   end
 end

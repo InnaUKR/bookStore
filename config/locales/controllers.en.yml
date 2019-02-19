@@ -13,3 +13,7 @@ en:
       success: 'Book was successfully added to cart'
     down_quantity:
       unsuccess: 'Quantity can not be less than 1. Use X button if you want delete'
+  user:
+    update_password:
+      updated: 'Password updated'
+      invalid: 'Invalid password'

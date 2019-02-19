@@ -3,10 +3,11 @@
   -@reviews.each do |review|
     .general-message-wrap.divider-lg
       .clearfix
-        - if review.user.avatar.blank?
-          %span.img-circle.logo-size.inlide-block.pull-left.logo-empty= review.user.email.first.upcase
+        - if review.user && review.user.image
+          = image_tag(review.user.image.image_url, class: 'img-circle logo-size inlide-block pull-left')
         - else
-          = image_tag(review.user.avatar, class: 'img-circle logo-size inlide-block pull-left')
+          %span.img-circle.logo-size.inlide-block.pull-left.logo-empty= review.user.email.first.upcase
+
         .ml-70
           %div
             .general-message-date.hidden-xs= review.data_to_str

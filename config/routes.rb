@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers:
       {
         registrations: 'users/registrations',
-        omniauth_callbacks: 'users/omniauth_callbacks'
+        omniauth_callbacks: "users/omniauth_callbacks"
       }
   resources :users, only: %i[edit]
 
@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     put :up_quantity
     put :down_quantity
   end
-  resources :books, only: :show do
+  resources :books do
     put :change_quantity
     resources :reviews
   end
