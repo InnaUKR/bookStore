@@ -9,7 +9,9 @@ RailsAdmin.config do |config|
   config.actions do
     dashboard
     index
-    new
+    new do
+      except [Order]
+    end
     export
     bulk_delete
     edit
@@ -21,11 +23,19 @@ RailsAdmin.config do |config|
     end
   end
 
-  config.included_models = %w[Order Book Author Category Review Coupon]
+  config.included_models = %w[Order Book Author Category Review Coupon Image LineItem]
+
+  config.model Image do
+    visible false
+  end
+
+  config.model LineItem do
+    visible false
+  end
 
   config.model Order do
     list do
-      scopes [nil, 'in_progress', 'delivered', 'canceled']
+      scopes [nil, 'in_queue', 'delivered', 'canceled']
       field :id do
         label 'Number'
         formatted_value do
@@ -44,11 +54,23 @@ RailsAdmin.config do |config|
           bindings[:object].aasm.states(permitted: true).map(&:name)
         end
       end
+      field :line_item_id do
+        render do
+          bindings[:view].render :partial => "line_items", :locals => {:field => self, :line_items => bindings[:object].line_items}
+        end
+
+      end
+
+    end
+  end
+
+  config.model Image do
+    edit do
+      field :image, :carrierwave
     end
   end
 
   config.model Book do
-    weight - 1
     list do
       field :image do
         formatted_value do
@@ -66,6 +88,11 @@ RailsAdmin.config do |config|
         end
       end
       fields :title, :description, :price
+      field :reviews do
+        visible do
+          false
+        end
+      end
     end
   end
 
@@ -80,11 +107,7 @@ RailsAdmin.config do |config|
     field :name
   end
 
-  config.model Image do
-    edit do
-      field :image, :carrierwave
-    end
-  end
+
 
   config.model Review do
     list do

@@ -46,7 +46,7 @@ class Order < ApplicationRecord
 
   aasm column: :state do
     state :in_progress, initial: true
-    state :in_queue, after_enter: :send_confirmation
+    state :in_queue
     state :in_delivery
     state :delivered
     state :canceled
