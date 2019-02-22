@@ -35,7 +35,7 @@ RailsAdmin.config do |config|
 
   config.model Order do
     list do
-      scopes [nil, 'in_queue', 'delivered', 'canceled']
+      scopes ['all_for_admin', 'in_queue', 'delivered', 'canceled']
       field :id do
         label 'Number'
         formatted_value do

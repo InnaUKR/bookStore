@@ -14,6 +14,7 @@ class Order < ApplicationRecord
   default_scope { order(created_at: :desc) }
 
   scope :in_progress, -> { Order.where(state: 'in_progress') }
+  scope :all_for_admin, -> { Order.where.not(state: 'in_progress') }
   scope :in_queue, -> { where state: 'in_queue' }
   scope :in_delivery, -> { where state: 'in_delivery' }
   scope :delivered, -> { where state: 'delivered' }
