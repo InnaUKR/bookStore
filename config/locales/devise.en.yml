@@ -62,5 +62,5 @@ en:
       not_saved:
         one: "1 error prohibited this %{resource} from being saved:"
         other: "%{count} errors prohibited this %{resource} from being saved:"
-      password : "should contain at least 1 uppercase, 1 lowercase and 1 number"
       email: "incorrect format"
+      password: "should contain at least 1 uppercase, 1 lowercase and 1 number"

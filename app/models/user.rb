@@ -19,7 +19,7 @@ class User < ApplicationRecord
 
   validates :password,
             format: { with: VALID_PASSWORD_REGEXP,
-                      message: I18n.t('errors.messages.password ') },
+                      message: I18n.t('errors.messages.password') },
             confirmation: true,
             presence: true, if: :password_required?
   validates :email,

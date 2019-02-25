@@ -20,14 +20,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def create
-    @user = guest_user
-    @user.update(user_params)
-    @user.guest = false
-    if @user.save
+    build_resource(sign_up_params)
+    resource.save
+    if resource.persisted?
       sign_up('user', @user)
       redirect_to root_path
     else
-      render :new
+      set_minimum_password_length
+      resource.errors.full_messages.each {|x| flash[x] = x}
+      render :'devise/registrations/new'
     end
   end
 
@@ -43,7 +44,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   private
 
-  def user_params
-    params.require(:user).permit(:email, :password)
+  def sign_up_params
+    params.require(:user).permit(:email, :password).merge(guest: false)
   end
 end

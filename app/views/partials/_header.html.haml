@@ -30,6 +30,9 @@
               - categories.each do |category|
                 %li
                   = link_to(category.name, categories_path(category: category), class: 'collapse-link')
+              %li.divider{role: "separator"}
+                %li
+                  = link_to(t('orders.index.all'), categories_url)
               - if current_user.guest
                 %li= link_to(t('navigation.log_in'), new_user_session_path, class: 'collapse-link')
                 %li= link_to(t('navigation.sign_up'), new_user_registration_path, class: 'collapse-link')
@@ -56,6 +59,9 @@
               - categories.each do |category|
                 %li
                   = link_to(category.name, categories_path(category: category))
+              %li.divider{role: "separator"}
+                %li
+                  = link_to(t('orders.index.all'), categories_url)
             - if current_user.guest
               %li= link_to(t('navigation.log_in'), new_user_session_path)
               %li= link_to(t('navigation.sign_up'), new_user_registration_path)
