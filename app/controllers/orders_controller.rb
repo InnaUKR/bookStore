@@ -6,10 +6,6 @@ class OrdersController < ApplicationController
 
   authorize_resource
 
-  rescue_from CanCan::AccessDenied do
-    redirect_to new_user_session_path
-  end
-
   def show
     @line_items = @order.line_items
     @order = @order.decorate
