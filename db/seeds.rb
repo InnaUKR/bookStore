@@ -80,7 +80,7 @@ Book.create(title: 'Becoming',
 
 Coupon.create(name: '12345', amount: 0.99)
 
-Delivery.create(method_name: 'ePacket', days: 3)
-Delivery.create(method_name: 'Standard Shipping', days: 7)
-Delivery.create(method_name: 'Seller\'s Shipping Method', days: 14)
+Delivery.create(method_name: 'ePacket', days: 3, price: 12.00)
+Delivery.create(method_name: 'Standard Shipping', days: 7, price: 6.00)
+Delivery.create(method_name: 'Seller\'s Shipping Method', days: 30, price: 2.50)
 
