@@ -111,25 +111,25 @@ RSpec.describe User, type: :model do
     it 'does not contain uppercase letters' do
       user = User.new(password: 'password1234')
       user.valid?
-      expect(user.errors[:password]).to include(I18n.t('errors.messages.password '))
+      expect(user.errors[:password]).to include(I18n.t('errors.messages.password'))
     end
 
     it 'does not contain lowercase letters' do
       user = User.new(password: 'PASSWORD1234')
       user.valid?
-      expect(user.errors[:password]).to include(I18n.t('errors.messages.password '))
+      expect(user.errors[:password]).to include(I18n.t('errors.messages.password'))
     end
 
     it 'does not contain numbers' do
       user = User.new(password: 'PAsswoRD')
       user.valid?
-      expect(user.errors[:password]).to include(I18n.t('errors.messages.password '))
+      expect(user.errors[:password]).to include(I18n.t('errors.messages.password'))
     end
 
     it 'mustn’t contain spaces inside' do
       user = User.new(password: 'PAsswoRD 1234')
       user.valid?
-      expect(user.errors[:password]).to include(I18n.t('errors.messages.password '))
+      expect(user.errors[:password]).to include(I18n.t('errors.messages.password'))
     end
   end
 end

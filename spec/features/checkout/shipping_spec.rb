@@ -36,6 +36,6 @@ feature 'At the Checkout page, the Delivery tab' do
     guest = create(:user, :guest)
     create(:line_item, order: create(:order, user: guest, step: 'delivery'))
     visit edit_order_path(line_item.order)
-    expect(page).to have_current_path(new_user_session_path)
+    expect(page).to have_content('You are not authorized to access this page.')
   end
 end

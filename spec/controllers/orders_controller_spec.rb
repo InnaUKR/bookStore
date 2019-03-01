@@ -10,7 +10,7 @@ RSpec.describe OrdersController, type: :controller do
     context 'as a guest' do
       it 'redirect to sign in page' do
         patch :update, params: { id: order.id }
-        expect(response).to redirect_to '/users/sign_in'
+        expect(flash[:alert]).to eq('You are not authorized to access this page.')
       end
     end
 
@@ -36,7 +36,7 @@ RSpec.describe OrdersController, type: :controller do
   describe 'GET #edit' do
     it 'guest redirects to sign in page' do
       get :edit, params: { id: order.id }
-      is_expected.to redirect_to '/users/sign_in'
+      expect(flash[:alert]).to eq('You are not authorized to access this page.')
     end
 
     it 'user redirects to checkouts page' do

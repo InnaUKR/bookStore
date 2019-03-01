@@ -16,6 +16,6 @@ feature 'checkout guest', '
   scenario 'Guest clicks Checkouts button and redirects to the Checkout Login page' do
     visit order_cart_path(@line_item.order)
     click_on('Checkout')
-    expect(page).to have_current_path(new_user_session_path)
+    expect(page).to have_content('You are not authorized to access this page.')
   end
 end

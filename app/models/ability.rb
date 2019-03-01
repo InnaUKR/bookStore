@@ -31,7 +31,7 @@ class Ability
   def user_abilities
     guest_abilities
     can :create, Review
-    can :update, Order
-    can :update, User, id: user.id
+    can :manage, Order, :user_id => user.id
+    can :manage, User, id: user.id
   end
 end

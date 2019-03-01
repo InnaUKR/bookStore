@@ -40,7 +40,7 @@ describe Ability do
     it { is_expected.to be_able_to :show, book }
     it { is_expected.to be_able_to :read, Category }
     it { is_expected.to be_able_to :update, order, user: user }
-    it { is_expected.not_to be_able_to :update, other_user_order, user: user }
+    it { is_expected.not_to be_able_to :update, other_user_order, user: other_user }
     it { is_expected.to be_able_to :create, Review }
     it { is_expected.to be_able_to :edit, Order }
   end

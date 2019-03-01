@@ -20,5 +20,6 @@
           %p.in-gold-500.font-18= t('orders.show.order_summary')
           %table.general-summary-table.general-summary-table-right.general-text-right
             =render 'partials/order_summary'
+
   =button_to t('orders.show.checkout_button'), edit_order_path(@order), method: :get,
    class:'btn btn-default mb-20 hidden-xs center-block', :disabled => @order.line_items.empty?
