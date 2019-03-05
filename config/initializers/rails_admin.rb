@@ -10,20 +10,20 @@ RailsAdmin.config do |config|
     dashboard
     index
     new do
-      except [Order]
+      except [Order, Review]
     end
     export
     bulk_delete
     edit
     delete do
-      except [Order]
+      except [Order, Review]
     end
     show_in_app do
       except [Order]
     end
   end
 
-  config.included_models = %w[Order Book Author Category Review Coupon Image LineItem]
+  config.included_models = %w[Order Book Author Category Review Coupon Image LineItem Delivery]
 
   config.model Image do
     visible false
@@ -31,6 +31,22 @@ RailsAdmin.config do |config|
 
   config.model LineItem do
     visible false
+  end
+
+  config.model Delivery do
+    list do
+      fields :method_name, :price, :days
+    end
+    create do
+      configure :orders do
+        visible false
+      end
+    end
+    edit do
+      configure :orders do
+        visible false
+      end
+    end
   end
 
   config.model Order do
@@ -58,9 +74,7 @@ RailsAdmin.config do |config|
         render do
           bindings[:view].render :partial => "line_items", :locals => {:field => self, :line_items => bindings[:object].line_items}
         end
-
       end
-
     end
   end
 
@@ -88,10 +102,23 @@ RailsAdmin.config do |config|
         end
       end
       fields :title, :description, :price
-      field :reviews do
-        visible do
-          false
-        end
+    end
+
+    create do
+      configure :reviews do
+        visible false
+      end
+      configure :line_items do
+        visible false
+      end
+    end
+
+    edit do
+      configure :reviews do
+        visible false
+      end
+      configure :line_items do
+        visible false
       end
     end
   end
@@ -117,7 +144,6 @@ RailsAdmin.config do |config|
       field :created_at do
         label 'Date'
       end
-      field :user
       field :state
     end
 

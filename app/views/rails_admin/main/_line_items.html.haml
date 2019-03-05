@@ -7,13 +7,13 @@
       %th.col-quantity
         %span.in-grey-600= t('carts.item.quantity')
       %th.col-total
-    - line_items.each do |item|
-      %tr
-        %td
-          .general-img-wrap-table
-            -if item.book.images.any?
-              =image_tag item.book.images.first.image_url, class: 'cart-img-shadow pull-left', alt: 'book-image', size: "260x180"
-        %td
-          %p.title= item.book.title
-        %td
-          %p= item.quantity
+      - line_items.each do |item|
+        %tr
+          %td
+            .general-img-wrap-table
+              -if item.book.images.any?
+                =image_tag item.book.images.first.image_url, alt: 'book-image', style: 'height:245px;width:auto;'
+          %td
+            %p.title= item.book.title
+          %td
+            %p= item.quantity
