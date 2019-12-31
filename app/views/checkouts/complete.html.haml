@@ -1,0 +1,35 @@
+%main.container.general-main-wrap
+  =render 'partials/checkouts/steps'
+  .text-center.mb-40
+    %h3.general-subtitle=t('checkouts.show.complete.thank_you')
+    %p.fw-300=t('checkouts.show.complete.message', user_email: current_user.email)
+  .row.mb-20
+    .col-sm-6
+      .visible-xs
+        %p.general-order-number.mb-0= @order.number
+        %p.general-address.mb-30= @order.date
+      %p.general-address
+        = @order.shipping_address.first_name
+        = @order.shipping_address.last_name
+        = link_to wizard_path(:address) do
+          %span.general-edit= t('checkouts.show.confirm.edit')
+        %br
+        = @order.shipping_address.address
+        = @order.shipping_address.city
+        = @order.shipping_address.zip
+        %br
+        = @order.shipping_address.country
+        %br
+        Phone
+        = @order.shipping_address.phone
+    .col-sm-6.hidden-xs.text-right
+      %p.general-order-number.mb-0= @order.number
+      %p.general-address.mb-30= @order.date
+  = render partial: 'partials/checkouts/complete/uneditable_order_books_mobile', collection: @order.line_items, as: :item
+  = render partial: 'partials/checkouts/complete/uneditable_order_books_desktop', collection: @order.line_items, as: :item
+  .text-center.general-text-right
+    %p.in-gold-500.font-18= t('checkouts.show.complete.order_summary')
+    %table.general-summary-table.general-summary-table-right.general-text-right
+      = render partial: 'partials/order_summary'
+  .text-center
+    = link_to t('checkouts.show.complete.back_to_store_button'), categories_path, class: 'btn btn-default mb-20'

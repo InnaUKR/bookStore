@@ -1,0 +1,7 @@
+en:
+  reviews:
+    new:
+      write_a_review: 'Write a Review'
+      title: 'Title'
+      score: 'Score'
+      submit: 'Post'

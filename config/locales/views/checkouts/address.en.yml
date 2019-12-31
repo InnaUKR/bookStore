@@ -1,0 +1,8 @@
+en:
+  checkouts:
+    show:
+      address:
+        billing_address: 'Billing Address'
+        all_fields_required: 'all fields are required'
+        shipping_address: 'Shipping Address'
+        use_billing: 'Use Billing Adress'

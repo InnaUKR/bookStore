@@ -81,5 +81,5 @@ test:
 production:
   <<: *default
   database: _bookStore_production
-  username: _bookStore
+  username:  inna
   password: <%= ENV['_BOOKSTORE_DATABASE_PASSWORD'] %>

@@ -1,0 +1,10 @@
+-if can? :create, Review
+  %h3.in-gold-500.mb-25= t('.write_a_review')
+  .general-message-wrap.divider-lg
+    .ml-70.write-review
+      .row
+        = simple_form_for @review, url: book_reviews_path(@book.id), validate: true do |f|
+          =f.input :title, label: t('.title')
+          =f.input :text
+          =f.input :score, collection: 0..5, label: t('.score'), selected: 5
+          =f.submit t('.submit'), class: 'btn btn-default pull-right general-position'

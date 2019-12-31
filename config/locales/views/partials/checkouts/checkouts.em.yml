@@ -1,0 +1,9 @@
+en:
+  checkouts:
+    save_and_continue: 'Save And Continue'
+    checkout: 'Checkout'
+    address: 'Address'
+    delivery: 'Delivery'
+    payment: 'Payment'
+    confirm: 'Confirm'
+    complete: 'Complete'

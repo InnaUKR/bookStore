@@ -1,0 +1,16 @@
+%main.container.general-main-wrap
+  .text-center
+    %h1.mb-30 Forgot your password?
+    %p.general-password-text We'll email you instructions on how to reset it
+  = simple_form_for(resource, as: resource_name,
+    url: password_path(resource_name),
+    html: { method: :post, class: "general-form" }) do |f|
+    .form-group.mb-25{ class: ('has-error' if resource.errors.messages.include? :email) }
+      = f.input_field :email, id: "email", class: "form-control",
+        autofocus: true, placeholder: "Enter your email"
+      %span.help-block= resource.errors.messages[:email].join(', ')
+    = f.submit 'Email Instructions',
+      class: "btn btn-default center-block mb-20"
+    .text-center
+      .in-gold-500.mb-20
+        =link_to 'Cancel', edit_user_registration_path

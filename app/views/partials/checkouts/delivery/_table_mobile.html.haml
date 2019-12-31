@@ -1,0 +1,30 @@
+.visible-xs
+  = form_for @order, :url => wizard_path, method: :put do |f|
+    -deliveries.each do |delivery|
+      .general-cart-item.divider-lg-bottom.mb-30
+        %table.table
+          %tr
+            %td.col-half
+              %span.in-grey-600= t('checkouts.delivery.method')
+              %td.col-half
+                .form-group.radio.mt-0.mb-0
+                  %label.radio-label
+                    = f.radio_button :delivery_id, delivery.id, class: 'radio-input', hidden: "false", require: 'true'
+                    %span.radio-icon
+                    %span.radio-text= delivery.method_name
+            %tr
+              %td
+                %span.in-grey-600= t('checkouts.delivery.days')
+              %td
+                %span.font-16.fw-300= delivery.days
+            %tr
+              %td
+                %span.in-grey-600= t('checkouts.delivery.price')
+              %td
+                %span.font-16.in-gold-500= delivery.price
+    .text-center
+      =f.submit t('checkouts.save_and_continue'), class: 'btn btn-default mb-20'
+  .general-text-align
+    %p.in-gold-500.font-18= t('.order_summary')
+    %table.general-summary-table
+      =render 'partials/order_summary'

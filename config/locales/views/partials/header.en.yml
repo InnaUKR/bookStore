@@ -1,0 +1,16 @@
+en:
+  partials:
+    header:
+      bookstore: 'Bookstore'
+      home: 'Home'
+      my_account: 'My account'
+      log_out: 'Log out'
+      mobile: 'Mobile development'
+      photo: 'Photo'
+      web_design: 'Web design'
+      navigation:
+        orders: 'Orders'
+        settings: 'Settings'
+        log_out: 'Log out'
+        log_in: 'Log in'
+        sign_up: 'Sign up'

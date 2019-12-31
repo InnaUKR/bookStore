@@ -1,0 +1,43 @@
+%main.container
+  #slider.carousel.slide{'data-ride': "carousel"}
+    %ol.carousel-indicators
+      - @latest_books.each_with_index do |item, index|
+        %li{'data-target': "#slider", 'data-slide-to': index, class: ('active' if index.zero?) }
+    .carousel-inner{role: "listbox"}
+      - @latest_books.each_with_index do |item, index|
+        %div{class: index.zero? ? 'item active' : 'item'}
+          .row
+            .col-sm-5
+              .general-img-wrap
+                -if item.images.any?
+                  =image_tag item.images.first.image_url, class: 'img-shadow.general-thumbnail-img', alt: "book-image"
+            .col-sm-7
+              .mb-60
+                %h1= item.title
+                - unless item.description.empty?
+                  %p.lead= item.description
+                %p.lead.small= item.authors_to_string
+                .general-align
+                  =link_to line_items_path(line_item: { book_id: item, quantity: 1} ), method: :post do
+                    %button.btn.btn-primary= t('.buy_btn')
+    %a.left.carousel-control{href: "#slider", role: "button", 'data-slide': "prev"}
+      %span.icon-prev{'aria-hidden': "true"}
+      %span.sr-only= t('main.previous_slide')
+    %a.right.carousel-control{href: "#slider", role: "button", 'data-slide': "next"}
+      %span.icon-next{'aria-hidden': "true"}
+      %span.sr-only= t('main.next_slide')
+
+
+
+
+  .container
+    .jumbotron.text-center.mb-0
+      %h2.h1= t('.welcome')
+      .mb-res-50
+        %p= t('.welcome_subphrase')
+      = link_to t('.welcome_btn'), categories_path, class: 'btn btn-default'
+    .mb-35
+      %h3= t('.best_sellers')
+      .row
+        - @best_sellers.each do |book|
+          = render 'books/book', book: book.decorate

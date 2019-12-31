@@ -1,0 +1,25 @@
+%main.container.general-main-wrap
+  %h1.general-title-margin= t('orders.show.cart')
+  .visible-xs
+    = render partial:'orders/item_mobile', collection: @line_items, as: :item
+  .hidden-xs
+    %table.table.table-hover
+      = render 'partials/cart/table_header_for_desktop'
+      = render partial:'orders/item_desktop', collection: @line_items, as: :item
+  .general-order-wrap
+    .row
+      .col-sm-4
+        .input-group.general-input-group
+          = form_tag @order, method: :put,:authenticity_token => true do
+            = label_tag :name, t('orders.show.enter_coupon'), class: 'input-label'
+            = text_field_tag(:name, nil, placeholder: t('orders.show.enter_coupon'), class: 'form-control mb-30')
+            %div
+              = submit_tag t('orders.show.update_cart_button'), class: 'btn btn-primary mb-15 res-block'
+      .col-sm-8
+        .res-mr-200.text-center.general-text-right
+          %p.in-gold-500.font-18= t('orders.show.order_summary')
+          %table.general-summary-table.general-summary-table-right.general-text-right
+            =render 'partials/order_summary'
+
+  =button_to t('orders.show.checkout_button'), edit_order_path(@order), method: :get,
+   class:'btn btn-default mb-20 hidden-xs center-block', :disabled => @order.line_items.empty?

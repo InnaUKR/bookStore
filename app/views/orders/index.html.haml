@@ -1,0 +1,77 @@
+%main.container.general-main-wrap
+  %h1.mt-0.mb-25= t('.title')
+  %p.lead.small.mb-10.visible-xs= t('.sort_by')
+  .dropdowns.dropdown.general-order-dropdown
+    %a.dropdown-toggle.lead.small{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
+      = t('.all')
+      %i.fa.fa-angle-down.dropdown-icon.pull-right
+    %ul.dropdown-menu
+      %li
+        =link_to t('.all'), orders_path
+      - @statuses.each do |status|
+        %li
+          = link_to status.capitalize, orders_path(status: status)
+  .visible-xs
+    - @orders.each do |order|
+      .general-cart-item.divider-lg-bottom.pt-0
+        %table.table
+          %tr
+            %td.col-half
+              %span.in-grey-600= t('.number')
+            %td.col-half
+              -if order.status == 'In_progress'
+                =link_to edit_order_path(order) do
+                  %span.general-order-number= order.number
+              -else
+                =link_to order_path(order) do
+                  %span.general-order-number= order.number
+          %tr
+            %td
+              %span.in-grey-600= t('.completed_at')
+            %td
+              %span.in-grey-900.font-16.fw-300= order.date
+          %tr
+            %td
+              %span.in-grey-600= t('.status')
+            %td
+              - if order.state == "delivered"
+                %span.font-16.fw-300.text-success= order.status
+              - else
+                %span.font-16.in-grey-900.fw-300= order.status
+          %tr
+            %td
+              %span.in-grey-600= t('.total')
+            %td
+              %strong.font-16= show_price(order.order_total)
+  .hidden-xs.mb-res-50
+    %table.table.table-hover
+      %thead
+        %tr
+          %th
+            %span.in-grey-600= t('.number')
+          %th
+            %span.in-grey-600= t('.completed_at')
+          %th
+            %span.in-grey-600= t('.status')
+          %th
+            %span.in-grey-600= t('.total')
+
+      %tbody
+        - @orders.each do |order|
+          %tr
+            %td
+              -if order.status == 'In_progress'
+                =link_to edit_order_path(order) do
+                  %span.general-order-number= order.number
+              -else
+                =link_to order_path(order) do
+                  %span.general-order-number= order.number
+            %td
+              %span.in-grey-900.font-16.fw-300= order.date
+              %td
+                - if order.state == "delivered"
+                  %span.font-16.fw-300.text-success= order.status
+                - else
+                  %span.font-16.in-grey-900.fw-300= order.status
+              %td
+                %strong.font-16= show_price(order.order_total)

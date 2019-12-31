@@ -1,0 +1,81 @@
+%main.container
+  %h1.general-title-margin= t('.title')
+  %ul.nav.clearfix.mb-20{role: "tablist"}
+    %li.tab-item.active{role: "presentation"}
+      %a.tab-link{href: "#address", 'aria-controls': "address", role: "tab", 'data-toggle': "tab"}= t('.address')
+    %li.tab-item{role: "presentation"}
+      %a.tab-link{href: "#privacy", 'aria-controls': "privacy", role: "tab", 'data-toggle': "tab"}= t('.privacy')
+  .tab-content
+    .address.tab-pane.fade.in.active#address{role: "tabpanel"}
+      .general-main-wrap
+        .hidden-xs.hidden-sm
+          .row
+            .col-md-5
+              %h3.general-subtitle.mt-0= t('.billing_address')
+            .col-md-5.col-md-offset-1
+              %h3.general-subtitle.mt-0= t('.shipping_address')
+      .row
+        .col-md-5.mb-40
+          .visible-xs.visible-sm
+            %h3.general-subtitle.mt-0= t('.billing_address')
+          =form_for @billing_address, url: edit_user_url(current_user), method: :get do |f|
+            =render 'partials/checkouts/address/address_form', ff:f , form: @billing_address, parameter: :billing_address_form
+            .text-center.general-text-align
+              =f.submit 'Save', class: 'btn btn-default'
+
+        .col-md-5.col-md-offset-1.mb-25
+          .visible-xs.visible-sm
+            %h3.general-subtitle.mt-0= t('.shipping_address')
+          =form_for @shipping_address,
+              url: edit_user_url(current_user),
+              method: :get  do |f|
+            =render 'partials/checkouts/address/address_form', ff:f , form: @shipping_address, parameter: :shipping_address_form
+            .text-center.general-text-align
+              =f.submit 'Save', class: 'btn btn-default'
+
+    .tab-pane.fade#privacy{role: "tabpanel"}
+      .row.mb-60
+        .col-sm-5
+          %p.in-gold-500.font-18.mb-25 Email
+
+          .form-group.mb-35{ class: ('has-error' if current_user.errors.messages[:email].any?) }
+            =form_tag(edit_user_path(current_user), method: :get, class: 'email_form') do
+              = label_tag :email, 'Enter New Email', class: 'control-label input-label'
+              = text_field_tag :email, (params[:email] if current_user.errors.messages[:email].any?),class: 'form-control', placeholder: "Enter your new email. Current email #{@email}"
+              %span.help-block= current_user.errors.messages[:email].join(', ')
+              .general-text-align
+                = submit_tag "Save", class: 'btn btn-default mb-35', id: 'save_email_btn'
+
+        .col-sm-5.col-sm-offset-1
+          %p.in-gold-500.font-18.mb-25 Password
+          =simple_form_for @user,
+              url: edit_user_path(@user), html: { method: :get,class: "general-form-md divider-lg-bottom pb-25" } do |f|
+            .form-group.mb-30
+              .form-group{ class: ('has-error' if @user.errors.messages[:current_password].any?) }
+                = f.label :current_password, 'Old Password', class: 'control-label input-label'
+                = f.input_field :current_password, placeholder: "Old Password", class: 'form-control', value:(params[:user][:current_password] if params.key?(:user))
+                %span.help-block= @user.errors.messages[:current_password].join(', ')
+            .form-group.mb-30
+              .form-group{ class: ('has-error' if @user.errors.messages[:password].any?) }
+                = f.label :password, 'New Password', class: 'control-label input-label'
+                = f.input_field  :password, placeholder: "New Password", class: 'form-control', value: (params[:user][:password] if params.key?(:user))
+                %span.help-block= @user.errors.messages[:password].join(', ')
+            .form-group.mb-30
+              .form-group{ class: ('has-error' if @user.errors.messages[:password_confirmation].any?) }
+                = f.label :password_confirmation, 'Confirm Password', class: 'control-label input-label'
+                = f.input_field :password_confirmation, placeholder: "Confirm Password", class: 'form-control', value: (params[:user][:password_confirmation] if params.key?(:user))
+                %span.help-block= @user.errors.messages[:password_confirmation].join(', ')
+
+            .general-text-align
+              = f.submit "Save", class: 'btn btn-default mb-10', id: 'save_password_btn'
+        .col-sm-12
+          %p.in-gold-500.font-18.mb-25 Remove Account
+          =form_tag(user_registration_path, method: :delete) do
+            .general-settings-btn
+              = submit_tag 'Please Remove My Account', class: "btn btn-default mb-20"
+            .form-group.checkbox.general-settings-checkbox
+              %label.checkbox-label
+                = check_box_tag :delete_account, true, false, class: 'checkbox-input', hidden: 'true', required: true
+                %span.checkbox-icon
+                  %i.fa.fa-check
+                %span.checkbox-text= 'I understand that all data will be lost'

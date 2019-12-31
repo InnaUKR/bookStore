@@ -1,0 +1,18 @@
+%main.container.general-main-wrap
+  .text-center
+    %h3.general-login-title Set new password
+  %form.general-form
+    = simple_form_for(resource, as: resource_name,
+      url: password_path(resource_name),
+      html: { method: :put, class: "form-group mb-30" }) do |f|
+      .form-group.mb-30{ class: ('has-error' if resource.errors.messages.include? :password) }
+        = f.label :password, class: "control-label input-label"
+        = f.input_field :password, id: "password", placeholder: "Type a new Password",
+          class: "form-control", autofocus: true, autocomplete: "off"
+        %span.help-block= resource.errors.messages[:password].join(', ')
+      .form-group.mb-40{ class: ('has-error' if resource.errors.messages.include? :confirm_password) }
+        = f.label :confirm_password, class: "control-label input-label"
+        = f.input_field :password, id: "confirm_password", placeholder: "Confirm Password",
+          class: "form-control", autocomplete: "off"
+        %span.help-block= resource.errors.messages[:confirm_password].join(', ')
+      = f.submit 'Change', class: "btn btn-default center-block mb-20"

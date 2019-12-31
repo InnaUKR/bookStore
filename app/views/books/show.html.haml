@@ -1,0 +1,42 @@
+%main.container
+  = link_to(categories_path, class: 'general-back-link') do
+    %i.fa.fa-long-arrow-left.mr-15
+    =t('.back_to_results')
+  .row
+    =render 'books/book_images'
+    .col-sm-6
+      %h1.mt-res-0= @book.title
+      %p.lead.small= @book.authors_to_string
+      .row
+        .col-xs-12.col-md-4
+          %p.h1.in-gold-500.mt-10= show_price(@book.price)
+        .col-xs-5.col-md-3
+          .input-group.general-position
+            = link_to book_change_quantity_path(book_id: @book, quantity: @item.quantity - 1),
+                method: :put, class: "input-link" do
+              %i.fa.fa-minus.line-height-40
+            %input.form-control.quantity-input{ type: 'text',
+                value: "#{@item.quantity}" }
+            = link_to book_change_quantity_path(book_id: @book, quantity: @item.quantity + 1),
+                method: :put, class: "input-link" do
+              %i.fa.fa-plus.line-height-40
+        .col-xs-7.col-md-5
+          = link_to t('.add_to_cart'), line_items_path(line_item: {quantity: @item.quantity, book_id: @book.id}),
+            method: :post, class: "btn btn-default pull-right general-position"
+      .general-info-wrap.divider-lg
+        %p=t('.description')
+        %p.lead.small.line-height-2= @book.description
+      .general-info-wrap.divider-lg
+        .clearfix
+          %p.pull-left= t('.year_of_publication')
+          %p.lead.small.pull-right= @book.year_of_publication
+      .general-info-wrap.divider-lg
+        .clearfix
+          %p.pull-left= t('.dimensions')
+          %p.lead.small.pull-right= @book.dimensions
+      .general-info-wrap.divider-lg
+        .clearfix
+          %p.pull-left= t('.materials')
+          %p.lead.small.pull-right= @book.material
+  =render 'reviews/index'
+  =render 'reviews/new'

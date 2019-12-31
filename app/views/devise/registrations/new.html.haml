@@ -1,0 +1,24 @@
+%main.container.general-main-wrap
+  .text-center
+    %h3.general-login-title Sign Up
+    = link_to user_facebook_omniauth_authorize_path, class: 'general-login-icon' do
+      %i.fa.fa-facebook-official
+    %p.general-login-text
+  = form_for(@user, as: resource_name, url: user_registration_path, method: :post, html: {class: 'general-form'}) do |f|
+    = devise_error_messages!
+    .form-group.mb-30
+      = f.label :email, class: 'control-label input-label', html: {  'data-bar' => 'Enter Email' }
+      = f.email_field :email, autofocus: true, autocomplete: "email", id: 'email', class: 'form-control', placeholder: "Enter Email"
+    .form-group.mb-30
+      = f.label :password, class: 'control-label input-label', html: { 'data-bar' => 'Password' }
+      = f.password_field :password, autocomplete: "off", id: 'password', class: 'form-control', placeholder: "Password"
+      - if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations'
+        = link_to "Forgot password?", new_password_path(resource_name), class: 'help-block in-gold-500'
+    .form-group.mb-30
+      = f.label :password_confirmation, class: 'control-label input-label', html: { 'data-bar' => 'Confirm Password' }
+      = f.password_field :password_confirmation, autocomplete: "off", id: 'password_confirmation', class: 'form-control', placeholder: "Confirm Password"
+    .text-center
+      = f.submit "Sign Up", class: 'btn btn-default mb-20'
+  %p.general-sign-text.text-center
+    Have an Account?
+    = link_to 'Log In', new_user_session_path, class: 'in-gold-500'

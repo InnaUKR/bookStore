@@ -1,0 +1,23 @@
+.mb-80
+  %h3.in-gold-500.mb-25= t('.reviews_number', number: @reviews.count)
+  -@reviews.each do |review|
+    .general-message-wrap.divider-lg
+      .clearfix
+        - if review.user && review.user.image
+          = image_tag(review.user.image.image_url, class: 'img-circle logo-size inlide-block pull-left')
+        - else
+          %span.img-circle.logo-size.inlide-block.pull-left.logo-empty= review.user.email.first.upcase
+
+        .ml-70
+          %div
+            .general-message-date.hidden-xs= review.data_to_str
+            .max-240
+              .general-message-verified= t('.verified_reviewer')
+              .general-message-name= review.user.name
+          .mb-15
+            -review.score.to_i.times do
+              %i.fa.fa-star.rate-star
+            -review.blank_stars.to_i.times do
+              %i.fa.fa-star.rate-star.rate-empty
+          %h4= review.title
+          %p= review.text

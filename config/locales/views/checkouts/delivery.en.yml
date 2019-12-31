@@ -1,0 +1,5 @@
+en:
+  checkouts:
+    show:
+      delivery:
+        credit_card: 'Credit Card'

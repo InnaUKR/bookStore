@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Bookstore
+    = stylesheet_link_tag 'application'
+    = javascript_include_tag 'application'
+    = csrf_meta_tag
+  %body
+    - if notice
+      .alert.alert-success.text-center= notice
+    - if alert
+      .alert.alert-danger.text-center= alert
+    = render 'partials/header'
+    = yield
+    = render 'partials/footer'

@@ -1,0 +1,9 @@
+en:
+  partials:
+    footer:
+      home: 'Home'
+      shop: 'Shop'
+      orders: 'Orders'
+      settings: 'Settings'
+      email: 'support@bookstore.com'
+      phone: '(555)-555-5555'

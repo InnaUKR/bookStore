@@ -1,0 +1,8 @@
+en:
+  users:
+    edit:
+      title: 'Settings'
+      address: 'Address'
+      privacy: 'Privacy'
+      billing_address: 'Billing Address'
+      shipping_address: 'Shipping Address'

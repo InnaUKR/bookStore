@@ -1,0 +1,61 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/workspace/bookStore
+    docker:
+      # specify the version you desire here
+      - image: circleci/ruby:2.5.1-node-browsers
+        environment:
+          BUNDLE_PATH: vendor/bundle
+          PGHOST: 127.0.0.1
+          PGUSER: root
+          RAILS_ENV: test
+
+      - image: circleci/postgres:10-alpine # database image
+        environment: # environment variables for database
+          POSTGRES_USER: root
+          POSTGRES_DB: circle_test
+          POSTGRES_PASSWORD: ""
+
+    steps:
+      - checkout
+
+      # Which version of bundler?
+      - run:
+          name: Which bundler?
+          command: bundle -v
+
+      # Restore bundle cache
+      - restore_cache:
+          keys:
+            - bookstore-{{ checksum "Gemfile.lock" }}
+            # fallback to using the latest cache if no exact match is found
+            - bookstore-
+
+      - run:
+          name: Bundle Install
+          command: bundle install --path vendor/bundle
+
+      # Store bundle cache
+      - save_cache:
+          key: bookstore-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+
+      # Database setup
+      - run: bundle exec rake db:create
+      - run: bundle exec rake db:schema:load
+
+      # run tests!
+      - run:
+          name: run tests
+          command: |
+            mkdir /tmp/test-results
+            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)"
+            bundle exec rspec
+      # collect reports
+      - store_test_results:
+          path: /tmp/test-results
+      - store_artifacts:
+          path: /tmp/test-results
+          destination: test-results

@@ -1,0 +1,13 @@
+en:
+  checkouts:
+    show:
+      complete:
+        back_to_store_button: 'Back to Store'
+        order_summary: 'Order Summary'
+        book: 'Book'
+        price: 'Price'
+        quantity: 'Quantity'
+        total: 'Total'
+        sub_total: 'SubTotal'
+        thank_you: 'Thank You for your Order!'
+        message: 'An order confirmation email has been sent to %{user_email}.'

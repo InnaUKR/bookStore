@@ -1,0 +1,19 @@
+en:
+  orders:
+    update:
+      success: 'Order was successfully updated'
+      unsuccess: 'Please check coupon code'
+  books:
+    change_quantity:
+      quantity_eq_0: 'The value of quantity must be greater than 0'
+  line_items:
+    destroy:
+      success: 'Book item was successfully deleted from the cart'
+    create:
+      success: 'Book was successfully added to cart'
+    down_quantity:
+      unsuccess: 'Quantity can not be less than 1. Use X button if you want delete'
+  user:
+    update_password:
+      updated: 'Password updated'
+      invalid: 'Invalid password'
